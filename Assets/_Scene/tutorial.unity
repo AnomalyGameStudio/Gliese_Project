@@ -70,7 +70,7 @@ LightmapSettings:
     m_FinalGatherRayCount: 1024
   m_LightmapSnapshot: {fileID: 0}
   m_RuntimeCPUUsage: 25
---- !u!196 &5
+--- !u!196 &5 
 NavMeshSettings:
   serializedVersion: 2
   m_ObjectHideFlags: 0
