@@ -1,0 +1,166 @@
+fileFormatVersion: 2
+guid: ca8a3127bcbf18643a53b1a225e2a949
+timeCreated: 1448933924
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Group17516
+    100004: Group17519
+    100006: Group1858
+    100008: Group33032
+    100010: Group33035
+    100012: Group34501
+    100014: Group34504
+    100016: Group34507
+    100018: Group47941
+    100020: Group53908
+    100022: Group53911
+    100024: Group58183
+    100026: Group58186
+    100028: Group60978
+    100030: Group60981
+    100032: Group60984
+    100034: Group6410
+    100036: Group6413
+    100038: Group6416
+    400000: //RootNode
+    400002: Group17516
+    400004: Group17519
+    400006: Group1858
+    400008: Group33032
+    400010: Group33035
+    400012: Group34501
+    400014: Group34504
+    400016: Group34507
+    400018: Group47941
+    400020: Group53908
+    400022: Group53911
+    400024: Group58183
+    400026: Group58186
+    400028: Group60978
+    400030: Group60981
+    400032: Group60984
+    400034: Group6410
+    400036: Group6413
+    400038: Group6416
+    2300000: Group17516
+    2300002: Group17519
+    2300004: Group1858
+    2300006: Group33032
+    2300008: Group33035
+    2300010: Group34501
+    2300012: Group34504
+    2300014: Group34507
+    2300016: Group47941
+    2300018: Group53908
+    2300020: Group53911
+    2300022: Group58183
+    2300024: Group58186
+    2300026: Group60978
+    2300028: Group60981
+    2300030: Group60984
+    2300032: Group6410
+    2300034: Group6413
+    2300036: Group6416
+    3300000: Group17516
+    3300002: Group17519
+    3300004: Group1858
+    3300006: Group33032
+    3300008: Group33035
+    3300010: Group34501
+    3300012: Group34504
+    3300014: Group34507
+    3300016: Group47941
+    3300018: Group53908
+    3300020: Group53911
+    3300022: Group58183
+    3300024: Group58186
+    3300026: Group60978
+    3300028: Group60981
+    3300030: Group60984
+    3300032: Group6410
+    3300034: Group6413
+    3300036: Group6416
+    4300000: Group17516
+    4300002: Group17519
+    4300004: Group1858
+    4300006: Group33032
+    4300008: Group33035
+    4300010: Group34501
+    4300012: Group34504
+    4300014: Group34507
+    4300016: Group47941
+    4300018: Group53908
+    4300020: Group53911
+    4300022: Group58183
+    4300024: Group58186
+    4300026: Group60978
+    4300028: Group60981
+    4300030: Group60984
+    4300032: Group6410
+    4300034: Group6413
+    4300036: Group6416
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
