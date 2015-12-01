@@ -36,7 +36,7 @@ public class Player : MonoBehaviour
 		maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
 		minJumpVelocity = Mathf.Sqrt(2 * Mathf.Abs(gravity) * minJumpHeight);
 		Debug.Log("Gravity: " + gravity + " maxJumpVelocity: " + maxJumpVelocity + "minJumpVelocity: " + minJumpVelocity);
-	}	
+	}
 
 	void Update()
 	{
@@ -78,11 +78,6 @@ public class Player : MonoBehaviour
 			}
 		}
 
-		if(controller.collisions.below || controller.collisions.above)
-		{
-			velocity.y = 0;
-		}
-
 		if(Input.GetButtonDown("Jump"))
 		{
 			if(wallSliding)
@@ -117,9 +112,12 @@ public class Player : MonoBehaviour
 
 		}
 
-
 		velocity.y += gravity * Time.deltaTime;
-		controller.Move(velocity * Time.deltaTime);
+		controller.Move(velocity * Time.deltaTime, input);
 
+		if(controller.collisions.below || controller.collisions.above)
+		{
+			velocity.y = 0;
+		}
 	}
 }
