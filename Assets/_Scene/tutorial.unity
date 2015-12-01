@@ -261,10 +261,12 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
+  m_TargetEye: 3
   m_HDR: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: .0219999999
+  m_StereoMirrorMode: 0
 --- !u!4 &258040260
 Transform:
   m_ObjectHideFlags: 0
@@ -275,7 +277,7 @@ Transform:
   m_LocalPosition: {x: -1.84675765, y: .0789113045, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 772214580}
+  m_Father: {fileID: 1513634757}
   m_RootOrder: 0
 --- !u!1 &293144328
 GameObject:
@@ -673,10 +675,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
---- !u!4 &772214580 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 400002, guid: 4e19a05e1ba12d147a663478885d70f2, type: 3}
-  m_PrefabInternal: {fileID: 1513634752}
 --- !u!1 &797216048
 GameObject:
   m_ObjectHideFlags: 0
@@ -1352,7 +1350,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4e19a05e1ba12d147a663478885d70f2, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 4e19a05e1ba12d147a663478885d70f2, type: 3}
       propertyPath: m_TagString
@@ -1420,6 +1418,10 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 3.61400008, y: 1.23889995}
+--- !u!4 &1513634757 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: 4e19a05e1ba12d147a663478885d70f2, type: 3}
+  m_PrefabInternal: {fileID: 1513634752}
 --- !u!1 &1773122023
 GameObject:
   m_ObjectHideFlags: 0
