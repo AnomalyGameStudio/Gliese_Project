@@ -5,7 +5,8 @@ using System.Collections;
 public class PlayerController : MonoBehaviour 
 {
 	//Player Handling
-	public float speed = 8;
+	public float walkSpeed = 8;
+	public float runSpeed = 12;
 	public float acceleration = 30;
 	public float gravity = 20;
 	public float jumpHeight = 12;
@@ -30,6 +31,7 @@ public class PlayerController : MonoBehaviour
 			currentSpeed = 0;
 		}
 
+		float speed = (Input.GetButton("Run")) ? runSpeed : walkSpeed; //TODO Bug, aumenta velocidade no ar
 		targetSpeed = Input.GetAxisRaw("Horizontal") * speed;
 		currentSpeed = IncrementTowards(currentSpeed, targetSpeed, acceleration);
 
