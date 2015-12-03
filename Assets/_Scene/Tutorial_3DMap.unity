@@ -186,7 +186,7 @@ GameObject:
   - 33: {fileID: 212819179}
   - 65: {fileID: 212819178}
   - 23: {fileID: 212819177}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: floor3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -301,7 +301,7 @@ GameObject:
   - 33: {fileID: 468750971}
   - 65: {fileID: 468750970}
   - 23: {fileID: 468750969}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -365,7 +365,7 @@ Transform:
   - {fileID: 1602728628}
   - {fileID: 212819176}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
 --- !u!1001 &504998981
 Prefab:
   m_ObjectHideFlags: 0
@@ -538,7 +538,7 @@ GameObject:
   - 33: {fileID: 762217211}
   - 65: {fileID: 762217210}
   - 23: {fileID: 762217209}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: floor1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -718,7 +718,7 @@ Transform:
   m_LocalScale: {x: 90, y: 42.47966, z: 1.77499628}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
 --- !u!1001 &985468466
 Prefab:
   m_ObjectHideFlags: 0
@@ -841,7 +841,7 @@ Transform:
   m_LocalScale: {x: 44.3904877, y: 42.7938194, z: 1.77499604}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
 --- !u!1 &1159500666
 GameObject:
   m_ObjectHideFlags: 0
@@ -922,12 +922,10 @@ Camera:
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
-  m_TargetEye: 3
   m_HDR: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: .0219999999
-  m_StereoMirrorMode: 0
 --- !u!1 &1176365220
 GameObject:
   m_ObjectHideFlags: 0
@@ -1000,7 +998,7 @@ Transform:
   m_LocalScale: {x: 44.3904877, y: 42.7938194, z: 1.77499604}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
 --- !u!1001 &1190978457
 Prefab:
   m_ObjectHideFlags: 0
@@ -1042,6 +1040,48 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5953a16b1a36eab4ab02c1bef5473917, type: 3}
+  m_IsPrefabParent: 0
+--- !u!1001 &1241268234
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 476570, guid: c4597ca2a9516ef4b8e0dfb9de6dbed5, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -34.4038429
+      objectReference: {fileID: 0}
+    - target: {fileID: 476570, guid: c4597ca2a9516ef4b8e0dfb9de6dbed5, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -5.88280487
+      objectReference: {fileID: 0}
+    - target: {fileID: 476570, guid: c4597ca2a9516ef4b8e0dfb9de6dbed5, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 476570, guid: c4597ca2a9516ef4b8e0dfb9de6dbed5, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 476570, guid: c4597ca2a9516ef4b8e0dfb9de6dbed5, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 476570, guid: c4597ca2a9516ef4b8e0dfb9de6dbed5, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 476570, guid: c4597ca2a9516ef4b8e0dfb9de6dbed5, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 476570, guid: c4597ca2a9516ef4b8e0dfb9de6dbed5, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: c4597ca2a9516ef4b8e0dfb9de6dbed5, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1283976490
 Prefab:
@@ -1170,7 +1210,7 @@ GameObject:
   - 33: {fileID: 1602728631}
   - 65: {fileID: 1602728630}
   - 23: {fileID: 1602728629}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: floor2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1304,7 +1344,7 @@ Transform:
   m_LocalScale: {x: 90, y: 42.47966, z: 1.77499628}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
 --- !u!1001 &1862997347
 Prefab:
   m_ObjectHideFlags: 0
