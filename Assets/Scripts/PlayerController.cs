@@ -2,7 +2,7 @@
 using System.Collections;
 
 [RequireComponent (typeof(PlayerPhysics))]
-public class PlayerController : MonoBehaviour 
+public class PlayerController : Entity 
 {
 	//Player Handling
 	public float walkSpeed = 8;
