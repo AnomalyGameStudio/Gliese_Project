@@ -130,12 +130,17 @@ public class PlayerPhysics : MonoBehaviour
 		transform.Translate(finalTransform, Space.World);
 	}
 
-	void SetCollider(Vector3 size, Vector3 center)
+	public void SetCollider(Vector3 size, Vector3 center)
 	{
 		collider.size = size;
 		collider.center = center;
 
 		s = size * colliderScale;
 		c = center * colliderScale;
+	}
+
+	public void ResetCollider()
+	{
+		SetCollider(originalSize, originalCenter);
 	}
 }
