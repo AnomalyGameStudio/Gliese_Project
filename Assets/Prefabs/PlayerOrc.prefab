@@ -114,10 +114,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4328ccb92883e643a449b41b9401be7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
+  health: 0
+  ragdoll: {fileID: 0}
+  walkSpeed: 8
+  runSpeed: 12
   acceleration: 30
   gravity: 20
   jumpHeight: 12
+  slideDecelaration: 10
 --- !u!114 &11488080
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -133,6 +137,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   grounded: 0
+  movementStopped: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
