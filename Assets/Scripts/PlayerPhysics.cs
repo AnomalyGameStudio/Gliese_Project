@@ -23,7 +23,8 @@ public class PlayerPhysics : MonoBehaviour
 	public bool grounded;
 	[HideInInspector]
 	public bool movementStopped;
-
+	[HideInInspector]
+	public bool canWallHold;
 
 	Ray ray;
 	RaycastHit hit;
@@ -39,7 +40,7 @@ public class PlayerPhysics : MonoBehaviour
 		SetCollider(originalSize, originalCenter);
 	}
 
-	public void Move(Vector2 moveAmount)
+	public void Move(Vector2 moveAmount, float moveDirX)
 	{
 		float deltaY = moveAmount.y;
 		float deltaX = moveAmount.x;
@@ -79,38 +80,51 @@ public class PlayerPhysics : MonoBehaviour
 
 		}
 
-
 		//Check collisions left and right
 		movementStopped = false;
-		for(int i = 0; i < collisionDivisionsY; i++)
+		canWallHold = false;
+
+		if(deltaX != 0)
 		{
-			float dir = Mathf.Sign(deltaX);
-			float x = p.x + c.x + s.x/2 * dir;
-			float y = p.y + c.y - s.y/2 + s.y/(collisionDivisionsY -1) * i;
-			
-			ray = new Ray(new Vector2(x, y), new Vector2(dir, 0));
-			
-			Debug.DrawRay(ray.origin, ray.direction, Color.green);
-			
-			if(Physics.Raycast(ray, out hit, Mathf.Abs(deltaX) + skin, collisionMask))
+			for(int i = 0; i < collisionDivisionsY; i++)
 			{
-				//Get the distance between the player and the ground
-				float dst = Vector3.Distance (ray.origin, hit.point);
+				float dir = Mathf.Sign(deltaX);
+				float x = p.x + c.x + s.x/2 * dir;
+				float y = p.y + c.y - s.y/2 + s.y/(collisionDivisionsY -1) * i;
 				
-				//Stop player's downwards movement after coming whithin skin width of collider
-				if(dst > skin)
+				ray = new Ray(new Vector2(x, y), new Vector2(dir, 0));
+				
+				Debug.DrawRay(ray.origin, ray.direction, Color.green);
+				
+				if(Physics.Raycast(ray, out hit, Mathf.Abs(deltaX) + skin, collisionMask))
 				{
-					deltaX = dst * dir - skin * dir;
+
+					if(hit.collider.tag == "Wall Jump")
+					{
+						if(Mathf.Sign(deltaX) == Mathf.Sign(moveDirX) && moveDirX != 0)
+						{
+							canWallHold = true;
+						}
+					}
+
+					//Get the distance between the player and the ground
+					float dst = Vector3.Distance (ray.origin, hit.point);
+					
+					//Stop player's downwards movement after coming whithin skin width of collider
+					if(dst > skin)
+					{
+						deltaX = dst * dir - skin * dir;
+					}
+					else
+					{
+						deltaX = 0;
+					}
+					movementStopped = true;
+					break;
 				}
-				else
-				{
-					deltaX = 0;
-				}
-				movementStopped = true;
-				break;
 			}
-			
 		}
+
 
 		if(!grounded && !movementStopped)
 		{
