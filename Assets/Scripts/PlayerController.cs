@@ -12,6 +12,8 @@ public class PlayerController : Entity
 	public float jumpHeight = 12;
 	public float slideDecelaration = 10;
 
+	private float initiateSlideThreshold = 9;
+
 	//System
 	private float animationSpeed;
 	private float currentSpeed;
@@ -22,10 +24,12 @@ public class PlayerController : Entity
 	//states
 	private bool jumping;
 	private bool sliding;
-	//private bool wallHolding;
+	private bool stopSliding;
+
+	//TODO Acertar para todos os Bools
 	private bool _wallHolding;
 
-	private bool wallHolding //Geter and Seter for variables //TODO Acertar para todos os Bools
+	private bool wallHolding //Geter and Seter for variables 
 	{
 		get {return _wallHolding;}
 
@@ -39,11 +43,13 @@ public class PlayerController : Entity
 	//Components
 	private PlayerPhysics playerPhysics;
 	private Animator animator;
+	private GameManager manager;
 
 	void Start()
 	{
 		playerPhysics = GetComponent<PlayerPhysics> ();
 		animator = GetComponent<Animator> ();
+		manager = Camera.main.GetComponent<GameManager>();
 
 		animator.SetLayerWeight(1, 1);
 	}
@@ -76,24 +82,26 @@ public class PlayerController : Entity
 
 			if(sliding)
 			{
-				if(Mathf.Abs(currentSpeed) < .25f)
+				if(Mathf.Abs(currentSpeed) < .25f || stopSliding)
 				{
+					stopSliding = false;
 					sliding = false;
 					animator.SetBool("Sliding", false);
 					playerPhysics.ResetCollider();
 				}
 			}
 
-
-
 			//Slide Input
 			if(Input.GetButtonDown("Slide"))
 			{
-				sliding = true;
-				animator.SetBool("Sliding", true);
-				targetSpeed = 0;
-
-				playerPhysics.SetCollider(new Vector3(10.3f, 1.5f, 3), new Vector3(.35f, .75f, 0));
+				if(Mathf.Abs(currentSpeed) > initiateSlideThreshold)
+				{
+					sliding = true;
+					animator.SetBool("Sliding", true);
+					targetSpeed = 0;
+					
+					playerPhysics.SetCollider(new Vector3(10.3f, 1.5f, 3), new Vector3(.35f, .75f, 0));
+				}
 			}
 		}
 		else
@@ -111,7 +119,11 @@ public class PlayerController : Entity
 		//Jump
 		if (Input.GetButtonDown("Jump"))
 		{
-			if(playerPhysics.grounded || wallHolding)
+			if(sliding)
+			{
+				stopSliding = true;
+			}
+			else if(playerPhysics.grounded || wallHolding)
 			{
 				amountToMove.y = jumpHeight;
 				jumping = true;
@@ -161,6 +173,19 @@ public class PlayerController : Entity
 
 		amountToMove.y -= gravity * Time.deltaTime;
 		playerPhysics.Move(amountToMove * Time.deltaTime, moveDirX);
+	}
+
+	void OnTriggerEnter(Collider c)
+	{
+		if(c.tag == "Checkpoint")
+		{
+			manager.SetCheckpoint(c.transform.position);
+		}
+
+		if(c.tag == "Finish")
+		{
+			manager.EndLevel();
+		}
 	}
 
 	private float IncrementTowards(float n, float target, float a)
