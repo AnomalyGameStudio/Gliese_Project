@@ -75,6 +75,7 @@ ModelImporter:
     7400016: Run
     7400018: Slide
     7400020: Walk
+    7400022: Wall_Hold
     9500000: //RootNode
     13700000: Ninja_Mesh
   materials:
@@ -944,6 +945,90 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Ninja
+        weight: 1
+      - path: Ninja/Hips
+        weight: 1
+      - path: Ninja/Hips/Chest
+        weight: 1
+      - path: Ninja/Hips/Chest/Arm_Upper_L
+        weight: 1
+      - path: Ninja/Hips/Chest/Arm_Upper_L/Arm_Lower_L
+        weight: 1
+      - path: Ninja/Hips/Chest/Arm_Upper_L/Arm_Lower_L/Hand_L
+        weight: 1
+      - path: Ninja/Hips/Chest/Arm_Upper_R
+        weight: 1
+      - path: Ninja/Hips/Chest/Arm_Upper_R/Arm_Lower_R
+        weight: 1
+      - path: Ninja/Hips/Chest/Arm_Upper_R/Arm_Lower_R/Hand_R
+        weight: 1
+      - path: Ninja/Hips/Chest/Neck
+        weight: 1
+      - path: Ninja/Hips/Chest/Neck/Head
+        weight: 1
+      - path: Ninja/Hips/Chest/Neck/Head/Cloth_01_L
+        weight: 1
+      - path: Ninja/Hips/Chest/Neck/Head/Cloth_01_L/Cloth_02_L
+        weight: 1
+      - path: Ninja/Hips/Chest/Neck/Head/Cloth_01_L/Cloth_02_L/Cloth_03_L
+        weight: 1
+      - path: Ninja/Hips/Chest/Neck/Head/Cloth_01_L/Cloth_02_L/Cloth_03_L/Cloth_04_L
+        weight: 1
+      - path: Ninja/Hips/Chest/Neck/Head/Cloth_01_R
+        weight: 1
+      - path: Ninja/Hips/Chest/Neck/Head/Cloth_01_R/Cloth_02_R
+        weight: 1
+      - path: Ninja/Hips/Chest/Neck/Head/Cloth_01_R/Cloth_02_R/Cloth_03_R
+        weight: 1
+      - path: Ninja/Hips/Chest/Neck/Head/Cloth_01_R/Cloth_02_R/Cloth_03_R/Cloth_04_R
+        weight: 1
+      - path: Ninja/Hips/Leg_Upper_L
+        weight: 1
+      - path: Ninja/Hips/Leg_Upper_L/Leg_Lower_L
+        weight: 1
+      - path: Ninja/Hips/Leg_Upper_R
+        weight: 1
+      - path: Ninja/Hips/Leg_Upper_R/Leg_Lower_R
+        weight: 1
+      - path: Ninja/Leg_IK_L
+        weight: 1
+      - path: Ninja/Leg_IK_L/Foot_L
+        weight: 1
+      - path: Ninja/Leg_IK_R
+        weight: 1
+      - path: Ninja/Leg_IK_R/Foot_R
+        weight: 1
+      - path: Ninja_Mesh
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Wall_Hold
+      takeName: Wall_Hold
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
