@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class PlatformController : RaycastController 
+public class PlatformController : RaycastController1 
 {
 	public LayerMask passengerMask;
 
