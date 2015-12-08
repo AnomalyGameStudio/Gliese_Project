@@ -56,7 +56,7 @@ public class PlayerPhysicsImproved : RaycastController
 
 	}
 
-	void HorizontalCollisions(Vector3 velocity)
+	void HorizontalCollisions(ref Vector3 velocity)
 	{
 		float directionX = collisions.faceDir;
 		float rayLength = Mathf.Abs(velocity.x) + skinWidth;
@@ -71,11 +71,15 @@ public class PlayerPhysicsImproved : RaycastController
 			Vector2 rayOrigin = (directionX == -1) ? raycastOrigins.bottomLeft : raycastOrigins.bottomRight;
 			rayOrigin += Vector2.up * (horizontalRaySpacing * i);
 
-			RaycastHit hit = Physics.Raycast(rayOrigin, Vector2.right * directionX, rayLength, collisionMask);
+			//RaycastHit hit = Physics.Raycast(rayOrigin, Vector2.right * directionX, rayLength, collisionMask);
 
-			Debug.DrawRay(rayOrigin, Vector2.right * directionX * rayLength, Color.red);
+			RaycastHit hit;
+			Ray ray = new Ray(rayOrigin, Vector2.right * directionX);
 
-			if(hit)
+			
+			Debug.DrawRay(ray.origin, ray.direction, Color.green);
+
+			if(Physics.Raycast(ray, out hit, rayLength, collisionMask))
 			{
 				if(hit.distance == 0)
 				{
@@ -121,7 +125,7 @@ public class PlayerPhysicsImproved : RaycastController
 		}
 	}
 
-	void VerticalCollisions(Vector3 velocity)
+	void VerticalCollisions(ref Vector3 velocity)
 	{
 		float directionY = Mathf.Sign(velocity.y);
 		float rayLength = Mathf.Abs(velocity.y) + skinWidth;
@@ -131,11 +135,15 @@ public class PlayerPhysicsImproved : RaycastController
 			Vector2 rayOrigin = (directionY == -1) ? raycastOrigins.bottomLeft : raycastOrigins.topLeft;
 			rayOrigin += Vector2.right * (verticalRaySpacing * i + velocity.x);
 
-			RaycastHit hit = Physics.Raycast(rayOrigin, Vector2.up * directionY, rayLength, collisionMask);
+			//RaycastHit hit = Physics.Raycast(rayOrigin, Vector2.up * directionY, rayLength, collisionMask);
 
-			Debug.DrawRay(rayOrigin, Vector2.up * directionY * rayLength, Color.red);
+			RaycastHit hit;
+			Ray ray = new Ray(rayOrigin, Vector2.up * directionY);
+
 			
-			if(hit)
+			Debug.DrawRay(ray.origin, ray.direction, Color.green);
+
+			if(Physics.Raycast(ray, out hit, rayLength, collisionMask))
 			{
 				if(hit.collider.tag == "Through")
 				{
@@ -172,12 +180,19 @@ public class PlayerPhysicsImproved : RaycastController
 
 		if(collisions.climbingSlope)
 		{
+
+
 			float directionX = Mathf.Sign(velocity.x);
 			rayLength = Mathf.Abs(velocity.x) + skinWidth;
 			Vector2 rayOrigin = ((directionX == -1) ? raycastOrigins.bottomLeft : raycastOrigins.bottomRight) + Vector2.up * velocity.y;
-			RaycastHit hit = Physics.Raycast(rayOrigin, Vector2.right * directionX, rayLength, collisionMask);
-			
-			if(hit)
+
+			RaycastHit hit;
+			Ray ray = new Ray(rayOrigin, Vector2.right * directionX);
+
+
+			Debug.DrawRay(ray.origin, ray.direction, Color.green);
+
+			if(Physics.Raycast(ray, out hit, rayLength, collisionMask))
 			{
 				float slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
 				if(slopeAngle != collisions.slopeAngle)
@@ -209,9 +224,15 @@ public class PlayerPhysicsImproved : RaycastController
 	{
 		float directionX = Mathf.Sign(velocity.x);
 		Vector2 rayOrigin = (directionX == -1) ? raycastOrigins.bottomRight: raycastOrigins.bottomLeft;
-		RaycastHit hit = Physics.Raycast(rayOrigin, -Vector2.up, Mathf.Infinity, collisionMask);
+		//RaycastHit hit = Physics.Raycast(rayOrigin, -Vector2.up, Mathf.Infinity, collisionMask);
+
+		RaycastHit hit;
+		Ray ray = new Ray(rayOrigin, -Vector2.up * directionX);
+		Physics.Raycast(ray, out hit, Mathf.Infinity, collisionMask);
 		
-		if(hit)
+		Debug.DrawRay(ray.origin, ray.direction, Color.green);
+
+		if(Physics.Raycast(ray, out hit, Mathf.Infinity, collisionMask))
 		{
 			float slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
 			if(slopeAngle != 0 && slopeAngle <= maxDescendAngle)
