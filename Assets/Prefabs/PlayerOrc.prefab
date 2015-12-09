@@ -9,11 +9,11 @@ GameObject:
   m_Component:
   - 4: {fileID: 476570}
   - 65: {fileID: 6544432}
-  - 114: {fileID: 11488080}
-  - 114: {fileID: 11453906}
+  - 114: {fileID: 11491318}
+  - 114: {fileID: 11492726}
   m_Layer: 0
   m_Name: PlayerOrc
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,7 +103,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.3499999, y: 6.27917576, z: 2.17131782}
   m_Center: {x: -.289987773, y: .752594113, z: .484898925}
---- !u!114 &11453906
+--- !u!114 &11491318
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -111,33 +111,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 104556}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4328ccb92883e643a449b41b9401be7, type: 3}
+  m_Script: {fileID: 11500000, guid: bce6f6a044e7d44419f1dd578b96f831, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
-  ragdoll: {fileID: 0}
-  walkSpeed: 8
-  runSpeed: 12
-  acceleration: 30
-  gravity: 20
-  jumpHeight: 12
-  slideDecelaration: 10
---- !u!114 &11488080
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 104556}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fce8214f00914f479c1835f46c9076a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  horizontalRaySpacing: 0
+  verticalRaySpacing: 0
+  collider: {fileID: 0}
   collisionMask:
     serializedVersion: 2
     m_Bits: 512
-  grounded: 0
-  movementStopped: 0
+  horizontalRayCount: 4
+  verticalRayCount: 4
+  playerInput: {x: 0, y: 0}
+--- !u!114 &11492726
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 104556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5028c5ecc7d72134cb310a7d097dccc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wallJumpClimb: {x: 0, y: 0}
+  wallJumpOff: {x: 0, y: 0}
+  wallLeap: {x: 0, y: 0}
+  maxJumpHeight: 4
+  minJumpHeight: 1
+  timeToJumpApex: .400000006
+  wallSlideSpeedMax: 3
+  wallStickTime: .25
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
