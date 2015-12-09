@@ -62,7 +62,7 @@ GameObject:
   - 124: {fileID: 12489306}
   - 81: {fileID: 8108640}
   - 114: {fileID: 11458984}
-  - 114: {fileID: 11499874}
+  - 114: {fileID: 11468214}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -93,7 +93,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 130804}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: 0, z: 0}
+  m_LocalPosition: {x: 8.31000042, y: .0399999991, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 489944}
@@ -105,7 +105,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 169962}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .449999988, y: 4.61999989, z: -10}
+  m_LocalPosition: {x: .449999988, y: 4.61999989, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 489944}
@@ -117,7 +117,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 124918}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2, y: 0, z: 0}
+  m_LocalPosition: {x: -8.44999981, y: 3.22000003, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 489944}
@@ -169,7 +169,7 @@ Camera:
   near clip plane: .300000012
   far clip plane: 1000
   field of view: 60
-  orthographic: 1
+  orthographic: 0
   orthographic size: 6
   m_Depth: -1
   m_CullingMask:
@@ -287,8 +287,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fc7ba3ae33b2c8458c3d3aaca2943bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 166696, guid: 871bea04e1e4a01469074992041a14ae, type: 2}
---- !u!114 &11499874
+  player: {fileID: 104556, guid: c4597ca2a9516ef4b8e0dfb9de6dbed5, type: 2}
+--- !u!114 &11468214
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -296,9 +296,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 169962}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 655ba3dd30976ad49836260d81710c75, type: 3}
+  m_Script: {fileID: 11500000, guid: 57fabebe843fb924db65b2f8cedb490a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  focusAreaSize: {x: 8, y: 10}
+  verticalOffset: 0
+  lookAheadDstX: 5
+  lookSmoothTimeX: .300000012
+  verticalSmoothTime: .300000012
 --- !u!124 &12489306
 Behaviour:
   m_ObjectHideFlags: 1

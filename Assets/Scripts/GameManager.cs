@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 
 	public GameObject player;
 	private GameObject currentPlayer;
-	private GameCamera cam;
+	private CameraControl cam;
 	private Vector3 checkpoint = Vector3.zero;
 
 	public static int levelCount = 2;
@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
 
 	void Start () 
 	{
-		cam = GetComponent<GameCamera>();
+		cam = GetComponent<CameraControl>();
 
 		if(GameObject.FindGameObjectWithTag("Spawn"))
 		{
@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
 	private void SpawnPlayer(Vector3 spawnPos)
 	{
 		currentPlayer = Instantiate(player, spawnPos, Quaternion.identity) as GameObject;
-		cam.SetTarget(currentPlayer.transform);
+		cam.SetTarget(currentPlayer);
 	}
 
 	private void Update()
