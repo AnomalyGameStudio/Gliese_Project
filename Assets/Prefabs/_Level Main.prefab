@@ -303,7 +303,7 @@ MonoBehaviour:
   focusAreaSize: {x: 5, y: 6}
   verticalOffset: 0
   lookAheadDstX: 5
-  lookSmoothTimeX: .300000012
+  lookSmoothTimeX: 1.5
   verticalSmoothTime: .300000012
 --- !u!124 &12489306
 Behaviour:
