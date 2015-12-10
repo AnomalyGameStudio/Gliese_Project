@@ -43,13 +43,13 @@ public class PlayerController : Entity
 	//Components
 	private PlayerPhysics playerPhysics;
 	private Animator animator;
-	private GameManager manager;
+	private _GameManager manager;
 
 	void Start()
 	{
 		playerPhysics = GetComponent<PlayerPhysics> ();
 		animator = GetComponent<Animator> ();
-		manager = Camera.main.GetComponent<GameManager>();
+		manager = Camera.main.GetComponent<_GameManager>();
 
 		animator.SetLayerWeight(1, 1);
 	}

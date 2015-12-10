@@ -2,7 +2,7 @@
 using System.Collections;
 
 [RequireComponent (typeof(PlayerPhysicsImproved))]
-public class PlayerControllerImproved : MonoBehaviour 
+public class PlayerControllerImproved : Entity 
 {
 	public Vector2 wallJumpClimb;
 	public Vector2 wallJumpOff;
@@ -25,9 +25,11 @@ public class PlayerControllerImproved : MonoBehaviour
 
 	Vector3 velocity;
 	PlayerPhysicsImproved playerPhysics;
+	GameController gameController;
 
 	void Start()
 	{
+		gameController = GameController.instance;
 		playerPhysics = GetComponent<PlayerPhysicsImproved>();
 
 		gravity = - (2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
@@ -109,13 +111,26 @@ public class PlayerControllerImproved : MonoBehaviour
 			}
 			
 		}
-		
+
 		velocity.y += gravity * Time.deltaTime;
 		playerPhysics.Move(velocity * Time.deltaTime, input);
 		
 		if(playerPhysics.collisions.below || playerPhysics.collisions.above)
 		{
 			velocity.y = 0;
+		}
+	}
+
+	void OnTriggerEnter(Collider c)
+	{
+		if(c.tag == "Checkpoint")
+		{
+			gameController.SetCheckpoint(c.transform.position);
+		}
+		
+		if(c.tag == "Finish")
+		{
+			gameController.EndLevel();
 		}
 	}
 }
