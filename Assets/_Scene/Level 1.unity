@@ -213,6 +213,7 @@ GameObject:
   - 33: {fileID: 1906641761}
   - 65: {fileID: 1906641760}
   - 23: {fileID: 1906641759}
+  - 114: {fileID: 1906641763}
   m_Layer: 9
   m_Name: Cube 1
   m_TagString: Untagged
@@ -270,8 +271,37 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1906641758}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.63000011, z: 0}
+  m_LocalPosition: {x: 0, y: .529999971, z: 0}
   m_LocalScale: {x: 4.50001192, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &1906641763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1906641758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52dcad826b73dfa49bafc88d2bde41d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horizontalRaySpacing: 0
+  verticalRaySpacing: 0
+  collider: {fileID: 0}
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 512
+  horizontalRayCount: 4
+  verticalRayCount: 4
+  passengerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  easeAmount: 1
+  speed: 1
+  waitTime: 0
+  cyclic: 1
+  localWaypoints:
+  - {x: -1, y: .5, z: 0}
+  - {x: 2, y: .5, z: 0}
