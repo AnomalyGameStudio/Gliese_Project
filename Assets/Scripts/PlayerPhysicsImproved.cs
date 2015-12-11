@@ -15,6 +15,11 @@ public class PlayerPhysicsImproved : RaycastController
 	{
 		base.Start ();
 		collisions.faceDir = 1;
+		collisions.collider = GetComponent<BoxCollider> ();
+
+		collisions.originalSize = collider.size;
+		collisions.originalCenter = collider.center;
+		collisions.colliderScale = transform.localScale.x;
 	}
 
 	public void Move(Vector3 velocity, bool standingOnPlatform)
@@ -33,6 +38,28 @@ public class PlayerPhysicsImproved : RaycastController
 		if(velocity.x != 0)
 		{
 			collisions.faceDir = (int) Mathf.Sign(velocity.x);
+
+			//Face direction
+			if (collisions.faceDir != 0)// && !wallHolding)
+			{
+				transform.eulerAngles = (collisions.faceDir > 0) ? Vector3.zero : Vector3.up * 180;
+			}
+		}
+		else
+		{
+			if(input.y < 0)
+			{
+				//crouch();
+			}
+			else
+			{
+				if(collisions.crouch)
+				{
+					velocity.y = -1;
+					//collisions.ResetCollider();
+					//collisions.crouch = false;
+				}
+			}
 		}
 		
 		if(velocity.y < 0)
@@ -47,13 +74,22 @@ public class PlayerPhysicsImproved : RaycastController
 			VerticalCollisions(ref velocity);
 		}
 		
-		transform.Translate(velocity);
+		transform.Translate(velocity, Space.World);
 		
 		if(standingOnPlatform)
 		{
 			collisions.below = true;
 		}
 
+	}
+
+	//TODO Add animation
+	//TODO BUG: Player falling through the platform
+	void crouch()
+	{
+		collisions.SetCollider(new Vector3(.74f, 1.25f, 1), new Vector3(.16f, -0.27f, 0));
+		collisions.crouch = true;
+		//transform.localScale = new Vector3(1, .5f, 1);
 	}
 
 	void HorizontalCollisions(ref Vector3 velocity)
@@ -255,19 +291,32 @@ public class PlayerPhysicsImproved : RaycastController
 		}
 	}
 
+	void resetFallingThroughPlatform()
+	{
+		collisions.fallingThroughPlatform = false;
+	}
+	
 	public struct CollisionInfo
 	{
 		public bool above, below;
 		public bool left, right;
 		public bool climbingSlope, descendingSlope;
 		public bool fallingThroughPlatform;
-		
+		public bool crouch;
 		public float slopeAngle, slopeAngleOld;
 		
 		public int faceDir; //Direction the character is facing
 		
 		public Vector3 velocityOld;
-		
+
+		public Vector3 originalSize;
+		public Vector3 originalCenter;
+		public float colliderScale;
+
+		public BoxCollider collider;
+		//private Vector3 s;
+		//private Vector3 c;
+
 		public void Reset()
 		{
 			above = below = false;
@@ -276,6 +325,20 @@ public class PlayerPhysicsImproved : RaycastController
 			
 			slopeAngleOld = slopeAngle;
 			slopeAngle = 0;
+		}
+
+		public void SetCollider(Vector3 size, Vector3 center)
+		{
+			collider.size = size;
+			collider.center = center;
+			
+			//s = size * colliderScale;
+			//c = center * colliderScale;
+		}
+		
+		public void ResetCollider()
+		{
+			SetCollider(originalSize, originalCenter);
 		}
 	}
 }

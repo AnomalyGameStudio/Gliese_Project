@@ -21,14 +21,16 @@ public class CameraControl : MonoBehaviour
 
 	bool lookAheadStopped;
 
-	public void SetTarget(GameObject t)
+	public void SetTarget(GameObject target)
 	{
-		target = t.GetComponent<PlayerPhysicsImproved>();
-		focusArea = new FocusArea(target.collider.bounds, focusAreaSize);
+		this.target = target.GetComponent<PlayerPhysicsImproved>();
+		focusArea = new FocusArea(this.target.collider.bounds, focusAreaSize);
 	}
 
 	void LateUpdate () 
 	{
+		if(!target) return;
+
 		focusArea.Update(target.collider.bounds);
 
 		Vector2 focusPosition = focusArea.centre + Vector2.up * verticalOffset;
