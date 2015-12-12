@@ -45,22 +45,25 @@ public class PlayerPhysicsImproved : RaycastController
 				transform.eulerAngles = (collisions.faceDir > 0) ? Vector3.zero : Vector3.up * 180;
 			}
 		}
+		/*
+		 * //TODO Crouch logic
 		else
 		{
 			if(input.y < 0)
 			{
-				//crouch();
+				crouch();
 			}
 			else
 			{
 				if(collisions.crouch)
 				{
 					velocity.y = -1;
-					//collisions.ResetCollider();
-					//collisions.crouch = false;
+					collisions.ResetCollider();
+					collisions.crouch = false;
 				}
 			}
 		}
+		*/
 		
 		if(velocity.y < 0)
 		{

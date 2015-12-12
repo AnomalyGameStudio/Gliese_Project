@@ -19,7 +19,7 @@ public class Entity : MonoBehaviour
 	public void Die()
 	{
 		Debug.Log("Dead");
-			Ragdoll r = (Instantiate(ragdoll, transform.position, transform.rotation) as GameObject).GetComponent<Ragdoll>();
+		Ragdoll r = (Instantiate(ragdoll, transform.position, transform.rotation) as GameObject).GetComponent<Ragdoll>();
 		//r.CopyPose(transform);
 		Destroy(this.gameObject);
 	}
