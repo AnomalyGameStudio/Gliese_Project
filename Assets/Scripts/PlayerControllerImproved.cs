@@ -35,6 +35,8 @@ public class PlayerControllerImproved : Entity
 		gravity = - (2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
 		maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
 		minJumpVelocity = Mathf.Sqrt(2 * Mathf.Abs(gravity) * minJumpHeight);
+
+		gameController.gravity = gravity;
 	}
 
 	void Update()
