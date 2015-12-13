@@ -1,76 +1,36 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerPhysicsImproved : RaycastController 
+public class Draggable : RaycastController 
 {
+	GameController gameController;
 	float maxClimbAngle = 80;
 	float maxDescendAngle = 75;
-
+	
 	public CollisionInfo collisions;
-	public LayerMask dragMask;
-
-	[HideInInspector]
-	public Vector2 playerInput;
+	Vector3 velocity;
 
 	void Start () 
 	{
 		base.Start ();
-		collisions.faceDir = 1;
-		collisions.collider = GetComponent<BoxCollider> ();
-
-		collisions.originalSize = collider.size;
-		collisions.originalCenter = collider.center;
-		collisions.colliderScale = transform.localScale.x;
+		gameController = GameController.instance;
 	}
 
-	public void Move(Vector3 velocity, bool standingOnPlatform)
+	void Update()
 	{
-		Move(velocity, Vector2.zero, standingOnPlatform);
+		velocity.y += gameController.gravity * Time.deltaTime;
+		Move(velocity * Time.deltaTime);
 	}
 
-	public void Move(Vector3 velocity, Vector2 input, bool standingOnPlatform = false)
+	public void Move(Vector3 velocity)
 	{
 		UpdateRaycastOrigins();
-		collisions.Reset();
-		collisions.velocityOld = velocity;
 
-		playerInput = input;
-		
-		if(velocity.x != 0)
-		{
-			collisions.faceDir = (int) Mathf.Sign(velocity.x);
-
-			//Face direction
-			if (collisions.faceDir != 0)// && !wallHolding)
-			{
-				transform.eulerAngles = (collisions.faceDir > 0) ? Vector3.zero : Vector3.up * 180;
-			}
-		}
-		/*
-		 * //TODO Crouch logic
-		else
-		{
-			if(input.y < 0)
-			{
-				crouch();
-			}
-			else
-			{
-				if(collisions.crouch)
-				{
-					velocity.y = -1;
-					collisions.ResetCollider();
-					collisions.crouch = false;
-				}
-			}
-		}
-		*/
-		
 		if(velocity.y < 0)
 		{
 			DescendSlope(ref velocity);
 		}
-		
+
 		HorizontalCollisions(ref velocity);
 		
 		if(velocity.y != 0)
@@ -79,53 +39,38 @@ public class PlayerPhysicsImproved : RaycastController
 		}
 		
 		transform.Translate(velocity, Space.World);
-		
-		if(standingOnPlatform)
-		{
-			collisions.below = true;
-		}
-
-	}
-
-	//TODO Add animation
-	//TODO BUG: Player falling through the platform
-	void crouch()
-	{
-		collisions.SetCollider(new Vector3(.74f, 1.25f, 1), new Vector3(.16f, -0.27f, 0));
-		collisions.crouch = true;
-		//transform.localScale = new Vector3(1, .5f, 1);
 	}
 
 	void HorizontalCollisions(ref Vector3 velocity)
 	{
 		float directionX = collisions.faceDir;
 		float rayLength = Mathf.Abs(velocity.x) + skinWidth;
-
+		
 		if(Mathf.Abs(velocity.x) < skinWidth)
 		{
 			rayLength = 2 * skinWidth;
 		}
-
+		
 		for(int i = 0; i < horizontalRayCount; i++)
 		{
 			Vector2 rayOrigin = (directionX == -1) ? raycastOrigins.bottomLeft : raycastOrigins.bottomRight;
 			rayOrigin += Vector2.up * (horizontalRaySpacing * i);
-
+			
 			//RaycastHit hit = Physics.Raycast(rayOrigin, Vector2.right * directionX, rayLength, collisionMask);
-
+			
 			RaycastHit hit;
 			Ray ray = new Ray(rayOrigin, Vector2.right * directionX);
-
+			
 			
 			Debug.DrawRay(ray.origin, ray.direction, Color.green);
-
+			
 			if(Physics.Raycast(ray, out hit, rayLength, collisionMask))
 			{
 				if(hit.distance == 0)
 				{
 					continue;
 				}
-
+				
 				float slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
 				
 				if (i == 0 && slopeAngle <= maxClimbAngle)
@@ -162,14 +107,6 @@ public class PlayerPhysicsImproved : RaycastController
 					collisions.right = directionX == 1;
 				}
 			}
-
-			if(Physics.Raycast(ray, out hit, rayLength, dragMask))
-			{
-				Draggable draggable = hit.transform.GetComponent<Draggable> ();
-				Vector3 dragVelocity = Vector3.zero;
-				dragVelocity.x = velocity.x;
-				draggable.Move(dragVelocity);
-			}
 		}
 	}
 
@@ -182,15 +119,15 @@ public class PlayerPhysicsImproved : RaycastController
 		{
 			Vector2 rayOrigin = (directionY == -1) ? raycastOrigins.bottomLeft : raycastOrigins.topLeft;
 			rayOrigin += Vector2.right * (verticalRaySpacing * i + velocity.x);
-
+			
 			//RaycastHit hit = Physics.Raycast(rayOrigin, Vector2.up * directionY, rayLength, collisionMask);
-
+			
 			RaycastHit hit;
 			Ray ray = new Ray(rayOrigin, Vector2.up * directionY);
-
+			
 			
 			Debug.DrawRay(ray.origin, ray.direction, Color.green);
-
+			
 			if(Physics.Raycast(ray, out hit, rayLength, collisionMask))
 			{
 				if(hit.collider.tag == "Through")
@@ -204,29 +141,8 @@ public class PlayerPhysicsImproved : RaycastController
 					{
 						continue;
 					}
-					
-					if(playerInput.y == -1)
-					{
-						collisions.fallingThroughPlatform = true;
-						Invoke("resetFallingThroughPlatform", .5f);
-						continue;
-					}
 				}
 				
-				velocity.y = (hit.distance - skinWidth) * directionY;
-				rayLength = hit.distance;
-				
-				if(collisions.climbingSlope)
-				{
-					velocity.x = velocity.y / Mathf.Tan(collisions.slopeAngle * Mathf.Deg2Rad) * Mathf.Sign(velocity.x);
-				}
-				
-				collisions.below = directionY == -1;
-				collisions.above = directionY == 1;
-			}
-
-			if(Physics.Raycast(ray, out hit, rayLength, dragMask))
-			{
 				velocity.y = (hit.distance - skinWidth) * directionY;
 				rayLength = hit.distance;
 				
@@ -239,21 +155,21 @@ public class PlayerPhysicsImproved : RaycastController
 				collisions.above = directionY == 1;
 			}
 		}
-
+		
 		if(collisions.climbingSlope)
 		{
-
-
+			
+			
 			float directionX = Mathf.Sign(velocity.x);
 			rayLength = Mathf.Abs(velocity.x) + skinWidth;
 			Vector2 rayOrigin = ((directionX == -1) ? raycastOrigins.bottomLeft : raycastOrigins.bottomRight) + Vector2.up * velocity.y;
-
+			
 			RaycastHit hit;
 			Ray ray = new Ray(rayOrigin, Vector2.right * directionX);
-
-
+			
+			
 			Debug.DrawRay(ray.origin, ray.direction, Color.green);
-
+			
 			if(Physics.Raycast(ray, out hit, rayLength, collisionMask))
 			{
 				float slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
@@ -265,7 +181,7 @@ public class PlayerPhysicsImproved : RaycastController
 			}	
 		}
 	}
-
+	
 	void ClimbSlope(ref Vector3 velocity, float slopeAngle)
 	{
 		float moveDistance = Mathf.Abs(velocity.x);
@@ -281,20 +197,19 @@ public class PlayerPhysicsImproved : RaycastController
 			collisions.slopeAngle = slopeAngle;
 		}
 	}
-
-	//TODO Bug: Caindo da plaforma enquanto personagem vira
+	
 	void DescendSlope(ref Vector3 velocity)
 	{
 		float directionX = Mathf.Sign(velocity.x);
 		Vector2 rayOrigin = (directionX == -1) ? raycastOrigins.bottomRight: raycastOrigins.bottomLeft;
 		//RaycastHit hit = Physics.Raycast(rayOrigin, -Vector2.up, Mathf.Infinity, collisionMask);
-
+		
 		RaycastHit hit;
 		Ray ray = new Ray(rayOrigin, -Vector2.up * directionX);
 		Physics.Raycast(ray, out hit, Mathf.Infinity, collisionMask);
 		
 		Debug.DrawRay(ray.origin, ray.direction, Color.green);
-
+		
 		if(Physics.Raycast(ray, out hit, Mathf.Infinity, collisionMask))
 		{
 			float slopeAngle = Vector2.Angle(hit.normal, Vector2.up);
@@ -318,11 +233,6 @@ public class PlayerPhysicsImproved : RaycastController
 		}
 	}
 
-	void resetFallingThroughPlatform()
-	{
-		collisions.fallingThroughPlatform = false;
-	}
-	
 	public struct CollisionInfo
 	{
 		public bool above, below;
@@ -335,15 +245,11 @@ public class PlayerPhysicsImproved : RaycastController
 		public int faceDir; //Direction the character is facing
 		
 		public Vector3 velocityOld;
-
+		
 		public Vector3 originalSize;
 		public Vector3 originalCenter;
 		public float colliderScale;
-
-		public BoxCollider collider;
-		//private Vector3 s;
-		//private Vector3 c;
-
+		
 		public void Reset()
 		{
 			above = below = false;
@@ -352,20 +258,6 @@ public class PlayerPhysicsImproved : RaycastController
 			
 			slopeAngleOld = slopeAngle;
 			slopeAngle = 0;
-		}
-
-		public void SetCollider(Vector3 size, Vector3 center)
-		{
-			collider.size = size;
-			collider.center = center;
-			
-			//s = size * colliderScale;
-			//c = center * colliderScale;
-		}
-		
-		public void ResetCollider()
-		{
-			SetCollider(originalSize, originalCenter);
 		}
 	}
 }

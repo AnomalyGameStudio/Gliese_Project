@@ -5,7 +5,7 @@ public class GameController : MonoBehaviour
 {
 	public static GameController instance;
 	public GameObject PlayerPrefab;
-
+	public float gravity;
 	Vector3 checkpoint = Vector3.zero;
 	GameObject currentPlayer;
 	CameraControl camera;
