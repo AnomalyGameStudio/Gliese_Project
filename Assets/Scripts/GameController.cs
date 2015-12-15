@@ -1,11 +1,15 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class GameController : MonoBehaviour 
 {
 	public static GameController instance;
 	public GameObject PlayerPrefab;
+	public Text health; //TODO Provisorio
+
 	public float gravity;
+
 	Vector3 checkpoint = Vector3.zero;
 	GameObject currentPlayer;
 	CameraControl camera;
@@ -43,8 +47,8 @@ public class GameController : MonoBehaviour
 
 	void SpawnPlayer()
 	{
-		currentPlayer = Instantiate(PlayerPrefab, checkpoint, Quaternion.identity) as GameObject;
-		camera.SetTarget(currentPlayer	);
+		currentPlayer = Entity.SpawnEntity(PlayerPrefab, checkpoint, health);
+		camera.SetTarget(currentPlayer);
 	}
 
 	public void SetCheckpoint(Vector3 checkpoint)
