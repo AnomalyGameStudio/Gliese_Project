@@ -14,7 +14,7 @@ public class Entity : MonoBehaviour
 	public void TakeDamage(float damage)
 	{
 		currentHealth -= damage;
-
+		currentHealth = Mathf.Clamp(currentHealth, 0, currentHealth);
 		if(currentHealth <= 0)
 		{
 			Die();
@@ -35,8 +35,14 @@ public class Entity : MonoBehaviour
 	{
 		GameObject currentPlayer = Instantiate(entityPrefab, checkpoint, Quaternion.identity) as GameObject;
 		currentPlayer.GetComponent<PlayerControllerImproved>().healthBar = health;
+		currentPlayer.GetComponent<PlayerControllerImproved>().resetHealth();
 		currentPlayer.GetComponent<PlayerControllerImproved>().UpdateUI();
 		return currentPlayer;
+	}
+
+	void resetHealth()
+	{
+		currentHealth = maxHealth;
 	}
 
 	void UpdateUI()
