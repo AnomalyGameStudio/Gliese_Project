@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿	using UnityEngine;
 using System.Collections;
 
 public class PlayerPhysicsImproved : RaycastController 
@@ -43,7 +43,7 @@ public class PlayerPhysicsImproved : RaycastController
 			//Face direction
 			if (collisions.faceDir != 0)// && !wallHolding)
 			{
-				transform.eulerAngles = (collisions.faceDir > 0) ? Vector3.zero : Vector3.up * 180;
+				//transform.eulerAngles = (collisions.faceDir > 0) ? Vector3.zero : Vector3.up * 180;
 			}
 		}
 		/*
@@ -83,6 +83,11 @@ public class PlayerPhysicsImproved : RaycastController
 		if(standingOnPlatform)
 		{
 			collisions.below = true;
+		}
+
+		if (collisions.faceDir != 0)// && !wallHolding)
+		{
+			//transform.eulerAngles = (collisions.faceDir > 0) ? Vector3.zero : Vector3.up * 180;
 		}
 
 	}
@@ -151,7 +156,7 @@ public class PlayerPhysicsImproved : RaycastController
 				{
 					velocity.x = (hit.distance - skinWidth) * directionX; //TODO Bug: Ao chegar num slope que nao pode subir, ele fica pulando feito um maluco
 					rayLength = hit.distance;
-					
+
 					if(collisions.climbingSlope)
 					{
 						

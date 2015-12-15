@@ -18,6 +18,7 @@ public class Draggable : RaycastController
 
 	void Update()
 	{
+		//velocity.x = 20 *Time.deltaTime;
 		velocity.y += gameController.gravity * Time.deltaTime;
 		Move(velocity * Time.deltaTime);
 	}
@@ -25,6 +26,11 @@ public class Draggable : RaycastController
 	public void Move(Vector3 velocity)
 	{
 		UpdateRaycastOrigins();
+
+		if(velocity.x != 0)
+		{
+			collisions.faceDir = (int) Mathf.Sign(velocity.x);
+		}
 
 		if(velocity.y < 0)
 		{
@@ -119,9 +125,7 @@ public class Draggable : RaycastController
 		{
 			Vector2 rayOrigin = (directionY == -1) ? raycastOrigins.bottomLeft : raycastOrigins.topLeft;
 			rayOrigin += Vector2.right * (verticalRaySpacing * i + velocity.x);
-			
-			//RaycastHit hit = Physics.Raycast(rayOrigin, Vector2.up * directionY, rayLength, collisionMask);
-			
+
 			RaycastHit hit;
 			Ray ray = new Ray(rayOrigin, Vector2.up * directionY);
 			
@@ -129,20 +133,7 @@ public class Draggable : RaycastController
 			Debug.DrawRay(ray.origin, ray.direction, Color.green);
 			
 			if(Physics.Raycast(ray, out hit, rayLength, collisionMask))
-			{
-				if(hit.collider.tag == "Through")
-				{
-					if(directionY == 1 || hit.distance == 0)
-					{
-						continue;
-					}
-					
-					if(collisions.fallingThroughPlatform)
-					{
-						continue;
-					}
-				}
-				
+			{	
 				velocity.y = (hit.distance - skinWidth) * directionY;
 				rayLength = hit.distance;
 				
@@ -158,8 +149,6 @@ public class Draggable : RaycastController
 		
 		if(collisions.climbingSlope)
 		{
-			
-			
 			float directionX = Mathf.Sign(velocity.x);
 			rayLength = Mathf.Abs(velocity.x) + skinWidth;
 			Vector2 rayOrigin = ((directionX == -1) ? raycastOrigins.bottomLeft : raycastOrigins.bottomRight) + Vector2.up * velocity.y;
