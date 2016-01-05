@@ -35,12 +35,12 @@ public class Entity : MonoBehaviour
 	{
 		GameObject currentPlayer = Instantiate(entityPrefab, checkpoint, Quaternion.identity) as GameObject;
 		currentPlayer.GetComponent<PlayerControllerImproved>().healthBar = health;
-		currentPlayer.GetComponent<PlayerControllerImproved>().resetHealth();
+		currentPlayer.GetComponent<PlayerControllerImproved>().ResetHealth();
 		currentPlayer.GetComponent<PlayerControllerImproved>().UpdateUI();
 		return currentPlayer;
 	}
 
-	void resetHealth()
+	void ResetHealth()
 	{
 		currentHealth = maxHealth;
 	}

@@ -26,7 +26,7 @@ public class RaycastController : MonoBehaviour
 
 	public virtual void Start()
 	{
-		calculateRaySpacing();
+		CalculateRaySpacing();
 	}
 
 	public void UpdateRaycastOrigins()
@@ -40,7 +40,7 @@ public class RaycastController : MonoBehaviour
 		raycastOrigins.topRight = new Vector2(bounds.max.x, bounds.max.y);
 	}
 
-	public void calculateRaySpacing()
+	public void CalculateRaySpacing()
 	{
 		Bounds bounds = collider.bounds;
 		bounds.Expand(skinWidth * -2);

@@ -5,7 +5,7 @@ using System.Collections;
 public class GameController : MonoBehaviour 
 {
 	public static GameController instance;
-	public GameObject PlayerPrefab;
+	public GameObject playerPrefab;
 	public Text health; //TODO Provisorio
 
 	public float gravity;
@@ -47,7 +47,7 @@ public class GameController : MonoBehaviour
 
 	void SpawnPlayer()
 	{
-		currentPlayer = Entity.SpawnEntity(PlayerPrefab, checkpoint, health);
+		currentPlayer = Entity.SpawnEntity(playerPrefab, checkpoint, health);
 		camera.SetTarget(currentPlayer);
 	}
 

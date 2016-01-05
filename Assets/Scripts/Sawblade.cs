@@ -4,6 +4,7 @@ using System.Collections;
 public class Sawblade : MonoBehaviour 
 {
 	public float speed = 300;
+	public float damage;
 
 	void Update()
 	{
@@ -14,7 +15,7 @@ public class Sawblade : MonoBehaviour
 	{
 		if(c.tag == "Player")
 		{
-			c.GetComponent<Entity>().TakeDamage(10);			                                  
+			c.GetComponent<Entity>().TakeDamage(damage);			                                  
 		}
 	}
 }
