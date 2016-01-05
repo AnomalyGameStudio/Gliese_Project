@@ -18,14 +18,20 @@ public class Draggable : RaycastController
 
 	void Update()
 	{
-		//velocity.x = 20 *Time.deltaTime;
+
 		velocity.y += gameController.gravity * Time.deltaTime;
 		Move(velocity * Time.deltaTime);
+
+		if(collisions.below || collisions.above)
+		{
+			velocity.y = 0;
+		}
 	}
 
 	public void Move(Vector3 velocity)
 	{
 		UpdateRaycastOrigins();
+		collisions.Reset();
 
 		if(velocity.x != 0)
 		{
@@ -47,6 +53,7 @@ public class Draggable : RaycastController
 		transform.Translate(velocity, Space.World);
 	}
 
+	#region Horizontal Collisions
 	void HorizontalCollisions(ref Vector3 velocity)
 	{
 		float directionX = collisions.faceDir;
@@ -115,12 +122,14 @@ public class Draggable : RaycastController
 			}
 		}
 	}
+	#endregion
 
+	#region Vertical Collisions
 	void VerticalCollisions(ref Vector3 velocity)
 	{
 		float directionY = Mathf.Sign(velocity.y);
 		float rayLength = Mathf.Abs(velocity.y) + skinWidth;
-		
+
 		for(int i = 0; i < verticalRayCount; i++)
 		{
 			Vector2 rayOrigin = (directionY == -1) ? raycastOrigins.bottomLeft : raycastOrigins.topLeft;
@@ -128,8 +137,7 @@ public class Draggable : RaycastController
 
 			RaycastHit hit;
 			Ray ray = new Ray(rayOrigin, Vector2.up * directionY);
-			
-			
+
 			Debug.DrawRay(ray.origin, ray.direction, Color.green);
 			
 			if(Physics.Raycast(ray, out hit, rayLength, collisionMask))
@@ -141,7 +149,7 @@ public class Draggable : RaycastController
 				{
 					velocity.x = velocity.y / Mathf.Tan(collisions.slopeAngle * Mathf.Deg2Rad) * Mathf.Sign(velocity.x);
 				}
-				
+
 				collisions.below = directionY == -1;
 				collisions.above = directionY == 1;
 			}
@@ -170,7 +178,8 @@ public class Draggable : RaycastController
 			}	
 		}
 	}
-	
+	#endregion
+
 	void ClimbSlope(ref Vector3 velocity, float slopeAngle)
 	{
 		float moveDistance = Mathf.Abs(velocity.x);

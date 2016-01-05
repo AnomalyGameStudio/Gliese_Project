@@ -358,7 +358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5461c98a3f55484d904ca964dcfd8fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerPrefab: {fileID: 104556, guid: c4597ca2a9516ef4b8e0dfb9de6dbed5, type: 2}
+  playerPrefab: {fileID: 104556, guid: c4597ca2a9516ef4b8e0dfb9de6dbed5, type: 2}
   health: {fileID: 11457222}
   gravity: 0
 --- !u!114 &11411924

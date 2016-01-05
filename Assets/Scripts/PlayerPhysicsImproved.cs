@@ -12,7 +12,7 @@ public class PlayerPhysicsImproved : RaycastController
 	[HideInInspector]
 	public Vector2 playerInput;
 
-	void Start () 
+	void Start ()
 	{
 		base.Start ();
 		collisions.faceDir = 1;
@@ -94,12 +94,14 @@ public class PlayerPhysicsImproved : RaycastController
 
 	//TODO Add animation
 	//TODO BUG: Player falling through the platform
+	/*
 	void crouch()
 	{
 		collisions.SetCollider(new Vector3(.74f, 1.25f, 1), new Vector3(.16f, -0.27f, 0));
 		collisions.crouch = true;
 		//transform.localScale = new Vector3(1, .5f, 1);
 	}
+	*/
 
 	void HorizontalCollisions(ref Vector3 velocity)
 	{
@@ -170,6 +172,12 @@ public class PlayerPhysicsImproved : RaycastController
 
 			if(Physics.Raycast(ray, out hit, rayLength, dragMask))
 			{
+				//if(hit.distance == 0)
+				{
+					//continue;
+				}
+				velocity.x = (hit.distance - skinWidth) * directionX;
+
 				Draggable draggable = hit.transform.GetComponent<Draggable> ();
 				Vector3 dragVelocity = Vector3.zero;
 				dragVelocity.x = velocity.x;
@@ -323,7 +331,7 @@ public class PlayerPhysicsImproved : RaycastController
 		}
 	}
 
-	void resetFallingThroughPlatform()
+	void ResetFallingThroughPlatform()
 	{
 		collisions.fallingThroughPlatform = false;
 	}
@@ -359,6 +367,7 @@ public class PlayerPhysicsImproved : RaycastController
 			slopeAngle = 0;
 		}
 
+		/*
 		public void SetCollider(Vector3 size, Vector3 center)
 		{
 			collider.size = size;
@@ -372,5 +381,6 @@ public class PlayerPhysicsImproved : RaycastController
 		{
 			SetCollider(originalSize, originalCenter);
 		}
+		*/
 	}
 }

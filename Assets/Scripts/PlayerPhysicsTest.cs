@@ -1,8 +1,8 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 [RequireComponent (typeof(BoxCollider))]
-public class PlayerPhysics : MonoBehaviour
+public class PlayerPhysicsTest : MonoBehaviour
 {
 	public LayerMask collisionMask;
 

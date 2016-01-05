@@ -1,7 +1,7 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
-[RequireComponent (typeof(PlayerPhysics))]
+[RequireComponent (typeof(PlayerPhysicsTest))]
 public class PlayerController : Entity 
 {
 	//Player Handling
@@ -41,13 +41,13 @@ public class PlayerController : Entity
 	}
 
 	//Components
-	private PlayerPhysics playerPhysics;
+	private PlayerPhysicsTest playerPhysics;
 	private Animator animator;
 	private _GameManager manager;
 
 	void Start()
 	{
-		playerPhysics = GetComponent<PlayerPhysics> ();
+		playerPhysics = GetComponent<PlayerPhysicsTest> ();
 		animator = GetComponent<Animator> ();
 		manager = Camera.main.GetComponent<_GameManager>();
 
