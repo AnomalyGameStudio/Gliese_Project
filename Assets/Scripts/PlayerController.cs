@@ -1,204 +1,128 @@
 using UnityEngine;
 using System.Collections;
 
-[RequireComponent (typeof(PlayerPhysicsTest))]
-public class PlayerController : Entity 
+[RequireComponent (typeof(CharacterController))]
+[RequireComponent (typeof(Animator))]
+public class PlayerController : MonoBehaviour 
 {
-	//Player Handling
-	public float walkSpeed = 8;
-	public float runSpeed = 12;
-	public float acceleration = 30;
-	public float gravity = 20;
-	public float jumpHeight = 12;
-	public float slideDecelaration = 10;
+	[HideInInspector] public CharacterController controller;			// Reference to the CharacterController component
+	[HideInInspector] public Vector2 playerInput;						// The player's input to be used in the camera
+	[HideInInspector] public Bounds bounds;								// Variable used to provide the bounds to the camera TODO: Check whether it is used
 
-	private float initiateSlideThreshold = 9;
+	public float moveSpeed = 12f;										// Control the speed of the player
+	public float jumpSpeed = 8f;										// Control the jumpSpeed. TODO Remove this part. Deprecated
 
-	//System
-	private float animationSpeed;
-	private float currentSpeed;
-	private float targetSpeed;
-	private Vector2 amountToMove;
-	private float moveDirX;
+	public float maxJumpHeight = 4f;									// The maximum height of a Jump
+	public float minJumpHeight = 1f;									// The minimum Height of a Jump
+	public float timeToJumpApex = 0.4f;									// The time to achieve max jump height
+	
+	Animator animator;													// Reference to the Animator component
+	Vector3 velocity = Vector3.zero;									// Stores the movement vector of the player
 
-	//states
-	private bool jumping;
-	private bool sliding;
-	private bool stopSliding;
+	float accelerationTimeAirborne = .2f;								// Controls the acceleration when the player is in the Air
+	float accelerationTimeGrounded = .1f;								// Controls the acceleration when the player is on the Ground.
+	float velocityXSmoothing;											// Variable to hold the SmoothDamp of the X velocity
+	float maxJumpVelocity;												// The velocity to achieve Max Jump Height
+	float minJumpVelocity;												// The velocity to achieve Min Jump Height
+	float gravity;														// The gravity
 
-	//TODO Acertar para todos os Bools
-	private bool _wallHolding;
 
-	private bool wallHolding //Geter and Seter for variables 
+	void Awake()
 	{
-		get {return _wallHolding;}
-
-		set
+		// Gets the Character Controller component
+		controller = GetComponent<CharacterController>();
+		
+		// Gets the animator component
+		animator = GetComponent<Animator>();
+		
+		// Check if the Character Controller was found
+		if(controller == null)
 		{
-			_wallHolding = value;
-			animator.SetBool("WallHold", _wallHolding);
+			Debug.LogError("CharacterController component not found.");
+		}
+		
+		// Check if the animator component was found
+		if(animator == null)
+		{
+			Debug.LogError("Animator component not found");
 		}
 	}
 
-	//Components
-	private PlayerPhysicsTest playerPhysics;
-	private Animator animator;
-	private _GameManager manager;
-
 	void Start()
 	{
-		playerPhysics = GetComponent<PlayerPhysicsTest> ();
-		animator = GetComponent<Animator> ();
-		manager = Camera.main.GetComponent<_GameManager>();
+		// Calculate the gravity on the player. TODO Move this calculation to a GameController
+		gravity = - (2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
 
-		animator.SetLayerWeight(1, 1);
+		// Calculate the velocity to achieve max Jump Height
+		maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
+
+		// Calculate the velocity to achieve min Jump Height
+		minJumpVelocity = Mathf.Sqrt(2 * Mathf.Abs(gravity) * minJumpHeight);
 	}
 
 	void Update()
 	{
-		//Reset Accelaration uppon colision
-		if(playerPhysics.movementStopped)
+		animator.SetBool("Jumping", !controller.isGrounded);
+
+		// Stores the input of the player
+		playerInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+
+		// Stores the direction the player is facing
+		float directionX = Mathf.Sign(playerInput.x);
+
+		// Assigns the acceleration according to whether player is on the ground or not.
+		float currentAcceleration = (controller.isGrounded) ? accelerationTimeGrounded : accelerationTimeAirborne;
+
+		// Calculate the target Velocity
+		float targetVelocityX = playerInput.x * moveSpeed;
+
+		// Calculate the X velocity
+		velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, currentAcceleration);
+
+		if (controller.isGrounded) 
 		{
-			targetSpeed = 0;
-			currentSpeed = 0;
-		}
-
-		//If player is touching the ground
-		if(playerPhysics.grounded)
-		{
-			amountToMove.y = 0;
-
-			if(wallHolding)
+			//animator.SetBool("Jumping", false);
+			/*
+			if (Input.GetButton("Jump"))
 			{
-				wallHolding = false;
-				//animator.SetBool("WallHold", false);
-			}
-
-			if(jumping)
-			{
-				jumping = false;
-				animator.SetBool("Jumping", false);
-			}
-
-			if(sliding)
-			{
-				if(Mathf.Abs(currentSpeed) < .25f || stopSliding)
-				{
-					stopSliding = false;
-					sliding = false;
-					animator.SetBool("Sliding", false);
-					playerPhysics.ResetCollider();
-				}
-			}
-
-			//Slide Input
-			if(Input.GetButtonDown("Slide"))
-			{
-				if(Mathf.Abs(currentSpeed) > initiateSlideThreshold)
-				{
-					sliding = true;
-					animator.SetBool("Sliding", true);
-					targetSpeed = 0;
-					
-					playerPhysics.SetCollider(new Vector3(10.3f, 1.5f, 3), new Vector3(.35f, .75f, 0));
-				}
-			}
-		}
-		else
-		{
-			if(!wallHolding)
-			{
-				if(playerPhysics.canWallHold)
-				{
-					wallHolding = true;
-					//animator.SetBool("WallHold", true);
-				}
-			}
-		}
-
-		//Jump
-		if (Input.GetButtonDown("Jump"))
-		{
-			if(sliding)
-			{
-				stopSliding = true;
-			}
-			else if(playerPhysics.grounded || wallHolding)
-			{
-				amountToMove.y = jumpHeight;
-				jumping = true;
+				velocity.y = jumpSpeed;
 				animator.SetBool("Jumping", true);
-				
-				if(wallHolding)
-				{
-					wallHolding = false;
-					//animator.SetBool("WallHold", false);
-				}
 			}
+			*/
 		}
 
-		animationSpeed = IncrementTowards(animationSpeed, Mathf.Abs(targetSpeed), acceleration);
-		animator.SetFloat("Speed", animationSpeed);
-
-		moveDirX = Input.GetAxisRaw("Horizontal");
-		if(!sliding)
+		if(Input.GetButtonDown("Jump"))
 		{
-			//Input
-			float speed = (Input.GetButton("Run")) ? runSpeed : walkSpeed; //TODO Bug, aumenta velocidade no ar
-			targetSpeed = moveDirX * speed;
-			currentSpeed = IncrementTowards(currentSpeed, targetSpeed, acceleration);
-
-			//Face direction
-			if (moveDirX != 0 && !wallHolding)
+			if(controller.isGrounded)
 			{
-				transform.eulerAngles = (moveDirX > 0) ? Vector3.up * 180 : Vector3.zero;
+				//animator.SetBool("Jumping", true);
+				velocity.y = maxJumpVelocity;
 			}
 		}
-		else
+		if(Input.GetButtonUp("Jump"))
 		{
-			currentSpeed = IncrementTowards(currentSpeed, targetSpeed, slideDecelaration);
-		}
-
-		//Set amount to move
-		amountToMove.x = currentSpeed;
-
-		if(wallHolding)
-		{
-			amountToMove.x = 0;
-			if(Input.GetAxisRaw("Vertical") != -1)
+			if(velocity.y > minJumpVelocity)
 			{
-				amountToMove.y = 0;
+				velocity.y = minJumpVelocity;
 			}
 		}
 
-		amountToMove.y -= gravity * Time.deltaTime;
-		playerPhysics.Move(amountToMove * Time.deltaTime, moveDirX);
+		if(playerInput.x != 0)
+		{
+			Flip(directionX);
+		}
+
+		animator.SetFloat("Speed", Mathf.Abs(velocity.x));
+
+		velocity.y += gravity * Time.deltaTime;
+		controller.Move(velocity * Time.deltaTime);
 	}
 
-	void OnTriggerEnter(Collider c)
+	void Flip(float dirX)
 	{
-		if(c.tag == "Checkpoint")
-		{
-			manager.SetCheckpoint(c.transform.position);
-		}
+		Vector3 scale = transform.localScale;
+		scale.x = dirX * (-1);
 
-		if(c.tag == "Finish")
-		{
-			manager.EndLevel();
-		}
-	}
-
-	private float IncrementTowards(float n, float target, float a)
-	{
-		if(n == target)	
-		{
-			return n;
-		}
-		else
-		{
-			float dir = Mathf.Sign(target - n); //Must N be increased or decreased to get closer to the target
-			n += a * Time.deltaTime * dir;
-			return (dir == Mathf.Sign(target-n)) ? n : target; //If N has passed target then return target, otherwise return N.
-		}
+		transform.localScale = scale;
 	}
 }
