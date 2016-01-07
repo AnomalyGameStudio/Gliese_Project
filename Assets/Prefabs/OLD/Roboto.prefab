@@ -1472,8 +1472,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4328ccb92883e643a449b41b9401be7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
   ragdoll: {fileID: 0}
+  healthBar: {fileID: 0}
   walkSpeed: 8
   runSpeed: 12
   acceleration: 30
