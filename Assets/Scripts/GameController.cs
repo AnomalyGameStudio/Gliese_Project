@@ -12,7 +12,7 @@ public class GameController : MonoBehaviour
 
 	Vector3 checkpoint = Vector3.zero;
 	GameObject currentPlayer;
-	CameraControl camera;
+	CameraControl_OLD camera;
 
 	public static int levelCount = 2;
 	public static int currentLevel = 1;
@@ -24,7 +24,7 @@ public class GameController : MonoBehaviour
 
 	void Start()
 	{
-		camera = Camera.main.GetComponent<CameraControl> ();
+		camera = Camera.main.GetComponent<CameraControl_OLD> ();
 		
 		if(GameObject.FindGameObjectWithTag("Spawn"))
 		{

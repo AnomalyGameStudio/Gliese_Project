@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class _GameManager : MonoBehaviour 
@@ -6,7 +6,7 @@ public class _GameManager : MonoBehaviour
 
 	public GameObject player;
 	private GameObject currentPlayer;
-	private CameraControl cam;
+	private CameraControl_OLD cam;
 	private Vector3 checkpoint = Vector3.zero;
 
 	public static int levelCount = 2;
@@ -14,7 +14,7 @@ public class _GameManager : MonoBehaviour
 
 	void Start () 
 	{
-		cam = GetComponent<CameraControl>();
+		cam = GetComponent<CameraControl_OLD>();
 
 		if(GameObject.FindGameObjectWithTag("Spawn"))
 		{

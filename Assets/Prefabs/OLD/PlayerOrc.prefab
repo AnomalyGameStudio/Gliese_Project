@@ -153,8 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5028c5ecc7d72134cb310a7d097dccc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 10
   ragdoll: {fileID: 164558, guid: 0bbc98c5fe2447c45a2e915a76273031, type: 2}
+  healthBar: {fileID: 0}
   wallJumpClimb: {x: 10, y: 20}
   wallJumpOff: {x: 8, y: 10}
   wallLeap: {x: 17, y: 18}
