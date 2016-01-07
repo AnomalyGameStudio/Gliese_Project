@@ -420,6 +420,18 @@ Prefab:
       propertyPath: m_Name
       value: Player_Ninja
       objectReference: {fileID: 0}
+    - target: {fileID: 490540, guid: 1df6227987524b14596a4a1957a4cb09, type: 2}
+      propertyPath: m_LocalScale.x
+      value: -.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 490540, guid: 1df6227987524b14596a4a1957a4cb09, type: 2}
+      propertyPath: m_LocalScale.y
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 490540, guid: 1df6227987524b14596a4a1957a4cb09, type: 2}
+      propertyPath: m_LocalScale.z
+      value: .5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1df6227987524b14596a4a1957a4cb09, type: 2}
   m_IsPrefabParent: 0

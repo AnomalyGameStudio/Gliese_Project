@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
 	float minJumpVelocity;												// The velocity to achieve Min Jump Height
 	float gravity;														// The gravity
 
+	float xScale;														// Holds the value of the scale in the X axys
 
 	void Awake()
 	{
@@ -46,6 +47,8 @@ public class PlayerController : MonoBehaviour
 		{
 			Debug.LogError("Animator component not found");
 		}
+
+		xScale = transform.localScale.x;
 	}
 
 	void Start()
@@ -121,7 +124,7 @@ public class PlayerController : MonoBehaviour
 	void Flip(float dirX)
 	{
 		Vector3 scale = transform.localScale;
-		scale.x = dirX * (-1);
+		scale.x = dirX * xScale;
 
 		transform.localScale = scale;
 	}
