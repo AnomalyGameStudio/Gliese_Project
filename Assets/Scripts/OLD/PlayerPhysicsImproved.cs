@@ -18,8 +18,8 @@ public class PlayerPhysicsImproved : RaycastController
 		collisions.faceDir = 1;
 		collisions.collider = GetComponent<BoxCollider> ();
 
-		collisions.originalSize = collider.size;
-		collisions.originalCenter = collider.center;
+		//collisions.originalSize = GetComponent<Collider>().size;
+		//collisions.originalCenter = GetComponent<Collider>().center;
 		collisions.colliderScale = transform.localScale.x;
 	}
 
@@ -46,25 +46,6 @@ public class PlayerPhysicsImproved : RaycastController
 				//transform.eulerAngles = (collisions.faceDir > 0) ? Vector3.zero : Vector3.up * 180;
 			}
 		}
-		/*
-		 * //TODO Crouch logic
-		else
-		{
-			if(input.y < 0)
-			{
-				crouch();
-			}
-			else
-			{
-				if(collisions.crouch)
-				{
-					velocity.y = -1;
-					collisions.ResetCollider();
-					collisions.crouch = false;
-				}
-			}
-		}
-		*/
 		
 		if(velocity.y < 0)
 		{
@@ -91,17 +72,6 @@ public class PlayerPhysicsImproved : RaycastController
 		}
 
 	}
-
-	//TODO Add animation
-	//TODO BUG: Player falling through the platform
-	/*
-	void crouch()
-	{
-		collisions.SetCollider(new Vector3(.74f, 1.25f, 1), new Vector3(.16f, -0.27f, 0));
-		collisions.crouch = true;
-		//transform.localScale = new Vector3(1, .5f, 1);
-	}
-	*/
 
 	void HorizontalCollisions(ref Vector3 velocity)
 	{
