@@ -8,8 +8,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 474086}
-  m_Layer: 0
-  m_Name: Floor_4x1
+  m_Layer: 9
+  m_Name: 4x1_Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26,7 +26,7 @@ GameObject:
   - 33: {fileID: 3381248}
   - 65: {fileID: 6582902}
   - 23: {fileID: 2341220}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - 33: {fileID: 3390888}
   - 65: {fileID: 6545194}
   - 23: {fileID: 2318698}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Floor 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
