@@ -13,7 +13,7 @@ GameObject:
   m_Layer: 0
   m_Name: Spawn
   m_TagString: Spawn
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -24,7 +24,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 136290}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.1099997, y: -.569999993, z: 0}
+  m_LocalPosition: {x: 3.00999999, y: 3.48000002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9f84cfcd31ff8540b23849c823c5f81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gizmoColor: {r: .536278129, g: .549080491, b: .801470578, a: .615686297}
+  gizmoColor: {r: 0, g: .0482759476, b: 1, a: .380392164}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

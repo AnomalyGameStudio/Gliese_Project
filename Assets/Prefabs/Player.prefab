@@ -131,6 +131,8 @@ GameObject:
   - 95: {fileID: 9511134}
   - 143: {fileID: 14372928}
   - 114: {fileID: 11497446}
+  - 114: {fileID: 11444174}
+  - 114: {fileID: 11466578}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -793,7 +795,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 139710}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.10000002, z: 0}
+  m_LocalPosition: {x: 2.82999992, y: 9.85000038, z: 0}
   m_LocalScale: {x: -.5, y: .5, z: .5}
   m_Children:
   - {fileID: 496660}
@@ -832,6 +834,40 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11444174
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 139710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b330efa49e1f734dbcfad6711573607, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horizontalRaySpacing: 0
+  verticalRaySpacing: 0
+  controller: {fileID: 0}
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 512
+  horizontalRayCount: 4
+  verticalRayCount: 4
+  skinWidth: .0700000003
+--- !u!114 &11466578
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 139710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef9ab4a2f073d36459cfc4a3b71e1517, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats:
+    currentHealth: 100
+    maxHealth: 100
 --- !u!114 &11497446
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -848,11 +884,15 @@ MonoBehaviour:
   bounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
+  wallJumpOff: {x: 10, y: 20}
+  wallLeap: {x: 20, y: 50}
   moveSpeed: 12
   jumpSpeed: 15
   maxJumpHeight: 20
   minJumpHeight: 5
   timeToJumpApex: .600000024
+  wallSlideSpeedMax: 3
+  wallStickTime: .25
 --- !u!137 &13763664
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -923,7 +963,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 10.4799995
-  m_Radius: .699999988
+  m_Radius: 1
   m_SlopeLimit: 45
   m_StepOffset: .300000012
   m_SkinWidth: .0700000003

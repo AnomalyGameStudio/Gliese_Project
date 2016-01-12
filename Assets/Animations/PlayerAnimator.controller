@@ -44,7 +44,7 @@ AnimatorController:
     m_DefaultWeight: 0
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - serializedVersion: 5
     m_Name: HeadBand
     m_StateMachine: {fileID: 110730720}
@@ -56,7 +56,7 @@ AnimatorController:
     m_DefaultWeight: 1
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_MultiThreadedStateMachine: 1
 --- !u!206 &20607218
 BlendTree:
@@ -379,9 +379,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: .133537903
-  m_TransitionOffset: .50666672
-  m_ExitTime: .668939412
+  m_TransitionDuration: .154396564
+  m_TransitionOffset: .967900753
+  m_ExitTime: .668939233
   m_HasExitTime: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
