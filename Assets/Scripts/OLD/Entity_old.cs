@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class Entity : MonoBehaviour
+public class Entity_old : MonoBehaviour
 {
 	static float currentHealth = 100;
 	static float maxHealth = 100;

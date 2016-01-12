@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Sawblade : MonoBehaviour 
@@ -15,7 +15,7 @@ public class Sawblade : MonoBehaviour
 	{
 		if(c.tag == "Player")
 		{
-			c.GetComponent<Entity>().TakeDamage(damage);			                                  
+			c.GetComponent<Entity_old>().TakeDamage(damage);			                                  
 		}
 	}
 }

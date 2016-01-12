@@ -11,6 +11,7 @@ namespace UnityStandardAssets._2D
         public float lookAheadReturnSpeed = 0.5f;
         public float lookAheadMoveThreshold = 0.1f;
 		public float yPosRestriction = -1;
+		public float yOffset = 2f;
 
         private float m_OffsetZ;
         private Vector3 m_LastTargetPosition;
@@ -19,7 +20,7 @@ namespace UnityStandardAssets._2D
 
 		float nextTimeToSearch = 0;
 
-        // Use this for initialization
+        // TODO Review camera
         private void Start()
         {
             m_LastTargetPosition = target.position;
@@ -27,8 +28,6 @@ namespace UnityStandardAssets._2D
             transform.parent = null;
         }
 
-
-        // Update is called once per frame
         private void Update()
         {
 			if(target == null)
@@ -51,10 +50,14 @@ namespace UnityStandardAssets._2D
                 m_LookAheadPos = Vector3.MoveTowards(m_LookAheadPos, Vector3.zero, Time.deltaTime*lookAheadReturnSpeed);
             }
 
-            Vector3 aheadTargetPos = target.position + m_LookAheadPos + Vector3.forward*m_OffsetZ;
+			//newPos + Vector3.up * yOffset;
+
+			Vector3 aheadTargetPos = target.position + m_LookAheadPos + Vector3.up * yOffset	 + Vector3.forward*m_OffsetZ;
             Vector3 newPos = Vector3.SmoothDamp(transform.position, aheadTargetPos, ref m_CurrentVelocity, damping);
 
-			newPos = new Vector3(newPos.x, Mathf.Clamp(newPos.y, yPosRestriction, Mathf.Infinity), newPos.z);
+			//newPos = new Vector3(newPos.x, Mathf.Clamp(newPos.y, yPosRestriction, Mathf.Infinity), newPos.z); // Apply the restriction on the Y axis
+			newPos = new Vector3(newPos.x, newPos.y, newPos.z);
+
             transform.position = newPos;
 
             m_LastTargetPosition = target.position;

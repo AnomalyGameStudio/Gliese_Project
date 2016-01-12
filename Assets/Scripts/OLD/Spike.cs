@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Spike : MonoBehaviour 
@@ -7,7 +7,7 @@ public class Spike : MonoBehaviour
 	{
 		if(c.tag == "Player")
 		{
-			c.GetComponent<Entity>().Die();			                                  
+			c.GetComponent<Entity_old>().Die();			                                  
 		}
 	}
 }

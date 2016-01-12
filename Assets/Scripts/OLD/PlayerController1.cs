@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 [RequireComponent (typeof(PlayerPhysicsTest))]
-public class PlayerController1 : Entity 
+public class PlayerController1 : Entity_old 
 {
 	//Player Handling
 	public float walkSpeed = 8;

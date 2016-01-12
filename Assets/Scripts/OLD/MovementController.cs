@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class MovementController : RaycastController 
@@ -19,7 +19,7 @@ public class MovementController : RaycastController
 	Vector3 velocity;
 
 	CollisionInfo collisionInfo;
-	GameController gameController;
+	GameController_OLD gameController;
 
 	public struct CollisionInfo
 	{
@@ -35,14 +35,14 @@ public class MovementController : RaycastController
 
 	void Start()
 	{
-		gameController = GameController.instance;
+		gameController = GameController_OLD.instance;
 		collisionInfo = new CollisionInfo();
 
 		gravity = - (2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
 		maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
 		minJumpVelocity = Mathf.Sqrt(2 * Mathf.Abs(gravity) * minJumpHeight);
 		
-		gameController.gravity = gravity;
+		//gameController.gravity = gravity;
 	}
 
 	void Update()

@@ -1,71 +1,36 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
 
 public class GameController : MonoBehaviour 
 {
+	// Singleton from GameController class
 	public static GameController instance;
-	public GameObject playerPrefab;
-	public Text health; //TODO Provisorio
 
-	public float gravity;
-
+	// Stores the current checkpoint the player is
 	Vector3 checkpoint = Vector3.zero;
-	GameObject currentPlayer;
-	CameraControl_OLD camera;
-
-	public static int levelCount = 2;
-	public static int currentLevel = 1;
-
-	void Awake()
-	{
-		instance = this;
-	}
 
 	void Start()
 	{
-		camera = Camera.main.GetComponent<CameraControl_OLD> ();
-		
-		if(GameObject.FindGameObjectWithTag("Spawn"))
+		// If there isn't a stance of GameController yet
+		if(instance == null)
 		{
-			checkpoint = GameObject.FindGameObjectWithTag("Spawn").transform.position;
-		}
-		
-		SpawnPlayer();
-	}
-
-	void Update()
-	{
-		if(!currentPlayer)
-		{
-			if(Input.GetButtonDown("Respawn"))
-			{
-				SpawnPlayer();
-			}
+			// Search for the GameController and set it as the instance
+			instance = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController> ();
 		}
 	}
-
-	void SpawnPlayer()
-	{
-		currentPlayer = Entity.SpawnEntity(playerPrefab, checkpoint, health);
-		camera.SetTarget(currentPlayer);
-	}
-
+	
 	public void SetCheckpoint(Vector3 checkpoint)
 	{
 		this.checkpoint = checkpoint;
 	}
 
-	public void EndLevel()
+	public void SpawnPlayer()
 	{
-		if(currentLevel < levelCount)
-		{
-			currentLevel++;
-			Application.LoadLevel("Level " + currentLevel);
-		}
-		else
-		{
-			Debug.Log("Game Over");
-		}
+
+	}
+
+	public void KillPlayer()
+	{
+
 	}
 }

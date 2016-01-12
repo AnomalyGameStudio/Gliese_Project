@@ -1,8 +1,8 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 [RequireComponent (typeof(PlayerPhysicsImproved))]
-public class PlayerControllerImproved : Entity 
+public class PlayerControllerImproved : Entity_old 
 {
 	public Vector2 wallJumpClimb;
 	public Vector2 wallJumpOff;
@@ -25,11 +25,11 @@ public class PlayerControllerImproved : Entity
 
 	Vector3 velocity;
 	PlayerPhysicsImproved playerPhysics;
-	GameController gameController;
+	GameController_OLD gameController;
 
 	void Start()
 	{
-		gameController = GameController.instance;
+		gameController = GameController_OLD.instance;
 		playerPhysics = GetComponent<PlayerPhysicsImproved>();
 
 		gravity = - (2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);

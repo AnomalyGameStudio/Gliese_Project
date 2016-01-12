@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
 	public Vector2 wallLeap;											// The velocity of a wall leap
 
 	public float moveSpeed = 12f;										// Control the speed of the player
-	public float jumpSpeed = 8f;										// Control the jumpSpeed. TODO Remove this part. Deprecated
+	//public float jumpSpeed = 8f;										// Control the jumpSpeed. TODO Remove this part. Deprecated
 
 	public float maxJumpHeight = 4f;									// The maximum height of a Jump
 	public float minJumpHeight = 1f;									// The minimum Height of a Jump
@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
 	{
 		// Calculate the gravity on the player. TODO Move this calculation to a GameController
 		gravity = - (2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
-
+		Debug.Log(gravity);
 		// Calculate the velocity to achieve max Jump Height
 		maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
 
@@ -160,12 +160,10 @@ public class PlayerController : MonoBehaviour
 		}
 		else
 		{
-
 			if(controller.isGrounded)
 			{
-				velocity.y = gravity/2;
+				velocity.y = 0;
 			}
-			Debug.Log(velocity.y);
 		}
 
 		// Check if the player already released the jump button
@@ -201,5 +199,13 @@ public class PlayerController : MonoBehaviour
 		scale.x = dirX * xScale;
 
 		transform.localScale = scale;
+	}
+
+	void OnTriggerEnter(Collider collider)
+	{
+		if(collider.tag == "Checkpoint")
+		{
+			GameController.instance.SetCheckpoint(collider.transform.position);
+		}
 	}
 }

@@ -1,9 +1,9 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Draggable : RaycastController 
 {
-	GameController gameController;
+	GameController_OLD gameController;
 	float maxClimbAngle = 80;
 	float maxDescendAngle = 75;
 	
@@ -13,13 +13,13 @@ public class Draggable : RaycastController
 	void Start () 
 	{
 		base.Start ();
-		gameController = GameController.instance;
+		gameController = GameController_OLD.instance;
 	}
 
 	void Update()
 	{
 
-		velocity.y += gameController.gravity * Time.deltaTime;
+		//velocity.y += gameController.gravity * Time.deltaTime;
 		Move(velocity * Time.deltaTime);
 
 		if(collisions.below || collisions.above)
