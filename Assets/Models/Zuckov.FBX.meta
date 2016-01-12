@@ -132,10 +132,10 @@ ModelImporter:
     4300000: Zuckov_Demo
     4300002: Demo_Rifle
     7400000: Take 001
-    7400002: Take 0010
-    7400004: Take 0011
-    7400006: Take 0012
-    7400008: Take 0013
+    7400002: Idle
+    7400004: Jump
+    7400006: Landing
+    7400008: Run
     9500000: //RootNode
     13700000: Demo_Rifle
     13700002: Zuckov_Demo
@@ -148,10 +148,6 @@ ModelImporter:
     bakeSimulation: 0
     optimizeGameObjects: 0
     motionNodeName: 
-    animationImportErrors: 
-    animationImportWarnings: 
-    animationRetargetingWarnings: 
-    animationDoRetargetingWarnings: 0
     animationCompression: 1
     animationRotationError: .5
     animationPositionError: .5
@@ -404,7 +400,7 @@ ModelImporter:
       maskType: 0
       maskSource: {instanceID: 0}
     - serializedVersion: 16
-      name: Take 0010
+      name: Idle
       takeName: Take 001
       firstFrame: 0
       lastFrame: 1
@@ -648,7 +644,7 @@ ModelImporter:
       maskType: 0
       maskSource: {instanceID: 0}
     - serializedVersion: 16
-      name: Take 0011
+      name: Jump
       takeName: Take 001
       firstFrame: 10
       lastFrame: 30
@@ -892,7 +888,7 @@ ModelImporter:
       maskType: 0
       maskSource: {instanceID: 0}
     - serializedVersion: 16
-      name: Take 0012
+      name: Landing
       takeName: Take 001
       firstFrame: 35
       lastFrame: 50
@@ -1136,7 +1132,7 @@ ModelImporter:
       maskType: 0
       maskSource: {instanceID: 0}
     - serializedVersion: 16
-      name: Take 0013
+      name: Run
       takeName: Take 001
       firstFrame: 60
       lastFrame: 110
