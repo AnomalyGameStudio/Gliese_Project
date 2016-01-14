@@ -1,17 +1,31 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent (typeof(CharacterController))]
 public class PlayerControllPhysics : RaycastController
 {
 	public CollisionInfo collisions;						// Holds the Collisions info
 	public float skinWidth = .07f;							// Holds the SkinWidth of the collider, should be the same size as in Character Controller
 
+	//CharacterController controller;
+
+	float gravity;
 	float maxDescendAngle = 75;
+
+	/*
+	void Awake()
+	{
+		// Gets the Character Controller component
+		controller = GetComponent<CharacterController>();
+	}
+	*/
 
 	void Start ()
 	{
 		base.Start ();										// Runs the Start function of the parent class
 		collisions = new CollisionInfo();					// Instantiate the CollisionInfo struct
+
+		//gravity = GameController.instance.gravity;			// Gets the global gravity
 	}
 
 	/*
@@ -21,9 +35,16 @@ public class PlayerControllPhysics : RaycastController
 		//CheckCollider(ref velocity);
 	}
 	*/
-
-	public void CheckCollider(ref Vector3 velocity)
+	public void Move(Vector3 velocity)
 	{
+		Move(ref velocity);
+	}
+
+	public void Move(ref Vector3 velocity)
+	{
+		//velocity.y += gravity * Time.deltaTime;
+		//velocity.y += GameController.instance.gravity * Time.deltaTime;
+
 		UpdateRaycastOrigins();								// Updates the position of the Raycast
 		collisions.Reset();
 
@@ -32,15 +53,21 @@ public class PlayerControllPhysics : RaycastController
 
 		if(velocity.x != 0)
 		{
-			collisions.dirX = Mathf.Sign(velocity.x); // TODO Achar direçao que esta indo, talvez pelo collisionInfo
+			collisions.dirX = Mathf.Sign(velocity.x);
 		}
 
 		HorizontalCollisions(velocity);
 
 		if(velocity.y < 0)
 		{
-			DescendSlope(ref velocity);
+			//DescendSlope(ref velocity);
 		}
+
+
+		velocity.y += GameController.instance.gravity * Time.deltaTime;
+		//velocity.y += gravity * Time.deltaTime;
+
+		controller.Move(velocity * Time.deltaTime);
 	}
 
 	void HorizontalCollisions(Vector3 velocity)
@@ -155,7 +182,7 @@ public class PlayerControllPhysics : RaycastController
 					if(hit.distance - skinWidth <= Mathf.Tan(slopeAngle * Mathf.Deg2Rad) * Mathf.Abs(velocity.x))
 					{
 
-						//velocity.y += -111;
+						//velocity.y += gravity;
 						//Debug.Log(velocity.y);
 						/*
 						float moveDistance = Mathf.Abs(velocity.x);

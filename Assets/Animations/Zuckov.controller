@@ -32,7 +32,7 @@ AnimatorController:
     m_DefaultWeight: 0
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_MultiThreadedStateMachine: 1
 --- !u!1101 &110119720
 AnimatorStateTransition:
@@ -77,7 +77,7 @@ AnimatorStateTransition:
   m_TransitionOffset: 0
   m_ExitTime: 0
   m_HasExitTime: 0
-  m_InterruptionSource: 0
+  m_InterruptionSource: 2
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
 --- !u!1101 &110154510
@@ -93,11 +93,11 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: .499999881
+  m_TransitionDuration: .0599999987
   m_TransitionOffset: 0
-  m_ExitTime: .500000119
+  m_ExitTime: .0799999982
   m_HasExitTime: 1
-  m_InterruptionSource: 0
+  m_InterruptionSource: 2
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
 --- !u!1101 &110162916
@@ -116,11 +116,11 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: .100000001
+  m_TransitionDuration: .59638834
   m_TransitionOffset: 0
-  m_ExitTime: .899999976
+  m_ExitTime: .294580311
   m_HasExitTime: 0
-  m_InterruptionSource: 0
+  m_InterruptionSource: 2
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
 --- !u!1101 &110189166
@@ -139,11 +139,11 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: .37500003
+  m_TransitionDuration: .387237728
   m_TransitionOffset: 0
-  m_ExitTime: .625
-  m_HasExitTime: 1
-  m_InterruptionSource: 0
+  m_ExitTime: .984965146
+  m_HasExitTime: 0
+  m_InterruptionSource: 2
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
 --- !u!1101 &110192916
@@ -162,9 +162,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: .499999881
+  m_TransitionDuration: .58158493
   m_TransitionOffset: 0
-  m_ExitTime: .500000119
+  m_ExitTime: .36946401
   m_HasExitTime: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1

@@ -13,17 +13,29 @@ public class RaycastController : MonoBehaviour
 	public float verticalRaySpacing;
 	[HideInInspector]
 	public CharacterController controller;
-	//public BoxCollider collider;
+	[HideInInspector]
+	public BoxCollider collider;
 	
 	public LayerMask collisionMask;
 	public RaycastOrigins raycastOrigins;
 	public int horizontalRayCount = 4;
 	public int verticalRayCount = 4;
 
+	bool hasCharacterController;
+
 	public virtual void Awake()
 	{
-		controller = GetComponent<CharacterController>();
-		//collider = GetComponent<BoxCollider> ();
+		// Check if the object have a ChacterController and gets it, Otherwise gets the BoxCollider
+		if(GetComponent<CharacterController>() != null)
+		{
+			controller = GetComponent<CharacterController>();
+			hasCharacterController = true;
+		}
+		else
+		{
+			collider = GetComponent<BoxCollider> ();
+			hasCharacterController = false;
+		}
 	}
 
 	public virtual void Start()
@@ -33,7 +45,8 @@ public class RaycastController : MonoBehaviour
 
 	public void UpdateRaycastOrigins()
 	{
-		Bounds bounds = controller.bounds;
+		// Gets the bounds of the Character controller if it has one, otherwise gets from the BoxCollider
+		Bounds bounds = hasCharacterController? controller.bounds : collider.bounds;
 		bounds.Expand(skinWidth * -2);
 		
 		raycastOrigins.bottomLeft = new Vector2(bounds.min.x, bounds.min.y);

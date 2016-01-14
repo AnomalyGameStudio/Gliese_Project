@@ -70,14 +70,23 @@ public class PlayerController : MonoBehaviour
 	{
 		// Calculate the gravity on the player. TODO Move this calculation to a GameController
 		gravity = - (2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
-		Debug.Log(gravity);
+		
+		// Sets the global gravity
+		GameController.instance.gravity = gravity;
+
 		// Calculate the velocity to achieve max Jump Height
 		maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
 
 		// Calculate the velocity to achieve min Jump Height
 		minJumpVelocity = Mathf.Sqrt(2 * Mathf.Abs(gravity) * minJumpHeight);
 	}
-
+	/*
+	public void Move(Vector3 velocity)
+	{
+		velocity.y += gravity * Time.deltaTime;
+		controller.Move(velocity * Time.deltaTime);
+	}
+	*/
 	void Update()
 	{
 		bool wallSliding = false;
@@ -186,11 +195,13 @@ public class PlayerController : MonoBehaviour
 		// Pass to the animator the current velocity of the player
 		animator.SetFloat("Speed", Mathf.Abs(velocity.x));
 
-		// TEMP
-		playerPhysics.CheckCollider(ref velocity);
+		//velocity.y += gravity * Time.deltaTime;
 
-		velocity.y += gravity * Time.deltaTime;
-		controller.Move(velocity * Time.deltaTime);
+		// TEMP
+		playerPhysics.Move(ref velocity);
+
+
+		//controller.Move(velocity * Time.deltaTime);
 	}
 
 	void Flip(float dirX)

@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 6b198442e727005419924e04cbb4af85
 folderAsset: yes
 timeCreated: 1452630553
+=======
+guid: 98204d07dd9e31540a8ffbca9ecacc7c
+folderAsset: yes
+timeCreated: 1452630453
+>>>>>>> refs/heads/Teste-zuckov
 licenseType: Free
 DefaultImporter:
   userData: 
