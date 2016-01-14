@@ -21,7 +21,8 @@ public class GameController : MonoBehaviour
 			instance = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController> ();
 		}
 	}
-	
+
+	// Sets the Last checkpoint the player has passed
 	public void SetCheckpoint(Vector3 checkpoint)
 	{
 		this.checkpoint = checkpoint;
