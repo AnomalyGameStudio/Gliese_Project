@@ -7,7 +7,7 @@ public class GameController : MonoBehaviour
 	public static GameController instance;
 	
 	// Stores the global gravity. This is set by the Player Controller
-	//public float gravity = -180;
+	public float gravity = -180;
 	
 	// Stores the current checkpoint the player is
 	Vector3 checkpoint = Vector3.zero;
