@@ -144,10 +144,6 @@ ModelImporter:
     bakeSimulation: 0
     optimizeGameObjects: 0
     motionNodeName: 
-    animationImportErrors: 
-    animationImportWarnings: 
-    animationRetargetingWarnings: 
-    animationDoRetargetingWarnings: 0
     animationCompression: 1
     animationRotationError: .5
     animationPositionError: .5
@@ -399,7 +395,7 @@ ModelImporter:
       name: Idle
       takeName: Take 001
       firstFrame: 0
-      lastFrame: 300
+      lastFrame: 50
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -638,8 +634,8 @@ ModelImporter:
     - serializedVersion: 16
       name: Idle AFK
       takeName: Take 001
-      firstFrame: 0
-      lastFrame: 300
+      firstFrame: 60
+      lastFrame: 100
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -878,8 +874,8 @@ ModelImporter:
     - serializedVersion: 16
       name: Jump
       takeName: Take 001
-      firstFrame: 0
-      lastFrame: 300
+      firstFrame: 110
+      lastFrame: 165
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -1118,8 +1114,8 @@ ModelImporter:
     - serializedVersion: 16
       name: Landing
       takeName: Take 001
-      firstFrame: 0
-      lastFrame: 300
+      firstFrame: 165
+      lastFrame: 180
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -1358,8 +1354,8 @@ ModelImporter:
     - serializedVersion: 16
       name: Run
       takeName: Take 001
-      firstFrame: 0
-      lastFrame: 300
+      firstFrame: 203
+      lastFrame: 236
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -1598,8 +1594,8 @@ ModelImporter:
     - serializedVersion: 16
       name: Crouch
       takeName: Take 001
-      firstFrame: 0
-      lastFrame: 300
+      firstFrame: 250
+      lastFrame: 260
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

@@ -57,8 +57,6 @@ public class PlatformController : RaycastController
 	// TODO Comment this method
 	void MovePassenger(bool beforeMovePlatform)
 	{
-
-
 		foreach(PassengerMovement passenger in passengerMovement)
 		{
 			if(!passengerDictionary.ContainsKey(passenger.transform))

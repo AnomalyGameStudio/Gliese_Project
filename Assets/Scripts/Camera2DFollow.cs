@@ -28,7 +28,7 @@ namespace UnityStandardAssets._2D
             transform.parent = null;
         }
 
-        private void Update()
+        private void LateUpdate()
         {
 			if(target == null)
 			{
