@@ -12,14 +12,6 @@ public class PlayerControllPhysics : RaycastController
 	float gravity;
 	float maxDescendAngle = 75;
 
-	/*
-	void Awake()
-	{
-		// Gets the Character Controller component
-		controller = GetComponent<CharacterController>();
-	}
-	*/
-
 	void Start ()
 	{
 		base.Start ();										// Runs the Start function of the parent class
@@ -35,10 +27,6 @@ public class PlayerControllPhysics : RaycastController
 		//CheckCollider(ref velocity);
 	}
 	*/
-	public void Move(Vector3 velocity)
-	{
-		Move(ref velocity);
-	}
 
 	public void Move(ref Vector3 velocity)
 	{
@@ -66,6 +54,8 @@ public class PlayerControllPhysics : RaycastController
 
 		velocity.y += GameController.instance.gravity * Time.deltaTime;
 		//velocity.y += gravity * Time.deltaTime;
+
+		_Temp_text_debug.instance.SetVelocity(velocity);
 
 		controller.Move(velocity * Time.deltaTime);
 	}
