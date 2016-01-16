@@ -28,10 +28,14 @@ public class PlayerControllPhysics : RaycastController
 	}
 	*/
 
+	public void Move(ref Vector3 velocity, string message)
+	{
+		Debug.Log(message);
+		Move(ref velocity);
+	}
+
 	public void Move(ref Vector3 velocity)
 	{
-		//velocity.y += gravity * Time.deltaTime;
-		//velocity.y += GameController.instance.gravity * Time.deltaTime;
 
 		UpdateRaycastOrigins();								// Updates the position of the Raycast
 		collisions.Reset();
@@ -51,8 +55,9 @@ public class PlayerControllPhysics : RaycastController
 			//DescendSlope(ref velocity);
 		}
 
-
-		velocity.y += GameController.instance.gravity * Time.deltaTime;
+		float gravity = GameController.instance.gravity;
+		gravity *= (controller.isGrounded) ? 3 : 1;
+		velocity.y += gravity * Time.deltaTime; 
 		//velocity.y += gravity * Time.deltaTime;
 
 		_Temp_text_debug.instance.SetVelocity(velocity);

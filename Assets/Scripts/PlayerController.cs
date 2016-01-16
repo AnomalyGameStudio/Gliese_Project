@@ -167,6 +167,10 @@ public class PlayerController : MonoBehaviour
 				velocity.y = maxJumpVelocity;
 			}
 		}
+		else if(controller.isGrounded)
+		{
+			velocity.y = 0;
+		}
 
 		// Check if the player already released the jump button
 		if(Input.GetButtonUp("Jump"))
