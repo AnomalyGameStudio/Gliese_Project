@@ -57,7 +57,8 @@ public class RaycastController : MonoBehaviour
 
 	public void CalculateRaySpacing()
 	{
-		Bounds bounds = controller.bounds;
+		// Gets the bounds of the Character controller if it has one, otherwise gets from the BoxCollider
+		Bounds bounds = hasCharacterController? controller.bounds : collider.bounds;
 		bounds.Expand(skinWidth * -2);
 		
 		horizontalRayCount = Mathf.Clamp(horizontalRayCount, 2, int.MaxValue);

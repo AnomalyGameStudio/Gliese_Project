@@ -24,6 +24,8 @@ public class PlatformController : RaycastController
 
 	void Start()
 	{
+		base.Start();
+
 		// Check if there is any waypoint
 		if(localWaypoints.Length < 1)
 		{
@@ -49,9 +51,11 @@ public class PlatformController : RaycastController
 		
 		Vector3 velocity = CalculatePlatformMovement();
 
-		//MovePassenger(true);
+		CalculatePassengerMovement(velocity);
+
+		MovePassenger(true);
 		transform.Translate(velocity);
-		//MovePassenger(false);
+		MovePassenger(false);
 	}
 
 	// TODO Comment this method
@@ -156,7 +160,7 @@ public class PlatformController : RaycastController
 		if(velocity.y != 0)
 		{
 			// The size of the ray that will be cast
-			float rayLenght = Mathf.Abs(velocity.y) * skinWidth;
+			float rayLenght = 1 + (speed * Mathf.Abs(velocity.y) * skinWidth);
 
 			// Creates the RayCast
 			for(int i = 0; i < verticalRayCount; i++)
@@ -168,6 +172,8 @@ public class PlatformController : RaycastController
 
 				// Creates the ray
 				ray = new Ray(rayOrigin, Vector2.up * directionY);
+
+				Debug.DrawRay(ray.origin, ray.direction, Color.green);
 
 				// Casts the ray and check the hit
 				if(Physics.Raycast(ray, out hit, rayLenght, passengerMask) && hit.distance != 0)
@@ -193,7 +199,7 @@ public class PlatformController : RaycastController
 		if(velocity.x != 0)
 		{
 			// The size of the ray that will be cast
-			float rayLenght = Mathf.Abs(velocity.x) + skinWidth;
+			float rayLenght = 1 + (Mathf.Abs(velocity.x) + skinWidth);
 
 			// Creates the RayCast
 			for(int i = 0; i < horizontalRayCount; i++)
@@ -205,6 +211,8 @@ public class PlatformController : RaycastController
 
 				// Creates the ray
 				ray = new Ray(rayOrigin, Vector2.right * directionX);
+
+				Debug.DrawRay(ray.origin, ray.direction);
 
 				// Casts the ray and check the hit
 				if(Physics.Raycast(ray, out hit, rayLenght, passengerMask) && hit.distance != 0)
@@ -230,7 +238,7 @@ public class PlatformController : RaycastController
 		if(directionY == -1 || velocity.y == 0 && velocity.x != 0)
 		{
 			// The size of the ray that will be cast
-			float rayLength = skinWidth * 2;
+			float rayLength = 1 + (skinWidth * 2);
 
 			// Creates the RayCast
 			for(int i = 0; i < verticalRayCount; i++)
@@ -241,9 +249,12 @@ public class PlatformController : RaycastController
 				// Creates the ray
 				ray = new Ray(rayOrigin, Vector2.up);
 
+				Debug.DrawRay(ray.origin, ray.direction);
+
 				// Casts the ray and check the hit
 				if(Physics.Raycast(ray, out hit, rayLength, passengerMask) && hit.distance != 0)
 				{
+					Debug.Log(hit.transform.name);
 					// Check if not already moved
 					if(!movedPassengers.Contains(hit.transform))
 					{
@@ -255,7 +266,7 @@ public class PlatformController : RaycastController
 						float pushY = velocity.y;
 
 						// Adds the passenger to the to be moved List
-						passengerMovement.Add(new PassengerMovement(hit.transform, new Vector3(pushX, pushY), true, false));
+						passengerMovement.Add(new PassengerMovement(hit.transform, new Vector3(pushX * 120, pushY * GameController.instance.gravity), true, false));
 					}
 				}
 			}
