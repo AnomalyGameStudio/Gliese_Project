@@ -56,7 +56,7 @@ public class PlayerControllPhysics : RaycastController
 		}
 
 		float gravity = GameController.instance.gravity;
-		gravity *= (controller.isGrounded) ? 3 : 1;
+		gravity *= (controller.isGrounded) ? 3 : 2;
 		velocity.y += gravity * Time.deltaTime; 
 		//velocity.y += gravity * Time.deltaTime;
 
