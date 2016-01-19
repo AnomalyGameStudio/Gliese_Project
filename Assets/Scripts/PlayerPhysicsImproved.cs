@@ -9,6 +9,8 @@ public class PlayerPhysicsImproved : RaycastController
 	public CollisionInfo collisions;
 	public LayerMask dragMask;
 
+	public AnimationCurve SlopeCurveModifier = new AnimationCurve(new Keyframe(-90.0f, 1.0f), new Keyframe(0.0f, 1.0f), new Keyframe(90.0f, 0.0f));
+
 	[HideInInspector]
 	public Vector2 playerInput;
 
@@ -58,7 +60,7 @@ public class PlayerPhysicsImproved : RaycastController
 		{
 			VerticalCollisions(ref velocity);
 		}
-		
+		_Temp_text_debug.instance.SetVelocity(velocity);
 		transform.Translate(velocity, Space.World);
 		
 		if(standingOnPlatform)
@@ -265,15 +267,14 @@ public class PlayerPhysicsImproved : RaycastController
 		}
 	}
 
-	//TODO Bug: Caindo da plaforma enquanto personagem vira
+
 	void DescendSlope(ref Vector3 velocity)
 	{
 		float directionX = Mathf.Sign(velocity.x);
 		Vector2 rayOrigin = (directionX == -1) ? raycastOrigins.bottomRight: raycastOrigins.bottomLeft;
-		//RaycastHit hit = Physics.Raycast(rayOrigin, -Vector2.up, Mathf.Infinity, collisionMask);
 
 		RaycastHit hit;
-		Ray ray = new Ray(rayOrigin, -Vector2.up * directionX);
+		Ray ray = new Ray(rayOrigin, -Vector2.right * directionX);
 		Physics.Raycast(ray, out hit, Mathf.Infinity, collisionMask);
 		
 		Debug.DrawRay(ray.origin, ray.direction, Color.green);
@@ -288,10 +289,14 @@ public class PlayerPhysicsImproved : RaycastController
 					if(hit.distance - skinWidth <= Mathf.Tan(slopeAngle * Mathf.Deg2Rad) * Mathf.Abs(velocity.x))
 					{
 						float moveDistance = Mathf.Abs(velocity.x);
-						float descendVelocityY = Mathf.Sin(slopeAngle * Mathf.Deg2Rad) * moveDistance;
+						// Previous calculation, it was not enought
+						//float descendVelocityY = Mathf.Sin(slopeAngle * Mathf.Deg2Rad) * moveDistance;
+
+						float descendVelocityY = SlopeCurveModifier.Evaluate(slopeAngle);
+
 						velocity.x = Mathf.Cos(slopeAngle * Mathf.Deg2Rad) * moveDistance * Mathf.Sign(velocity.x);
 						velocity.y -= descendVelocityY;
-						
+
 						collisions.slopeAngle = slopeAngle;
 						collisions.descendingSlope = true;
 						collisions.below = true;

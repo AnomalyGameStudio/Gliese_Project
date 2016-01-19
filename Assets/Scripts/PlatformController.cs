@@ -20,7 +20,8 @@ public class PlatformController : RaycastController
 	float percentBetweenWaypoints;
 
 	List<PassengerMovement> passengerMovement;								// Stores a List with all passengers
-	Dictionary<Transform, PlayerControllPhysics> passengerDictionary;		// The Dictionary with the
+	//Dictionary<Transform, PlayerControllPhysics> passengerDictionary;		// The Dictionary with the Components used to Move the player
+	Dictionary<Transform, PlayerPhysicsImproved> passengerDictionary;		// The Dictionary with the
 
 	void Start()
 	{
@@ -42,7 +43,8 @@ public class PlatformController : RaycastController
 			}
 		}
 
-		passengerDictionary = new Dictionary<Transform, PlayerControllPhysics> ();
+		//passengerDictionary = new Dictionary<Transform, PlayerControllPhysics> ();
+		passengerDictionary = new Dictionary<Transform, PlayerPhysicsImproved> ();
 	}
 	// TODO Comment this method
 	void Update()
@@ -65,14 +67,16 @@ public class PlatformController : RaycastController
 		{
 			if(!passengerDictionary.ContainsKey(passenger.transform))
 			{
-				passengerDictionary.Add(passenger.transform, passenger.transform.GetComponent<PlayerControllPhysics> ());
+				//passengerDictionary.Add(passenger.transform, passenger.transform.GetComponent<PlayerControllPhysics> ());
+				passengerDictionary.Add(passenger.transform, passenger.transform.GetComponent<PlayerPhysicsImproved> ());
 			}
 			
 			if(passenger.moveBeforePlatform == beforeMovePlatform) 
 			{
 				Vector3 velocity = passenger.velocity;
 				// TODO Add a move to the PlayerController class
-				passengerDictionary[passenger.transform].Move(ref velocity);
+				//passengerDictionary[passenger.transform].Move(ref velocity, "Velocity: " + velocity);
+				passengerDictionary[passenger.transform].Move(velocity, passenger.standingOnPlatform);
 				passenger.setVelocity(velocity);
 			}
 		}
@@ -160,7 +164,7 @@ public class PlatformController : RaycastController
 		if(velocity.y != 0)
 		{
 			// The size of the ray that will be cast
-			float rayLenght = 1 + (speed * Mathf.Abs(velocity.y) * skinWidth);
+			float rayLenght = Mathf.Abs(velocity.y) + skinWidth;
 
 			// Creates the RayCast
 			for(int i = 0; i < verticalRayCount; i++)
@@ -266,7 +270,7 @@ public class PlatformController : RaycastController
 						float pushY = velocity.y;
 
 						// Adds the passenger to the to be moved List
-						passengerMovement.Add(new PassengerMovement(hit.transform, new Vector3(pushX * 120, pushY * GameController.instance.gravity), true, false));
+						passengerMovement.Add(new PassengerMovement(hit.transform, new Vector3(pushX, pushY), true, false));
 					}
 				}
 			}
