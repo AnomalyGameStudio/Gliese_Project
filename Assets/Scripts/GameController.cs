@@ -1,8 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityStandardAssets._2D;
 
 public class GameController : MonoBehaviour 
 {
+	// Player Prefab
+	public GameObject playerPrefab;
+
 	// Singleton from GameController class
 	public static GameController instance;
 	
@@ -11,6 +15,9 @@ public class GameController : MonoBehaviour
 	
 	// Stores the current checkpoint the player is
 	Vector3 checkpoint = Vector3.zero;
+
+	// The main camera
+	Camera2DFollow camera;
 	
 	void Awake()
 	{
@@ -20,8 +27,19 @@ public class GameController : MonoBehaviour
 			// Search for the GameController and set it as the instance
 			instance = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController> ();
 		}
+
+		// Stores 
+		camera = Camera.main.GetComponent<Camera2DFollow>();
 	}
-	
+
+	void Start()
+	{
+		if(GameObject.FindGameObjectWithTag("Spawn"))
+		{
+			checkpoint = GameObject.FindGameObjectWithTag("Spawn").transform.position;
+		}
+	}
+
 	// Sets the Last checkpoint the player has passed
 	public void SetCheckpoint(Vector3 checkpoint)
 	{
@@ -30,11 +48,14 @@ public class GameController : MonoBehaviour
 	
 	public void SpawnPlayer()
 	{
-		
+		if(camera.target == null && Input.GetKeyDown(KeyCode.R))
+		{
+			Instantiate(playerPrefab, checkpoint, Quaternion.identity);
+		}
 	}
 	
-	public void KillPlayer()
+	public void KillPlayer(Transform player)
 	{
-		
+		Destroy(player.gameObject);
 	}
 }

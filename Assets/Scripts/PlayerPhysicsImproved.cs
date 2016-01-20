@@ -192,7 +192,8 @@ public class PlayerPhysicsImproved : RaycastController
 					
 					if(playerInput.y == -1)
 					{
-						collisions.fallingThroughPlatform = true;
+						collisions.fallingThroughPlatform = false;
+
 						Invoke("resetFallingThroughPlatform", .5f);
 						continue;
 					}
@@ -205,7 +206,7 @@ public class PlayerPhysicsImproved : RaycastController
 				{
 					velocity.x = velocity.y / Mathf.Tan(collisions.slopeAngle * Mathf.Deg2Rad) * Mathf.Sign(velocity.x);
 				}
-				
+				collisions.jump = false;
 				collisions.below = directionY == -1;
 				collisions.above = directionY == 1;
 			}
@@ -318,6 +319,7 @@ public class PlayerPhysicsImproved : RaycastController
 		public bool climbingSlope, descendingSlope;
 		public bool fallingThroughPlatform;
 		public bool crouch;
+		public bool jump;
 		public float slopeAngle, slopeAngleOld;
 		
 		public int faceDir; //Direction the character is facing
