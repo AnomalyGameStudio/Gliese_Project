@@ -14,6 +14,11 @@ public class Entity : MonoBehaviour
 
 	public void Damage(float damage)
 	{
+		stats.currentHealth -= damage;
 
+		if(stats.currentHealth <= 0)
+		{
+			GameController.instance.KillPlayer(this.transform);
+		}
 	}
 }

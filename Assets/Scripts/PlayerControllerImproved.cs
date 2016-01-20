@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 [RequireComponent (typeof(PlayerPhysicsImproved))]
-public class PlayerControllerImproved : Entity_old 
+public class PlayerControllerImproved : Entity 
 {
 	public Vector2 wallJumpOff;											// The velocity of the jump off the wall
 	public Vector2 wallLeap;											// The velocity of a wall leap
@@ -82,8 +82,8 @@ public class PlayerControllerImproved : Entity_old
 		// Set the direction of the wall if colliding with one
 		int wallDirX = (playerPhysics.collisions.left) ? -1 : 1;
 
-		// Set the Attribute Jumping of the animator based on the player position TODO Create a variable to controle when jumping
-		animator.SetBool("Jumping", !playerPhysics.collisions.below);
+		// Set the Attribute Jumping of the animator based on the player position TODO BUG: Not calling the state for jump
+		animator.SetBool("Jumping", playerPhysics.collisions.jump);
 
 		// The player input
 		Vector2 playerInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
@@ -100,7 +100,6 @@ public class PlayerControllerImproved : Entity_old
 		{
 			// Set the wall sliding to true
 			wallSliding = true;
-
 
 			// Check if the current Y velocity is lesser than the wallSlideMaxSpeed
 			if(velocity.y < -wallSlideSpeedMax)
@@ -136,6 +135,8 @@ public class PlayerControllerImproved : Entity_old
 		// Starts the Jumping Sequence
 		if(Input.GetButtonDown("Jump"))
 		{
+			playerPhysics.collisions.jump = true;
+
 			// Check if the player is sliding on the Wall
 			if(wallSliding)
 			{
@@ -191,7 +192,7 @@ public class PlayerControllerImproved : Entity_old
 		}
 	}
 
-	// TODO Figure this out
+	// TODO Figure this out - Working but still not quite right
 	void Flip(float dirX)
 	{
 		Vector3 scale = child.localScale;

@@ -34,9 +34,9 @@ public class Entity_old : MonoBehaviour
 	public static GameObject SpawnEntity(GameObject entityPrefab, Vector3 checkpoint, Text health)
 	{
 		GameObject currentPlayer = Instantiate(entityPrefab, checkpoint, Quaternion.identity) as GameObject;
-		currentPlayer.GetComponent<PlayerControllerImproved>().healthBar = health;
-		currentPlayer.GetComponent<PlayerControllerImproved>().ResetHealth();
-		currentPlayer.GetComponent<PlayerControllerImproved>().UpdateUI();
+		//currentPlayer.GetComponent<PlayerControllerImproved>().healthBar = health;
+		//currentPlayer.GetComponent<PlayerControllerImproved>().ResetHealth();
+		//currentPlayer.GetComponent<PlayerControllerImproved>().UpdateUI();
 		return currentPlayer;
 	}
 
