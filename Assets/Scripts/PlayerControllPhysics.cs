@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 [RequireComponent (typeof(CharacterController))]
@@ -56,13 +56,13 @@ public class PlayerControllPhysics : RaycastController
 		}
 
 		float gravity = GameController.instance.gravity;
-		gravity *= (controller.isGrounded) ? 3 : 2;
+		//gravity *= (capsuleCollider.isGrounded) ? 3 : 2;
 		velocity.y += gravity * Time.deltaTime; 
 		//velocity.y += gravity * Time.deltaTime;
 
 		_Temp_text_debug.instance.SetVelocity(velocity);
 
-		controller.Move(velocity * Time.deltaTime);
+		//capsuleCollider.Move(velocity * Time.deltaTime);
 	}
 
 	void HorizontalCollisions(Vector3 velocity)
@@ -135,7 +135,7 @@ public class PlayerControllPhysics : RaycastController
 					}
 				}
 				*/
-				if(controller.isGrounded)
+				//if(capsuleCollider.isGrounded)
 				{
 					velocity.y = (hit.distance - skinWidth) * directionY;
 					rayLength = hit.distance;
