@@ -8,6 +8,7 @@ TagManager:
   - Checkpoint
   - Spawn
   - Draggable
+  - Power Up
   layers:
   - Default
   - TransparentFX

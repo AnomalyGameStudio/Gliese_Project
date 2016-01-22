@@ -10,7 +10,7 @@ public class PlatformController : RaycastController
 	public float speed;														// The speed that the platform moves
 	public float waitTime;													// The amount of time that the platform waits until next waypoint
 	public bool cyclic;														// Stores if the waypoints should be cyclic
-
+	public bool automaticMovement = false;									// Controlls if the waypoints should be executed automatic or Manually
 	public Vector3[] localWaypoints;										// Stores the waypoints the platform should move
 
 	Vector3[] globalWaypoints;												// Stores the global position of the waypoints
@@ -51,10 +51,18 @@ public class PlatformController : RaycastController
 	{
 		UpdateRaycastOrigins();
 		
+		if(automaticMovement)
+		{
+			GoToNextWaypoint();
+		}
+	}
+
+	public void GoToNextWaypoint()
+	{
 		Vector3 velocity = CalculatePlatformMovement();
-
+		
 		CalculatePassengerMovement(velocity);
-
+		
 		MovePassenger(true);
 		transform.Translate(velocity);
 		MovePassenger(false);

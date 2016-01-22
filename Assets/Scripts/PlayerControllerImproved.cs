@@ -212,9 +212,9 @@ public class PlayerControllerImproved : Entity
 			gameController.SetCheckpoint(c.transform.position);
 		}
 		
-		if(c.tag == "Finish")
+		if(c.tag == "Power Up")
 		{
-			//gameController.EndLevel();
+			Debug.Log(c.tag);
 		}
 	}
 }
