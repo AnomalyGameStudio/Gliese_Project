@@ -62,11 +62,14 @@ public class PlayerControllerImproved : Entity
 
 	void Start()
 	{
+		// Stores a reference to the GameController
+		gameController = GameController.instance;
+
 		// Calculate the gravity on the player.
 		gravity = - (2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
 		
 		// Sets the global gravity
-		GameController.instance.gravity = gravity;
+		gameController.gravity = gravity;
 		
 		// Calculate the velocity to achieve max Jump Height
 		maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
@@ -192,7 +195,7 @@ public class PlayerControllerImproved : Entity
 		}
 	}
 
-	// TODO Figure this out - Working but still not quite right
+	// TODO Figure this out - Should rotate not invert the scale
 	void Flip(float dirX)
 	{
 		Vector3 scale = child.localScale;

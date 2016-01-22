@@ -7,34 +7,30 @@ public class RaycastController : MonoBehaviour
 	//Constants
 	public const float skinWidth = .015f;
 
-	[HideInInspector]
-	public float horizontalRaySpacing;
-	[HideInInspector]
-	public float verticalRaySpacing;
-	[HideInInspector]
-	public CharacterController controller;
-	[HideInInspector]
-	public BoxCollider collider;
+	[HideInInspector] public float horizontalRaySpacing;							// 
+	[HideInInspector] public float verticalRaySpacing;
+	[HideInInspector] public CapsuleCollider capsuleCollider;
+	[HideInInspector] public BoxCollider boxCollider;
 	
 	public LayerMask collisionMask;
 	public RaycastOrigins raycastOrigins;
 	public int horizontalRayCount = 4;
 	public int verticalRayCount = 4;
 
-	bool hasCharacterController;
+	bool hasCapsuleCollider;
 
 	public virtual void Awake()
 	{
 		// Check if the object have a ChacterController and gets it, Otherwise gets the BoxCollider
-		if(GetComponent<CharacterController>() != null)
+		if(GetComponent<CapsuleCollider>() != null)
 		{
-			controller = GetComponent<CharacterController>();
-			hasCharacterController = true;
+			capsuleCollider = GetComponent<CapsuleCollider>();
+			hasCapsuleCollider = true;
 		}
 		else
 		{
-			collider = GetComponent<BoxCollider> ();
-			hasCharacterController = false;
+			boxCollider = GetComponent<BoxCollider> ();
+			hasCapsuleCollider = false;
 		}
 	}
 
@@ -46,7 +42,7 @@ public class RaycastController : MonoBehaviour
 	public void UpdateRaycastOrigins()
 	{
 		// Gets the bounds of the Character controller if it has one, otherwise gets from the BoxCollider
-		Bounds bounds = hasCharacterController? controller.bounds : collider.bounds;
+		Bounds bounds = hasCapsuleCollider? capsuleCollider.bounds : boxCollider.bounds;
 		bounds.Expand(skinWidth * -2);
 		
 		raycastOrigins.bottomLeft = new Vector2(bounds.min.x, bounds.min.y);
@@ -58,7 +54,7 @@ public class RaycastController : MonoBehaviour
 	public void CalculateRaySpacing()
 	{
 		// Gets the bounds of the Character controller if it has one, otherwise gets from the BoxCollider
-		Bounds bounds = hasCharacterController? controller.bounds : collider.bounds;
+		Bounds bounds = hasCapsuleCollider? capsuleCollider.bounds : boxCollider.bounds;
 		bounds.Expand(skinWidth * -2);
 		
 		horizontalRayCount = Mathf.Clamp(horizontalRayCount, 2, int.MaxValue);

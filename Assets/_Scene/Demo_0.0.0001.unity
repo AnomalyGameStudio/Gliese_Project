@@ -203,8 +203,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalRaySpacing: 0
   verticalRaySpacing: 0
-  controller: {fileID: 0}
-  collider: {fileID: 0}
+  capsuleCollider: {fileID: 0}
+  boxCollider: {fileID: 0}
   collisionMask:
     serializedVersion: 2
     m_Bits: 512
@@ -814,7 +814,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69cd8c05bc93bd5449bc5dd5367e8ad8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 0}
+  playerPrefab: {fileID: 111606, guid: 28fc5b21ae9973446a6a1ee731ff4945, type: 2}
   gravity: 0
 --- !u!4 &932395414
 Transform:
@@ -1105,7 +1105,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 495536, guid: 28fc5b21ae9973446a6a1ee731ff4945, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5442920, guid: 28fc5b21ae9973446a6a1ee731ff4945, type: 2}
+      propertyPath: m_Constraints
+      value: 126
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 28fc5b21ae9973446a6a1ee731ff4945, type: 2}
@@ -1185,8 +1189,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalRaySpacing: 0
   verticalRaySpacing: 0
-  controller: {fileID: 0}
-  collider: {fileID: 0}
+  capsuleCollider: {fileID: 0}
+  boxCollider: {fileID: 0}
   collisionMask:
     serializedVersion: 2
     m_Bits: 512
@@ -1556,7 +1560,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 30, y: 1, z: 1}
+  m_Size: {x: 30, y: 1, z: 5}
   m_Center: {x: 15, y: 1, z: 0}
 --- !u!4 &2132718627
 Transform:

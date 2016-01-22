@@ -3,6 +3,11 @@ using System.Collections;
 
 public class KillBox : MonoBehaviour 
 {
+	void Awake()
+	{
+		Debug.Log("KillBox: Active");
+	}
+
 	void OnTriggerEnter(Collider c)
 	{
 		Debug.Log("!");

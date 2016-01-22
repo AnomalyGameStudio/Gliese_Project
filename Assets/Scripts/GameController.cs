@@ -40,6 +40,14 @@ public class GameController : MonoBehaviour
 		}
 	}
 
+	void Update()
+	{
+		if(camera.target == null && Input.GetKeyDown(KeyCode.R))
+		{
+			SpawnPlayer();
+		}
+	}
+
 	// Sets the Last checkpoint the player has passed
 	public void SetCheckpoint(Vector3 checkpoint)
 	{
@@ -48,10 +56,7 @@ public class GameController : MonoBehaviour
 	
 	public void SpawnPlayer()
 	{
-		if(camera.target == null && Input.GetKeyDown(KeyCode.R))
-		{
 			Instantiate(playerPrefab, checkpoint, Quaternion.identity);
-		}
 	}
 	
 	public void KillPlayer(Transform player)
