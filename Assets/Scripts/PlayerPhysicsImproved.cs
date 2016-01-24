@@ -19,9 +19,6 @@ public class PlayerPhysicsImproved : RaycastController
 		base.Start ();
 		collisions.faceDir = 1;
 		collisions.collider = GetComponent<BoxCollider> ();
-
-		//collisions.originalSize = GetComponent<Collider>().size;
-		//collisions.originalCenter = GetComponent<Collider>().center;
 		collisions.colliderScale = transform.localScale.x;
 	}
 

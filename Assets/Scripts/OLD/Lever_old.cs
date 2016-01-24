@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Lever : MonoBehaviour
+public class Lever_old : MonoBehaviour
 {
 	public Door door;
 	public bool activated;

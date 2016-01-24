@@ -6,6 +6,7 @@ public class PlayerControllerImproved : Entity
 {
 	public Vector2 wallJumpOff;											// The velocity of the jump off the wall
 	public Vector2 wallLeap;											// The velocity of a wall leap
+	public Vector2 doubleJumpVelocity;									// The velocity of the Double Jump
 
 	public float moveSpeed = 12f;										// Control the speed of the player
 	public float maxJumpHeight = 4f;									// The maximum height of a Jump
@@ -56,6 +57,7 @@ public class PlayerControllerImproved : Entity
 		// Stores the scale of the player
 		xScale = transform.localScale.x;
 
+		// TODO Change this - Not working properly
 		child = transform.FindChild("Zuckov");
 		xScale = child.localScale.x;
 	}
@@ -138,6 +140,13 @@ public class PlayerControllerImproved : Entity
 		// Starts the Jumping Sequence
 		if(Input.GetButtonDown("Jump"))
 		{
+			if(playerPhysics.collisions.jump && stats.doubleJump)
+			{
+				Debug.Log("Double Jump");
+				velocity.x += doubleJumpVelocity.x * playerPhysics.collisions.faceDir;
+				velocity.y = doubleJumpVelocity.y;
+			}
+
 			playerPhysics.collisions.jump = true;
 
 			// Check if the player is sliding on the Wall
@@ -171,7 +180,6 @@ public class PlayerControllerImproved : Entity
 				// Set the Y velocity to the minimum Jump velocity
 				velocity.y = minJumpVelocity;
 			}
-			
 		}
 
 		// Check if the player is inputing any X velocity and flips the model to the correct side
@@ -214,7 +222,8 @@ public class PlayerControllerImproved : Entity
 		
 		if(c.tag == "Power Up")
 		{
-			Debug.Log(c.tag);
+			// TODO Pass the Collider/GameObject and Destroy the game object after the pickup
+			EnablePowerUp(c.name);
 		}
 	}
 }

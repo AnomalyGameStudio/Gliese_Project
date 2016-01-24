@@ -23,6 +23,11 @@ public class PlatformController : RaycastController
 	//Dictionary<Transform, PlayerControllPhysics> passengerDictionary;		// The Dictionary with the Components used to Move the player
 	Dictionary<Transform, PlayerPhysicsImproved> passengerDictionary;		// The Dictionary with the
 
+	// Teste
+	bool moving;
+	bool shouldMove;
+	bool manualMove;
+
 	void Start()
 	{
 		base.Start();
@@ -46,26 +51,34 @@ public class PlatformController : RaycastController
 		//passengerDictionary = new Dictionary<Transform, PlayerControllPhysics> ();
 		passengerDictionary = new Dictionary<Transform, PlayerPhysicsImproved> ();
 	}
-	// TODO Comment this method
+
 	void Update()
 	{
+		// Update the position of the Raycast Origins
 		UpdateRaycastOrigins();
-		
-		if(automaticMovement)
-		{
-			GoToNextWaypoint();
-		}
+		// Calculate the velocity the platform should move
+		Vector3 velocity = CalculatePlatformMovement();
+		// Calculate the velocity the passengers should move while on the platform
+		CalculatePassengerMovement(velocity);
+
+		// Moves the Passengers that are set to be moved before the platform
+		MovePassenger(true);
+		// Move the platform
+		transform.Translate(velocity);
+		// Moves the Passengers that are set to be moved after the platform
+		MovePassenger(false);
 	}
 
-	public void GoToNextWaypoint()
+	// Flags a manual move on the platform
+	public void ManualMove()
 	{
-		Vector3 velocity = CalculatePlatformMovement();
-		
-		CalculatePassengerMovement(velocity);
-		
-		MovePassenger(true);
-		transform.Translate(velocity);
-		MovePassenger(false);
+		manualMove = true;
+	}
+
+	// Determine if the platform should move
+	bool ShouldMove()
+	{
+		return (automaticMovement || moving || manualMove);
 	}
 
 	// TODO Comment this method
@@ -82,10 +95,8 @@ public class PlatformController : RaycastController
 			if(passenger.moveBeforePlatform == beforeMovePlatform) 
 			{
 				Vector3 velocity = passenger.velocity;
-				// TODO Add a move to the PlayerController class
-				//passengerDictionary[passenger.transform].Move(ref velocity, "Velocity: " + velocity);
 				passengerDictionary[passenger.transform].Move(velocity, passenger.standingOnPlatform);
-				passenger.setVelocity(velocity);
+				//passenger.setVelocity(velocity);
 			}
 		}
 	}
@@ -96,18 +107,19 @@ public class PlatformController : RaycastController
 		float a = easeAmount + 1;
 		return Mathf.Pow(x, a) / (Mathf.Pow(x, a) + Mathf.Pow(1-x, a));
 	}
-
+	
 	Vector3 CalculatePlatformMovement()
 	{
-		if(Time.time < nextMoveTime)
+		if(Time.time < nextMoveTime || !ShouldMove())
 		{
 			// If it isn't time to move yet returns 0,0,0
 			return Vector3.zero;
 		}
 
-		// TODO figure how this Works. It will find the correct waypointIndex somehow
+		// This will make sure that the list will restart
 		fromWaypointIndex %= globalWaypoints.Length;
-		// Same as Above
+
+		// this will set the waypoint to go
 		int toWaypointIndex = (fromWaypointIndex + 1) % globalWaypoints.Length;
 
 		// Calculates the distance between waypoints
@@ -121,6 +133,9 @@ public class PlatformController : RaycastController
 
 		// Calculate the new Position based on a Linear interpolation
 		Vector3 newPos = Vector3.Lerp(globalWaypoints[fromWaypointIndex], globalWaypoints[toWaypointIndex], easedPercentBetweenWaypoints);
+
+		// Flags that the platform is moving
+		moving = true;
 
 		// Check if the platform already reached the Waypoint
 		if(percentBetweenWaypoints >= 1)
@@ -143,6 +158,11 @@ public class PlatformController : RaycastController
 					System.Array.Reverse(globalWaypoints);
 				}
 			}
+
+			// Ends the manual movement
+			moving = false;
+			manualMove = false;
+
 			// Sets the time it should move next
 			nextMoveTime = Time.time + waitTime;
 		}
@@ -287,11 +307,12 @@ public class PlatformController : RaycastController
 
 	struct PassengerMovement
 	{
-		public Transform transform;
-		public Vector3 velocity;
-		public bool standingOnPlatform;
-		public bool moveBeforePlatform;
-		
+		public Transform transform;							// Holds the position of the passenger
+		public Vector3 velocity;							// Holds the velocity that the passenger should move
+		public bool standingOnPlatform;						// True is the player is standing on the platform
+		public bool moveBeforePlatform;						// True if the player should be moved before the platform
+
+		// The constructor method
 		public PassengerMovement(Transform _transform, Vector3 _velocity, bool _standingOnPlatform, bool _moveBeforePlatform)
 		{
 			transform = _transform;
@@ -300,6 +321,7 @@ public class PlatformController : RaycastController
 			moveBeforePlatform = _moveBeforePlatform;
 		}
 
+		// TODO check if used...might be deprecated
 		public void setVelocity(Vector3 _velocity)
 		{
 			velocity = _velocity;

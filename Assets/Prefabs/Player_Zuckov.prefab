@@ -1683,7 +1683,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 111606}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.98999977, y: .0900000036, z: 0}
+  m_LocalPosition: {x: 233.399994, y: 23.3999996, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 414606}
@@ -1726,7 +1726,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!65 &6549346
 BoxCollider:
@@ -1815,8 +1815,10 @@ MonoBehaviour:
   stats:
     currentHealth: 100
     maxHealth: 100
+    doubleJump: 0
   wallJumpOff: {x: 10, y: 10}
   wallLeap: {x: 20, y: 20}
+  doubleJumpVelocity: {x: 20, y: 20}
   moveSpeed: 12
   maxJumpHeight: 10
   minJumpHeight: 5
