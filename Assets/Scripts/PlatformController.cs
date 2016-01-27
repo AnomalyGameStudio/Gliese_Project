@@ -305,6 +305,7 @@ public class PlatformController : RaycastController
 		}
 	}
 
+	// TODO Comment
 	struct PassengerMovement
 	{
 		public Transform transform;							// Holds the position of the passenger
