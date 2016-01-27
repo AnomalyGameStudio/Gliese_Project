@@ -6,7 +6,7 @@ public class Entity : MonoBehaviour
 	// Class used to hold the player info
 	[System.Serializable]
 	public class Stats
-	{
+	{	
 		#region player info
 		public float currentHealth = 100;										// Player's current health
 		public float maxHealth = 100;											// Player's max health

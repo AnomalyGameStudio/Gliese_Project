@@ -409,8 +409,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 8, y: 1, z: 1}
-  m_Center: {x: 4, y: -.5, z: 0}
+  m_Size: {x: 10, y: 1, z: 1}
+  m_Center: {x: 5, y: -.5, z: 0}
 --- !u!114 &11480860
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -424,8 +424,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalRaySpacing: 0
   verticalRaySpacing: 0
-  controller: {fileID: 0}
-  collider: {fileID: 0}
+  capsuleCollider: {fileID: 0}
+  boxCollider: {fileID: 0}
   collisionMask:
     serializedVersion: 2
     m_Bits: 512
@@ -438,6 +438,7 @@ MonoBehaviour:
   speed: 5
   waitTime: 0
   cyclic: 0
+  automaticMovement: 0
   localWaypoints:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 20, z: 0}

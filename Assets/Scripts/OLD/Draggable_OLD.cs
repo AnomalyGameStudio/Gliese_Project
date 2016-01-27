@@ -1,9 +1,9 @@
 using UnityEngine;
 using System.Collections;
 
-public class Draggable : RaycastController 
+public class Draggable_OLD : RaycastController 
 {
-	GameController_OLD gameController;
+	GameController gameController;
 	float maxClimbAngle = 80;
 	float maxDescendAngle = 75;
 	
@@ -13,7 +13,7 @@ public class Draggable : RaycastController
 	void Start () 
 	{
 		base.Start ();
-		gameController = GameController_OLD.instance;
+		gameController = GameController.instance;
 	}
 
 	void Update()

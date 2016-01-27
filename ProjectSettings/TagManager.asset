@@ -9,6 +9,7 @@ TagManager:
   - Spawn
   - Draggable
   - Power Up
+  - Through
   layers:
   - Default
   - TransparentFX
