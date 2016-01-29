@@ -183,7 +183,7 @@ public class PlayerControllerImproved : Entity
 		}
 
 		// Check if the player is inputing any X velocity and flips the model to the correct side
-		if(playerInput.x != 0 && !wallSliding)
+		if(playerInput.x != 0 && !wallSliding && !playerPhysics.collisions.draging)
 		{
 			Flip(Mathf.Sign(playerInput.x));
 		}
@@ -192,7 +192,7 @@ public class PlayerControllerImproved : Entity
 		animator.SetFloat("Speed", Mathf.Abs(velocity.x));
 
 		// Add the gravity to the Y velocity
-		velocity.y += gravity * Time.deltaTime;
+		velocity.y += GameController.instance.gravity * Time.deltaTime;	
 		// Calls the Move of the player Physics
 		playerPhysics.Move(velocity * Time.deltaTime, playerInput);
 
