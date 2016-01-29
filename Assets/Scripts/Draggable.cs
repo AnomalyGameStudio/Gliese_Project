@@ -3,7 +3,8 @@ using System.Collections;
 
 public class Draggable : PlayerPhysicsImproved
 {
-	// TODO Still not working
+	Vector3 velocity;
+
 	void Start () 
 	{
 		base.Start ();
@@ -11,8 +12,15 @@ public class Draggable : PlayerPhysicsImproved
 
 	void Update()
 	{
-		Vector3 velocity = Vector3.zero;
-		velocity.y += GameController.instance.gravity * Time.deltaTime;
-		Move(velocity);
+		if(!collisions.below)
+		{
+			velocity.y += GameController.instance.gravity * Time.deltaTime;
+			Move(velocity * Time.deltaTime);
+		}
+
+		if(collisions.below || collisions.above)
+		{
+			velocity.y = 0;
+		}
 	}
 }

@@ -23,6 +23,7 @@ public class PlayerPhysicsImproved : RaycastController
 		base.Start ();
 		// Set the direction the player is looking
 		collisions.faceDir = 1;
+
 		// Get the BoxCollider component from the Player
 		//collisions.collider = GetComponent<BoxCollider> ();
 		// Save the scale of the player
@@ -53,7 +54,7 @@ public class PlayerPhysicsImproved : RaycastController
 		playerInput = input;
 
 		// Check if moving to any side
-		if(velocity.x != 0)
+		if(velocity.x != 0 && !collisions.draging)
 		{
 			// Updates the direction the player is looking
 			collisions.faceDir = (int) Mathf.Sign(velocity.x);
@@ -93,8 +94,6 @@ public class PlayerPhysicsImproved : RaycastController
 	// Checks the horizontal collisions
 	void HorizontalCollisions(ref Vector3 velocity)
 	{
-
-
 		// Stores the direction the player is facing
 		float directionX = collisions.faceDir;
 		// Calculate the Size of the Ray that will be cast
@@ -120,6 +119,21 @@ public class PlayerPhysicsImproved : RaycastController
 			// Shows the Ray gizmo
 			Debug.DrawRay(ray.origin, ray.direction, Color.green);
 
+			if(tag != "Draggable" && Input.GetButton("Action"))
+			{
+				// TODO: Draggable Collisions. Maybe have to do here because of the bug with the X axis of the velocity
+				if(Physics.Raycast(ray, out hit, rayLength, dragMask))
+				{
+					//if(hit.distance == 0)
+					{
+						//continue;
+					}
+					//velocity.x = (hit.distance - skinWidth) * directionX;
+					
+
+				}
+			}
+
 			// Cast the Ray and see if it has hit
 			if(Physics.Raycast(ray, out hit, rayLength, collisionMask))
 			{
@@ -127,6 +141,21 @@ public class PlayerPhysicsImproved : RaycastController
 				if(hit.distance == 0)
 				{
 					continue;
+				}
+
+				if(hit.transform.tag == "Draggable" && Input.GetButton("Action"))
+				{
+					Draggable draggable = hit.transform.GetComponent<Draggable> ();
+					Vector3 dragVelocity = Vector3.zero;
+					//dragVelocity.y += GameController.instance.gravity * Time.deltaTime;
+					dragVelocity.x = velocity.x;
+					draggable.Move(dragVelocity);
+					collisions.draging = true;
+					//continue;
+				}
+				else
+				{
+					collisions.draging = false;
 				}
 
 				// determine the Angle of the object relative to the player
@@ -181,22 +210,6 @@ public class PlayerPhysicsImproved : RaycastController
 					collisions.left = directionX == -1;
 					collisions.right = directionX == 1;
 				}
-			}
-
-			// TODO: Draggable Collisions
-			if(Physics.Raycast(ray, out hit, rayLength, dragMask))
-			{
-				//if(hit.distance == 0)
-				{
-					//continue;
-				}
-				velocity.x = (hit.distance - skinWidth) * directionX;
-
-				Draggable draggable = hit.transform.GetComponent<Draggable> ();
-				Vector3 dragVelocity = Vector3.zero;
-				dragVelocity.y += GameController.instance.gravity * Time.deltaTime;
-				dragVelocity.x = velocity.x;
-				draggable.Move(dragVelocity);
 			}
 		}
 	}
@@ -405,6 +418,7 @@ public class PlayerPhysicsImproved : RaycastController
 		// Player Info
 		public bool fallingThroughPlatform;									// Holds if the player is falling through a platform
 		public bool jump;													// Holds if player is Jumping
+		public bool draging;												// Tells if the player is dragging any draggable
 		public int faceDir; 												// Direction the character is facing
 		public Vector3 velocityOld;											// The velocity of the player at the start of the Move Method
 

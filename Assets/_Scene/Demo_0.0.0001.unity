@@ -191,11 +191,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 415052, guid: cbb4e3316b730fa489fd5a383aa88517, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 14.0216179
+      value: 20.7999992
       objectReference: {fileID: 0}
     - target: {fileID: 415052, guid: cbb4e3316b730fa489fd5a383aa88517, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.21648216
+      value: 2.9000001
       objectReference: {fileID: 0}
     - target: {fileID: 415052, guid: cbb4e3316b730fa489fd5a383aa88517, type: 2}
       propertyPath: m_LocalPosition.z
@@ -223,10 +223,43 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 137700, guid: cbb4e3316b730fa489fd5a383aa88517, type: 2}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 415052, guid: cbb4e3316b730fa489fd5a383aa88517, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 415052, guid: cbb4e3316b730fa489fd5a383aa88517, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 415052, guid: cbb4e3316b730fa489fd5a383aa88517, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5480126, guid: cbb4e3316b730fa489fd5a383aa88517, type: 2}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5480126, guid: cbb4e3316b730fa489fd5a383aa88517, type: 2}
+      propertyPath: m_Constraints
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5480126, guid: cbb4e3316b730fa489fd5a383aa88517, type: 2}
+      propertyPath: m_CollisionDetection
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5480126, guid: cbb4e3316b730fa489fd5a383aa88517, type: 2}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5480126, guid: cbb4e3316b730fa489fd5a383aa88517, type: 2}
+      propertyPath: m_Interpolate
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11478212, guid: cbb4e3316b730fa489fd5a383aa88517, type: 2}
+    - {fileID: 5480126, guid: cbb4e3316b730fa489fd5a383aa88517, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: cbb4e3316b730fa489fd5a383aa88517, type: 2}
   m_IsPrefabParent: 0
 --- !u!4 &78907762 stripped
@@ -442,6 +475,25 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 003febfc26d414f42ab365e779a3cdc6, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &262098049 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 103506, guid: 003febfc26d414f42ab365e779a3cdc6, type: 2}
+  m_PrefabInternal: {fileID: 972379598}
+--- !u!54 &262098054
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 262098049}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &315218303
 Prefab:
   m_ObjectHideFlags: 0
@@ -1421,7 +1473,7 @@ MonoBehaviour:
   verticalRayCount: 10
   passengerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1280
   easeAmount: .5
   speed: 5
   waitTime: 0
@@ -1451,12 +1503,12 @@ MonoBehaviour:
   boxCollider: {fileID: 0}
   collisionMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 1536
   horizontalRayCount: 4
   verticalRayCount: 4
   dragMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 1024
   SlopeCurveModifier:
     serializedVersion: 2
     m_Curve:
