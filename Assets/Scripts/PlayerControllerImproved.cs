@@ -2,6 +2,8 @@ using UnityEngine;
 using System.Collections;
 
 [RequireComponent (typeof(PlayerPhysicsImproved))]
+[RequireComponent (typeof(Rigidbody))]
+[RequireComponent (typeof(Animator))]
 public class PlayerControllerImproved : Entity 
 {
 	public Vector2 wallJumpOff;											// The velocity of the jump off the wall
