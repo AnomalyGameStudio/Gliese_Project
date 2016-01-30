@@ -1774,7 +1774,7 @@ MonoBehaviour:
   boxCollider: {fileID: 0}
   collisionMask:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 1536
   horizontalRayCount: 4
   verticalRayCount: 4
   dragMask:

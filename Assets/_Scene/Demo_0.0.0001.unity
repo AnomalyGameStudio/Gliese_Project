@@ -191,11 +191,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 415052, guid: cbb4e3316b730fa489fd5a383aa88517, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 20.7999992
+      value: 78.5699997
       objectReference: {fileID: 0}
     - target: {fileID: 415052, guid: cbb4e3316b730fa489fd5a383aa88517, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 2.9000001
+      value: 11.8999996
       objectReference: {fileID: 0}
     - target: {fileID: 415052, guid: cbb4e3316b730fa489fd5a383aa88517, type: 2}
       propertyPath: m_LocalPosition.z
@@ -292,7 +292,7 @@ MonoBehaviour:
   verticalRayCount: 10
   passengerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1280
   easeAmount: .5
   speed: 5
   waitTime: 0
@@ -740,7 +740,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 489214, guid: 4b8a5dfe7689be8448082f8190f7da58, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11480860, guid: 4b8a5dfe7689be8448082f8190f7da58, type: 2}
       propertyPath: m_Enabled
@@ -1348,11 +1348,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 495536, guid: 28fc5b21ae9973446a6a1ee731ff4945, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 2.36999989
+      value: 69.1999969
       objectReference: {fileID: 0}
     - target: {fileID: 495536, guid: 28fc5b21ae9973446a6a1ee731ff4945, type: 2}
       propertyPath: m_LocalPosition.y
-      value: .540000021
+      value: 17.6000004
       objectReference: {fileID: 0}
     - target: {fileID: 495536, guid: 28fc5b21ae9973446a6a1ee731ff4945, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1378,10 +1378,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 11411942, guid: 28fc5b21ae9973446a6a1ee731ff4945, type: 2}
-      propertyPath: collisionMask.m_Bits
-      value: 1536
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 28fc5b21ae9973446a6a1ee731ff4945, type: 2}
   m_IsPrefabParent: 0
@@ -1394,7 +1390,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 471818, guid: 8cce8b98561a03648bd8cc15ba1f2f84, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 57.9199982
+      value: 58
       objectReference: {fileID: 0}
     - target: {fileID: 471818, guid: 8cce8b98561a03648bd8cc15ba1f2f84, type: 2}
       propertyPath: m_LocalPosition.y
