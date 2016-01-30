@@ -129,8 +129,15 @@ public class PlayerPhysicsImproved : RaycastController
 						//continue;
 					}
 					//velocity.x = (hit.distance - skinWidth) * directionX;
-					
 
+					Debug.Log("Dragging");
+					Draggable draggable = hit.transform.GetComponent<Draggable> ();
+					Vector3 dragVelocity = Vector3.zero;
+					//dragVelocity.y += GameController.instance.gravity * Time.deltaTime;
+					dragVelocity.x = velocity.x;
+					draggable.Move(dragVelocity);
+					collisions.draging = true;
+					//continue;
 				}
 			}
 
@@ -145,13 +152,15 @@ public class PlayerPhysicsImproved : RaycastController
 
 				if(hit.transform.tag == "Draggable" && Input.GetButton("Action"))
 				{
+					/*
+					Debug.Log("Dragging");
 					Draggable draggable = hit.transform.GetComponent<Draggable> ();
 					Vector3 dragVelocity = Vector3.zero;
 					//dragVelocity.y += GameController.instance.gravity * Time.deltaTime;
 					dragVelocity.x = velocity.x;
 					draggable.Move(dragVelocity);
 					collisions.draging = true;
-					//continue;
+					*/
 				}
 				else
 				{
