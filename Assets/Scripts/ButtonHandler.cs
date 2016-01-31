@@ -1,36 +1,51 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ButtonHandler : MonoBehaviour 
 {
-	public DoorController door;
+	public DoorController door;												// Holds the Door to be opend
 
-	/*
-	void OnTriggerStay(Collider collider)
+	List<Collider> onTop;													// Holds all objects that are on top of the button
+
+	void Start()
 	{
-		// Gets the Action Button
-		bool actionButton = Input.GetButtonDown("Action");
-		
-		// If the player is in the collider and the action button is pressed
-		if(collider.tag == "Player" && actionButton)
-		{
-			// Signals the platform to move to the next platform
-			door.ManualMove();
-		}
+		// Initialize the onTop list
+		onTop = new List<Collider>();
 	}
-*/
 
 	void OnTriggerEnter(Collider collider)
 	{
+		// Check if the collider is a player or a draggable
 		if(collider.tag == "Player" || collider.tag == "Draggable")
 		{
-			door.ManualMove(false);
+			// In case there isn't already another object on top
+			if(onTop.Count < 1)
+			{
+				// Signals to open
+				door.ToggleDoor(true);
+			}
+
+			// If not already ont the onTop list
+			if(!onTop.Contains(collider))
+			{
+				// Add to the list
+				onTop.Add(collider);
+			}
+
 		}
 	}
 	
-	void OnTriggerExit()
+	void OnTriggerExit(Collider collider)
 	{
-			door.ManualMove(true);
-	}
+		// When exiting the collider, remove from the list
+		onTop.Remove(collider);
 
+		// If there is no object on top of the button
+		if(onTop.Count < 1)
+		{
+			// Closes the door
+			door.ToggleDoor(false);
+		}
+	}
 }

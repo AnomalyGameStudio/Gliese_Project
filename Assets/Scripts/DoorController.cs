@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
+
 public class DoorController : RaycastController 
 {
 	[Range (0,2)] public float easeAmount;									// The Amount used on the Ease Function [The optimal range is between 0 and 2]
@@ -23,6 +23,7 @@ public class DoorController : RaycastController
 
 	// Teste 2
 	Vector3 positionFrom;
+	bool open = false;
 
 	void Start()
 	{
@@ -52,20 +53,46 @@ public class DoorController : RaycastController
 		// Calculate the velocity the platform should move
 		Vector3 velocity = CalculatePlatformMovement();
 
+		Debug.Log("Open: " + open + " Moving: " + moving);
 
 		// Move the platform
 		transform.Translate(velocity);
 	}
 
-	// Flags a manual move on the platform
-	public void ManualMove(bool next)
+	// Toggle the door
+	public void ToggleDoor(bool open)
 	{
-		if(next)
-		{
-			fromWaypointIndex++;
-		}
-		positionFrom = transform.position;
+		// If open is true, set the from waypoint
+		fromWaypointIndex = open ? 0 : 1;
+		// Set the door to move
 		manualMove = true;
+		// Save the position the door is currently
+		positionFrom = transform.position;
+		// Reset the percent already moved
+		percentBetweenWaypoints = 0;
+	}
+
+	public void Open()
+	{
+		if(!open || moving)
+		{
+			fromWaypointIndex = 0;
+			manualMove = true;
+			positionFrom = transform.position;
+			percentBetweenWaypoints = 0;
+		}
+	}
+
+	public void Close()
+	{
+		if(open || moving)
+		{
+
+			fromWaypointIndex = 1;
+			manualMove = true;
+			positionFrom = transform.position;
+			percentBetweenWaypoints = 0;
+		}
 	}
 
 	// Determine if the platform should move
@@ -93,9 +120,14 @@ public class DoorController : RaycastController
 		
 		// this will set the waypoint to go
 		int toWaypointIndex = (fromWaypointIndex + 1) % globalWaypoints.Length;
-		
+
+		Vector3 from = (moving) ? positionFrom : globalWaypoints[fromWaypointIndex];
+
+		Debug.Log("Current origin: " + from + " Current from waypoint" + fromWaypointIndex + " Current to waypoint" + toWaypointIndex + " ---------------------------------------------------------------------");
+
 		// Calculates the distance between waypoints
-		float distanceBetweenWaypoints = Vector3.Distance(globalWaypoints[fromWaypointIndex], globalWaypoints[toWaypointIndex]);
+		//float distanceBetweenWaypoints = Vector3.Distance(globalWaypoints[fromWaypointIndex], globalWaypoints[toWaypointIndex]);
+		float distanceBetweenWaypoints = Vector3.Distance(from, globalWaypoints[toWaypointIndex]);
 
 		// Calculate the interpolant for the lerp and is also the percent of the path already traveled
 		percentBetweenWaypoints += Time.deltaTime * speed/distanceBetweenWaypoints;
@@ -103,9 +135,10 @@ public class DoorController : RaycastController
 		percentBetweenWaypoints = Mathf.Clamp01(percentBetweenWaypoints);
 		// Apply the Ease Function
 		float easedPercentBetweenWaypoints = Ease(percentBetweenWaypoints);
-		
+		Debug.Log("Eased: " + easedPercentBetweenWaypoints + " PercentBetween: " + percentBetweenWaypoints + " Distance: " + distanceBetweenWaypoints);
 		// Calculate the new Position based on a Linear interpolation
-		Vector3 newPos = Vector3.Lerp(globalWaypoints[fromWaypointIndex], globalWaypoints[toWaypointIndex], easedPercentBetweenWaypoints);
+		//Vector3 newPos = Vector3.Lerp(globalWaypoints[fromWaypointIndex], globalWaypoints[toWaypointIndex], easedPercentBetweenWaypoints);
+		Vector3 newPos = Vector3.Lerp(from, globalWaypoints[toWaypointIndex], easedPercentBetweenWaypoints);
 		
 		// Flags that the platform is moving
 		moving = true;
@@ -113,25 +146,13 @@ public class DoorController : RaycastController
 		// Check if the platform already reached the Waypoint
 		if(percentBetweenWaypoints >= 1)
 		{
+			open = toWaypointIndex == 1;
+			
 			// Reset the percent travelled
 			percentBetweenWaypoints = 0;
 			// Go to the next Waypoint
 			fromWaypointIndex ++;
-			
-			// Check wheter the waypoints should be cyclic
-			if(!cyclic)
-			{
-				// Check if the last waypoint was reached
-				if(fromWaypointIndex >= globalWaypoints.Length-1)
-				{
-					// Reset the current waypoint index
-					fromWaypointIndex = 0;
-					
-					// Reverse the order of the waypoints
-					System.Array.Reverse(globalWaypoints);
-				}
-			}
-			
+
 			// Ends the manual movement
 			moving = false;
 			manualMove = false;

@@ -5,7 +5,7 @@ public class KillBox : MonoBehaviour
 {
 	void Awake()
 	{
-		Debug.Log("KillBox: Active");
+		//Debug.Log("KillBox: Active");
 	}
 
 	void OnTriggerEnter(Collider c)
