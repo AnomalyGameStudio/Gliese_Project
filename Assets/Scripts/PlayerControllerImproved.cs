@@ -227,5 +227,10 @@ public class PlayerControllerImproved : Entity
 			// TODO Pass the Collider/GameObject and Destroy the game object after the pickup
 			EnablePowerUp(c.name);
 		}
+
+		if(c.tag == "Finish")
+		{
+
+		}
 	}
 }
