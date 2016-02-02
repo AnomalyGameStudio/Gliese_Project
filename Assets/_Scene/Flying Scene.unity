@@ -5394,7 +5394,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 613275948}
-  m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106709}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -17.0400009, y: .0909999982, z: .439999998}
   m_LocalScale: {x: 1.55307126, y: 1.55307138, z: 1.5530715}
   m_Children:
@@ -5415,16 +5415,16 @@ MonoBehaviour:
   stats:
     currentHealth: 100
     maxHealth: 100
-    doubleJump: 0
+    doubleJump: 1
   wallJumpOff: {x: 10, y: 10}
-  wallLeap: {x: 20, y: 20}
-  doubleJumpVelocity: {x: 15, y: 20}
-  moveSpeed: 5
-  maxJumpHeight: 4
-  minJumpHeight: 1
+  wallLeap: {x: 10, y: 15}
+  doubleJumpVelocity: {x: 0, y: 15}
+  moveSpeed: 4
+  maxJumpHeight: 3
+  minJumpHeight: .5
   timeToJumpApex: .400000006
-  wallSlideSpeedMax: 3
-  wallStickTime: .25
+  wallSlideSpeedMax: 1.5
+  wallStickTime: .5
 --- !u!54 &613275951
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13575,7 +13575,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400086, guid: 701f617877c51c543b5bd0ff2a058189, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: .707106829
       objectReference: {fileID: 0}
     - target: {fileID: 400086, guid: 701f617877c51c543b5bd0ff2a058189, type: 3}
       propertyPath: m_LocalRotation.z
@@ -13583,7 +13583,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400086, guid: 701f617877c51c543b5bd0ff2a058189, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: .707106709
       objectReference: {fileID: 0}
     - target: {fileID: 400086, guid: 701f617877c51c543b5bd0ff2a058189, type: 3}
       propertyPath: m_RootOrder
@@ -15955,6 +15955,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 111606, guid: 28fc5b21ae9973446a6a1ee731ff4945, type: 2}
   gravity: 0
+  gameOver: 0
+  gameOverText: {fileID: 0}
 --- !u!1001 &1954879421
 Prefab:
   m_ObjectHideFlags: 0
