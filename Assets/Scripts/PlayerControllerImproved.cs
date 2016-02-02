@@ -84,6 +84,13 @@ public class PlayerControllerImproved : Entity
 
 	void Update()
 	{
+		// If game finished stop the player
+		if(gameController.gameOver)
+		{
+			animator.SetFloat("Speed", 0);
+			return;
+		}
+
 		// Reset the wallSliding flag
 		bool wallSliding = false;
 		// Set the direction of the wall if colliding with one
@@ -230,7 +237,8 @@ public class PlayerControllerImproved : Entity
 
 		if(c.tag == "Finish")
 		{
-
+			gameController.KillPlayer(transform);
+			gameController.GameOver();
 		}
 	}
 }

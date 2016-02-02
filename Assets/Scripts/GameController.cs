@@ -1,24 +1,21 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using UnityStandardAssets._2D;
 
 public class GameController : MonoBehaviour 
 {
-	// Player Prefab
-	public GameObject playerPrefab;
 
-	// Singleton from GameController class
-	public static GameController instance;
-	
-	// Stores the global gravity. This is set by the Player Controller
-	public float gravity = -180;
-	
-	// Stores the current checkpoint the player is
-	Vector3 checkpoint = Vector3.zero;
+	public GameObject playerPrefab;												// Player Prefab
+	public static GameController instance;										// Singleton from GameController class
+	public float gravity = -180;												// Stores the global gravity. This is set by the Player Controller
 
-	// The main camera
-	Camera2DFollow camera;
-	
+	Vector3 checkpoint = Vector3.zero;											// Stores the current checkpoint the player is
+	Camera2DFollow camera;														// The main camera
+
+	public bool gameOver = false;												// Holds if the game is over
+	public Text gameOverText;													// Holds the info for the gameOver
+
 	void Awake()
 	{
 		// If there isn't a stance of GameController yet
@@ -42,9 +39,12 @@ public class GameController : MonoBehaviour
 
 	void Update()
 	{
-		if(camera.target == null && Input.GetKeyDown(KeyCode.R))
+		if(camera.target == null || gameOver)
 		{
-			SpawnPlayer();
+			if(Input.GetKeyDown(KeyCode.R))
+			{
+				SpawnPlayer();
+			}
 		}
 	}
 
@@ -56,11 +56,20 @@ public class GameController : MonoBehaviour
 	
 	public void SpawnPlayer()
 	{
-			Instantiate(playerPrefab, checkpoint, Quaternion.identity);
+		gameOverText.text = "";
+		gameOver = false;
+		Instantiate(playerPrefab, checkpoint, Quaternion.identity);
 	}
 	
 	public void KillPlayer(Transform player)
 	{
+		gameOverText.text = "You Died!\n Press 'R' to Respawn";
 		Destroy(player.gameObject);
+	}
+
+	public void GameOver()
+	{
+		gameOver = true;
+		gameOverText.text = "A winner is you!";
 	}
 }
