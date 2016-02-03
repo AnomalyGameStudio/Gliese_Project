@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 7f967f7e4b5518849ba4545a0109458e
-timeCreated: 1454445768
+guid: 77552697a401b5e40bb9bf2b34129472
+timeCreated: 1454454771
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Rampa_2_Test
+    4300000: Borda_Test
     9500000: //RootNode
   materials:
     importMaterials: 1
