@@ -149,11 +149,11 @@ public class PlayerControllerImproved : Entity
 		// Starts the Jumping Sequence
 		if(Input.GetButtonDown("Jump"))
 		{
-			if(playerPhysics.collisions.jump && stats.doubleJump)
+			if(playerPhysics.collisions.jump && stats.doubleJump && playerPhysics.collisions.doubleJump)
 			{
-				Debug.Log("Double Jump");
 				velocity.x += doubleJumpVelocity.x * playerPhysics.collisions.faceDir;
 				velocity.y = doubleJumpVelocity.y;
+				playerPhysics.collisions.doubleJump = false;
 			}
 
 			playerPhysics.collisions.jump = true;
