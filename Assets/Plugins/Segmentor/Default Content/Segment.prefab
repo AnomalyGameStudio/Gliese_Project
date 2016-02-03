@@ -90,6 +90,7 @@ MonoBehaviour:
   x: 0
   y: 0
   mesh: {fileID: 0}
+  bDisabled: 0
   level: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:

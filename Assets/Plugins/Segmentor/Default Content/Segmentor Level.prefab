@@ -54,6 +54,7 @@ MonoBehaviour:
     - value: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
     - value: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   size:
+    serializedVersion: 2
     x: 10
     y: 10
     width: 0
@@ -62,8 +63,8 @@ MonoBehaviour:
   segments: {fileID: 0}
   currentType: 0
   set:
-  - {fileID: 11400000, guid: ef304bd44d9f6be4eb8216f25e42d46d, type: 2}
-  - {fileID: 11400000, guid: 8928944f0ef988b479b0d3c507aee297, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
   bHall: 0
   level: {fileID: 0}
 --- !u!1001 &100100000
