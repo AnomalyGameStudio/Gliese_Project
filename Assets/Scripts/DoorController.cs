@@ -53,7 +53,7 @@ public class DoorController : RaycastController
 		// Calculate the velocity the platform should move
 		Vector3 velocity = CalculatePlatformMovement();
 
-		Debug.Log("Open: " + open + " Moving: " + moving);
+		//Debug.Log("Open: " + open + " Moving: " + moving);
 
 		// Move the platform
 		transform.Translate(velocity);
@@ -121,12 +121,10 @@ public class DoorController : RaycastController
 		// this will set the waypoint to go
 		int toWaypointIndex = (fromWaypointIndex + 1) % globalWaypoints.Length;
 
+		// Determine the position the movement should start
 		Vector3 from = (moving) ? positionFrom : globalWaypoints[fromWaypointIndex];
 
-		Debug.Log("Current origin: " + from + " Current from waypoint" + fromWaypointIndex + " Current to waypoint" + toWaypointIndex + " ---------------------------------------------------------------------");
-
 		// Calculates the distance between waypoints
-		//float distanceBetweenWaypoints = Vector3.Distance(globalWaypoints[fromWaypointIndex], globalWaypoints[toWaypointIndex]);
 		float distanceBetweenWaypoints = Vector3.Distance(from, globalWaypoints[toWaypointIndex]);
 
 		// Calculate the interpolant for the lerp and is also the percent of the path already traveled
@@ -135,9 +133,8 @@ public class DoorController : RaycastController
 		percentBetweenWaypoints = Mathf.Clamp01(percentBetweenWaypoints);
 		// Apply the Ease Function
 		float easedPercentBetweenWaypoints = Ease(percentBetweenWaypoints);
-		Debug.Log("Eased: " + easedPercentBetweenWaypoints + " PercentBetween: " + percentBetweenWaypoints + " Distance: " + distanceBetweenWaypoints);
+
 		// Calculate the new Position based on a Linear interpolation
-		//Vector3 newPos = Vector3.Lerp(globalWaypoints[fromWaypointIndex], globalWaypoints[toWaypointIndex], easedPercentBetweenWaypoints);
 		Vector3 newPos = Vector3.Lerp(from, globalWaypoints[toWaypointIndex], easedPercentBetweenWaypoints);
 		
 		// Flags that the platform is moving

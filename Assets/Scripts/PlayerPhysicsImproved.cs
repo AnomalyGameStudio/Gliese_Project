@@ -289,6 +289,7 @@ public class PlayerPhysicsImproved : RaycastController
 
 				// Set collisions flags
 				collisions.jump = false;
+				collisions.doubleJump = true;
 				collisions.below = directionY == -1;
 				collisions.above = directionY == 1;
 			}
@@ -427,6 +428,7 @@ public class PlayerPhysicsImproved : RaycastController
 		// Player Info
 		public bool fallingThroughPlatform;									// Holds if the player is falling through a platform
 		public bool jump;													// Holds if player is Jumping
+		public bool doubleJump;												// Tells if the player is able to do a double jump
 		public bool draging;												// Tells if the player is dragging any draggable
 		public int faceDir; 												// Direction the character is facing
 		public Vector3 velocityOld;											// The velocity of the player at the start of the Move Method
