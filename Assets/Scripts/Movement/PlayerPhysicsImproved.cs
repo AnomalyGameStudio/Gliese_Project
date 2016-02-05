@@ -1,7 +1,8 @@
-﻿	using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerPhysicsImproved : RaycastController 
+// Extends the Class RaycastController and implements the Interface IActorPhysics
+public class PlayerPhysicsImproved : RaycastController //	, IActorPhysics
 {
 	public CollisionInfo collisions;							// The information about the collision of the player
 	public LayerMask dragMask;									// The layer that will be dragged by the player
@@ -76,9 +77,6 @@ public class PlayerPhysicsImproved : RaycastController
 			// Check the vertical collisions
 			VerticalCollisions(ref velocity);
 		}
-
-		// TODO Remove later
-		_Temp_text_debug.instance.SetVelocity(velocity);
 
 		// Move the player. Second Argument is used so the player move relative to the world
 		transform.Translate(velocity, Space.World);
