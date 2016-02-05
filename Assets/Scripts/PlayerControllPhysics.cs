@@ -60,8 +60,6 @@ public class PlayerControllPhysics : RaycastController
 		velocity.y += gravity * Time.deltaTime; 
 		//velocity.y += gravity * Time.deltaTime;
 
-		_Temp_text_debug.instance.SetVelocity(velocity);
-
 		//capsuleCollider.Move(velocity * Time.deltaTime);
 	}
 
