@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: c5d7dea78e0dbfc4ebfc83cc11ef3c48
-timeCreated: 1454620657
+timeCreated: 1454633337
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Cylinder004
+    4300000: Cylinder005
     7400000: Take 001
     9500000: //RootNode
   materials:
@@ -55,7 +55,7 @@ ModelImporter:
     splitTangentsAcrossUV: 1
     normalImportMode: 0
     tangentImportMode: 1
-  importAnimation: 1
+  importAnimation: 0
   copyAvatar: 0
   humanDescription:
     human: []
@@ -69,7 +69,7 @@ ModelImporter:
     feetSpacing: 0
     rootMotionBoneName: 
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   additionalBone: 0
   userData: 
   assetBundleName: 
