@@ -2,7 +2,7 @@
 using UnityEngine.Events;
 using System.Collections;
 
-public class MainMenu : MonoBehaviour 
+public class MainMenuEvent : MonoBehaviour 
 {
 	// Starts listening on the OnEnable
 	void OnEnable()

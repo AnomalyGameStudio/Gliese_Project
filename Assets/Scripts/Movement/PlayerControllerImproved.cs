@@ -18,7 +18,7 @@ public class PlayerControllerImproved : Entity
 	public float wallStickTime = .25f;									// The time the player will be stuck to the wall while hold the oposing direction
 
 	GameController gameController;										// Holds the instance of the GameController
-	PlayerPhysicsImproved playerPhysics;								// Holds a reference to the PlayerPhysics script
+	IActorPhysics playerPhysics;										// Holds a reference to the PlayerPhysics script
 	Animator animator;													// Holds a reference to the animator component
 	Vector3 velocity;													// Holds the velocity of the player
 
@@ -47,7 +47,7 @@ public class PlayerControllerImproved : Entity
 		// Check if the Character Controller was found
 		if(playerPhysics == null)
 		{
-			Debug.LogError("PlayerPhysics component not found.");
+			Debug.LogError("IActorPhysics component not found.");
 		}
 		
 		// Check if the animator component was found
@@ -149,14 +149,14 @@ public class PlayerControllerImproved : Entity
 		// Starts the Jumping Sequence
 		if(Input.GetButtonDown("Jump"))
 		{
-			if(playerPhysics.collisions.jump && stats.doubleJump && playerPhysics.collisions.doubleJump)
+			if(playerPhysics.collisions.jump && upgrades.doubleJump && playerPhysics.collisions.doubleJump)
 			{
 				velocity.x += doubleJumpVelocity.x * playerPhysics.collisions.faceDir;
 				velocity.y = doubleJumpVelocity.y;
 				playerPhysics.collisions.doubleJump = false;
 			}
 
-			playerPhysics.collisions.jump = true;
+ 			playerPhysics.collisions.jump = true;
 
 			// Check if the player is sliding on the Wall
 			if(wallSliding)
@@ -224,17 +224,20 @@ public class PlayerControllerImproved : Entity
 
 	void OnTriggerEnter(Collider c)
 	{
+		// Updates the checkpoint when reaches it
 		if(c.tag == "Checkpoint")
 		{
 			gameController.SetCheckpoint(c.transform.position);
 		}
-		
+
+		// Add the power up to the player
 		if(c.tag == "Power Up")
 		{
 			// TODO Pass the Collider/GameObject and Destroy the game object after the pickup
-			EnablePowerUp(c.name);
+			upgrades.EnablePowerUp(c.name);
 		}
 
+		// Finishes the game
 		if(c.tag == "Finish")
 		{
 			gameController.KillPlayer(transform);
