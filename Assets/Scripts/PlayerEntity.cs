@@ -1,11 +1,11 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class PlayerEntity : Entity
 {
 	void Awake()
 	{
-		stats = new Stats();
+		//stats = new Stats1();
 	}
 
 	public void Damage(float damage)
