@@ -121,10 +121,35 @@ ModelImporter:
     optimizeGameObjects: 0
     motionNodeName: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: 'MuscleClip ''Orc_Test'' conversion warning: ''OrcHub001/OrcLLeg1/OrcLLeg2/OrcLLeg3''
+      is between humanoid transforms and has rotation animation. This might lower
+      retargeting quality.
+
+
+      MuscleClip ''Orc_Test'' conversion warning: ''OrcHub001/OrcRLeg1/OrcRLeg2/OrcRLeg3''
+      is between humanoid transforms and has rotation animation. This might lower
+      retargeting quality.
+
+
+      MuscleClip ''Orc_Test'' conversion warning: ''OrcHub001/OrcSpine1'' is between
+      humanoid transforms and has rotation animation. This might lower retargeting
+      quality.
+
+
+      MuscleClip ''Orc_Test'' conversion warning: ''OrcHub001/OrcSpine1/OrcSpine2''
+      is between humanoid transforms and has rotation animation. This might lower
+      retargeting quality.
+
+
+      MuscleClip ''Orc_Test'' conversion warning: ''OrcHub001/OrcSpine1/OrcSpine2/OrcSpine3/OrcHub002/OrcSpine1
+      1'' is between humanoid transforms and has rotation animation. This might lower
+      retargeting quality.
+
+
+'
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: .5
     animationPositionError: .5
     animationScaleError: .5
