@@ -1,0 +1,108 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1011 &101100000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Orc_BlendTest
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: Demo_Rifle
+    m_Weight: 0
+  - m_Path: Orc_Prot_Retopo
+    m_Weight: 0
+  - m_Path: OrcHub001
+    m_Weight: 1
+  - m_Path: OrcHub001/OrcLLeg1
+    m_Weight: 0
+  - m_Path: OrcHub001/OrcLLeg1/OrcLLeg2
+    m_Weight: 0
+  - m_Path: OrcHub001/OrcLLeg1/OrcLLeg2/OrcLLeg3
+    m_Weight: 0
+  - m_Path: OrcHub001/OrcLLeg1/OrcLLeg2/OrcLLeg3/OrcLLegAnkle
+    m_Weight: 0
+  - m_Path: OrcHub001/OrcRLeg1
+    m_Weight: 0
+  - m_Path: OrcHub001/OrcRLeg1/OrcRLeg2
+    m_Weight: 0
+  - m_Path: OrcHub001/OrcRLeg1/OrcRLeg2/OrcRLeg3
+    m_Weight: 0
+  - m_Path: OrcHub001/OrcRLeg1/OrcRLeg2/OrcRLeg3/OrcRLegAnkle
+    m_Weight: 0
+  - m_Path: OrcHub001/OrcSpine1
+    m_Weight: 1
+  - m_Path: OrcHub001/OrcSpine1/OrcSpine2
+    m_Weight: 1
+  - m_Path: OrcHub001/OrcSpine1/OrcSpine2/OrcSpine3
+    m_Weight: 1
+  - m_Path: OrcHub001/OrcSpine1/OrcSpine2/OrcSpine3/OrcHub002
+    m_Weight: 1
+  - m_Path: OrcHub001/OrcSpine1/OrcSpine2/OrcSpine3/OrcHub002/OrcLArmCollarbone
+    m_Weight: 1
+  - m_Path: OrcHub001/OrcSpine1/OrcSpine2/OrcSpine3/OrcHub002/OrcLArmCollarbone/OrcLArm1
+    m_Weight: 1
+  - m_Path: OrcHub001/OrcSpine1/OrcSpine2/OrcSpine3/OrcHub002/OrcLArmCollarbone/OrcLArm1/OrcLArm2
+    m_Weight: 1
+  - m_Path: OrcHub001/OrcSpine1/OrcSpine2/OrcSpine3/OrcHub002/OrcLArmCollarbone/OrcLArm1/OrcLArm2/OrcLArmPalm
+    m_Weight: 1
+  - m_Path: OrcHub001/OrcSpine1/OrcSpine2/OrcSpine3/OrcHub002/OrcLArmCollarbone/OrcLArm1/OrcLArm2/OrcLArmPalm/OrcLArmDigit11
+    m_Weight: 1
+  - m_Path: OrcHub001/OrcSpine1/OrcSpine2/OrcSpine3/OrcHub002/OrcLArmCollarbone/OrcLArm1/OrcLArm2/OrcLArmPalm/OrcLArmDigit11/OrcLArmDigit12
+    m_Weight: 1
+  - m_Path: OrcHub001/OrcSpine1/OrcSpine2/OrcSpine3/OrcHub002/OrcLArmCollarbone/OrcLArm1/OrcLArm2/OrcLArmPalm/OrcLArmDigit11/OrcLArmDigit12/OrcLArmDigit13
+    m_Weight: 1
+  - m_Path: OrcHub001/OrcSpine1/OrcSpine2/OrcSpine3/OrcHub002/OrcLArmCollarbone/OrcLArm1/OrcLArm2/OrcLArmPalm/OrcLArmDigit21
+    m_Weight: 1
+  - m_Path: OrcHub001/OrcSpine1/OrcSpine2/OrcSpine3/OrcHub002/OrcLArmCollarbone/OrcLArm1/OrcLArm2/OrcLArmPalm/OrcLArmDigit21/OrcLArmDigit22
+    m_Weight: 1
+  - m_Path: OrcHub001/OrcSpine1/OrcSpine2/OrcSpine3/OrcHub002/OrcLArmCollarbone/OrcLArm1/OrcLArm2/OrcLArmPalm/OrcLArmDigit21/OrcLArmDigit22/OrcLArmDigit23
+    m_Weight: 1
+  - m_Path: OrcHub001/OrcSpine1/OrcSpine2/OrcSpine3/OrcHub002/OrcLArmCollarbone/OrcLArm1/OrcLArm2/OrcLArmPalm/OrcLArmDigit31
+    m_Weight: 1
+  - m_Path: OrcHub001/OrcSpine1/OrcSpine2/OrcSpine3/OrcHub002/OrcLArmCollarbone/OrcLArm1/OrcLArm2/OrcLArmPalm/OrcLArmDigit31/OrcLArmDigit32
+    m_Weight: 1
+  - m_Path: OrcHub001/OrcSpine1/OrcSpine2/OrcSpine3/OrcHub002/OrcLArmCollarbone/OrcLArm1/OrcLArm2/OrcLArmPalm/OrcLArmDigit31/OrcLArmDigit32/OrcLArmDigit33
+    m_Weight: 1
+  - m_Path: OrcHub001/OrcSpine1/OrcSpine2/OrcSpine3/OrcHub002/OrcRArmCollarbone
+    m_Weight: 1
+  - m_Path: OrcHub001/OrcSpine1/OrcSpine2/OrcSpine3/OrcHub002/OrcRArmCollarbone/OrcRArm1
+    m_Weight: 1
+  - m_Path: OrcHub001/OrcSpine1/OrcSpine2/OrcSpine3/OrcHub002/OrcRArmCollarbone/OrcRArm1/OrcRArm2
+    m_Weight: 1
+  - m_Path: OrcHub001/OrcSpine1/OrcSpine2/OrcSpine3/OrcHub002/OrcRArmCollarbone/OrcRArm1/OrcRArm2/OrcRArmPalm
+    m_Weight: 1
+  - m_Path: OrcHub001/OrcSpine1/OrcSpine2/OrcSpine3/OrcHub002/OrcRArmCollarbone/OrcRArm1/OrcRArm2/OrcRArmPalm/OrcRArmDigit11
+    m_Weight: 1
+  - m_Path: OrcHub001/OrcSpine1/OrcSpine2/OrcSpine3/OrcHub002/OrcRArmCollarbone/OrcRArm1/OrcRArm2/OrcRArmPalm/OrcRArmDigit11/OrcRArmDigit12
+    m_Weight: 1
+  - m_Path: OrcHub001/OrcSpine1/OrcSpine2/OrcSpine3/OrcHub002/OrcRArmCollarbone/OrcRArm1/OrcRArm2/OrcRArmPalm/OrcRArmDigit11/OrcRArmDigit12/OrcRArmDigit13
+    m_Weight: 1
+  - m_Path: OrcHub001/OrcSpine1/OrcSpine2/OrcSpine3/OrcHub002/OrcRArmCollarbone/OrcRArm1/OrcRArm2/OrcRArmPalm/OrcRArmDigit21
+    m_Weight: 1
+  - m_Path: OrcHub001/OrcSpine1/OrcSpine2/OrcSpine3/OrcHub002/OrcRArmCollarbone/OrcRArm1/OrcRArm2/OrcRArmPalm/OrcRArmDigit21/OrcRArmDigit22
+    m_Weight: 1
+  - m_Path: OrcHub001/OrcSpine1/OrcSpine2/OrcSpine3/OrcHub002/OrcRArmCollarbone/OrcRArm1/OrcRArm2/OrcRArmPalm/OrcRArmDigit21/OrcRArmDigit22/OrcRArmDigit23
+    m_Weight: 1
+  - m_Path: OrcHub001/OrcSpine1/OrcSpine2/OrcSpine3/OrcHub002/OrcRArmCollarbone/OrcRArm1/OrcRArm2/OrcRArmPalm/OrcRArmDigit31
+    m_Weight: 1
+  - m_Path: OrcHub001/OrcSpine1/OrcSpine2/OrcSpine3/OrcHub002/OrcRArmCollarbone/OrcRArm1/OrcRArm2/OrcRArmPalm/OrcRArmDigit31/OrcRArmDigit32
+    m_Weight: 1
+  - m_Path: OrcHub001/OrcSpine1/OrcSpine2/OrcSpine3/OrcHub002/OrcRArmCollarbone/OrcRArm1/OrcRArm2/OrcRArmPalm/OrcRArmDigit31/OrcRArmDigit32/OrcRArmDigit33
+    m_Weight: 1
+  - m_Path: OrcHub001/OrcSpine1/OrcSpine2/OrcSpine3/OrcHub002/OrcRArmCollarbone/OrcRArm1/OrcRArm2/OrcRArmPalm/OrcWeaponBone
+    m_Weight: 1
+  - m_Path: OrcHub001/OrcSpine1/OrcSpine2/OrcSpine3/OrcHub002/OrcSpine1 1
+    m_Weight: 1
+  - m_Path: OrcHub001/OrcSpine1/OrcSpine2/OrcSpine3/OrcHub002/OrcSpine1 1/OrcSpine2
+      1
+    m_Weight: 1
+  - m_Path: OrcHub001/OrcSpine1/OrcSpine2/OrcSpine3/OrcHub002/OrcSpine1 1/OrcSpine2
+      1/OrcHub003
+    m_Weight: 0
+  - m_Path: OrcLLegPlatform
+    m_Weight: 0
+  - m_Path: OrcRLegPlatform
+    m_Weight: 0
