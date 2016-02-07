@@ -13,7 +13,6 @@ public class Stats : IDamageable<float>
 		{
 			return entity;
 		}
-
 		set
 		{
 			entity = value;
@@ -26,7 +25,6 @@ public class Stats : IDamageable<float>
 		{
 			return entityCurrentHealth;
 		}
-
 		set
 		{
 			entityCurrentHealth = value;
