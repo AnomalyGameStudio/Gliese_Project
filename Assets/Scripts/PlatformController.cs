@@ -20,8 +20,7 @@ public class PlatformController : RaycastController
 	float percentBetweenWaypoints;
 
 	List<PassengerMovement> passengerMovement;								// Stores a List with all passengers
-	//Dictionary<Transform, PlayerControllPhysics> passengerDictionary;		// The Dictionary with the Components used to Move the player
-	Dictionary<Transform, PlayerPhysicsImproved> passengerDictionary;		// The Dictionary with the
+	Dictionary<Transform, IActorPhysics> passengerDictionary;				// The Dictionary with the Components used to Move the player
 
 	// Teste
 	bool moving;
@@ -35,7 +34,7 @@ public class PlatformController : RaycastController
 		// Check if there is any waypoint
 		if(localWaypoints.Length < 1)
 		{
-			Debug.LogError("There is no waypoints");
+			Debug.LogError("There are no waypoints");
 		}
 		else
 		{
@@ -48,8 +47,7 @@ public class PlatformController : RaycastController
 			}
 		}
 
-		//passengerDictionary = new Dictionary<Transform, PlayerControllPhysics> ();
-		passengerDictionary = new Dictionary<Transform, PlayerPhysicsImproved> ();
+		passengerDictionary = new Dictionary<Transform, IActorPhysics> ();
 	}
 
 	void Update()
@@ -58,6 +56,7 @@ public class PlatformController : RaycastController
 		UpdateRaycastOrigins();
 		// Calculate the velocity the platform should move
 		Vector3 velocity = CalculatePlatformMovement();
+
 		// Calculate the velocity the passengers should move while on the platform
 		CalculatePassengerMovement(velocity);
 
@@ -88,15 +87,12 @@ public class PlatformController : RaycastController
 		{
 			if(!passengerDictionary.ContainsKey(passenger.transform))
 			{
-				//passengerDictionary.Add(passenger.transform, passenger.transform.GetComponent<PlayerControllPhysics> ());
-				passengerDictionary.Add(passenger.transform, passenger.transform.GetComponent<PlayerPhysicsImproved> ());
+				passengerDictionary.Add(passenger.transform, passenger.transform.GetComponent<IActorPhysics> ());
 			}
 			
 			if(passenger.moveBeforePlatform == beforeMovePlatform) 
 			{
-				Vector3 velocity = passenger.velocity;
-				passengerDictionary[passenger.transform].Move(velocity, passenger.standingOnPlatform);
-				//passenger.setVelocity(velocity);
+				passengerDictionary[passenger.transform].Move(passenger.velocity, passenger.standingOnPlatform);
 			}
 		}
 	}
@@ -219,7 +215,6 @@ public class PlatformController : RaycastController
 						// Calculate the amount the passenger should move
 						float pushX = (directionY == 1) ? velocity.x : 0;
 						float pushY = velocity.y - (hit.distance - rayLenght) * directionY;
-
 						// Adds the passenger to the to be moved List
 						passengerMovement.Add(new PassengerMovement(hit.transform, new Vector3(pushX, pushY), (directionY == 1), true));
 					}
@@ -286,7 +281,6 @@ public class PlatformController : RaycastController
 				// Casts the ray and check the hit
 				if(Physics.Raycast(ray, out hit, rayLength, passengerMask) && hit.distance != 0)
 				{
-					Debug.Log(hit.transform.name);
 					// Check if not already moved
 					if(!movedPassengers.Contains(hit.transform))
 					{
@@ -321,12 +315,13 @@ public class PlatformController : RaycastController
 			standingOnPlatform = _standingOnPlatform;
 			moveBeforePlatform = _moveBeforePlatform;
 		}
-
+		/*
 		// TODO check if used...might be deprecated
 		public void setVelocity(Vector3 _velocity)
 		{
 			velocity = _velocity;
 		}
+		*/
 	}
 
 	void OnDrawGizmos()
