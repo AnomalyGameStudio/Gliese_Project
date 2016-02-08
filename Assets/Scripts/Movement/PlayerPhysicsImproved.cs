@@ -51,7 +51,6 @@ public class PlayerPhysicsImproved : RaycastController, IActorPhysics
 	// The function used to move the player without the the player input
 	public void Move(Vector3 velocity, bool standingOnPlatform)
 	{
-		Debug.Log("Called it: " + velocity);
 		Move(velocity, Vector2.zero, standingOnPlatform);
 	}
 	
