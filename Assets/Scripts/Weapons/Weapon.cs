@@ -48,6 +48,7 @@ public class Weapon : MonoBehaviour, IWeapon
 			return;
 		}
 		timeToFire = Time.time + 1/fireRate;
+
 		Instantiate (bullet, firePoint.position, firePoint.rotation);
 	}
 	
