@@ -194,7 +194,13 @@ public class PlayerControllerImproved : Entity
 		// Check if the player is inputing any X velocity and flips the model to the correct side
 		if(playerInput.x != 0 && !wallSliding && !playerPhysics.collisions.draging)
 		{
-			Flip(Mathf.Sign(playerInput.x));
+			int movingDirection = (int) Mathf.Sign(playerInput.x);
+
+			if(movingDirection != playerPhysics.collisions.faceDir)
+			{
+				playerPhysics.collisions.faceDir = movingDirection;
+				Flip();
+			}
 		}
 
 		// Pass to the animator the current velocity of the player
@@ -213,12 +219,16 @@ public class PlayerControllerImproved : Entity
 	}
 
 	// TODO Figure this out - Should rotate not invert the scale
-	void Flip(float dirX)
+	void Flip()
 	{
-		Vector3 scale = child.localScale;
-		scale.x = dirX * xScale;
+		Vector3 rotation = new Vector3(0f, 180f, 0f);
+
+		transform.Rotate(rotation);
+
+		//Vector3 scale = child.localScale;
+		//scale.x = dirX * xScale;
 		
-		child.localScale = scale;
+		//child.localScale = scale;
 
 	}
 
