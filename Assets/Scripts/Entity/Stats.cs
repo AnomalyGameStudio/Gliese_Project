@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Stats : IDamageable<float>
 {
+	private Transform entityTransform;
 	private float entityCurrentHealth;
 	private float entityMaxHealth;
 
@@ -11,11 +12,11 @@ public class Stats : IDamageable<float>
 	{
 		get
 		{
-			return entity;
+			return entityTransform;
 		}
 		set
 		{
-			entity = value;
+			entityTransform = value;
 		}
 	}
 
@@ -43,6 +44,14 @@ public class Stats : IDamageable<float>
 		}
 	}
 	#endregion
+
+	// Constructor - Guarantees that we will have the value of entity
+	public Stats(Transform entity, float maxHealth)
+	{
+		this.entity = entity;
+		this.maxHealth = maxHealth;
+		this.currentHealth = maxHealth;
+	}
 
 	// Handles the damage taken by the player
 	public void Damage(float damage)

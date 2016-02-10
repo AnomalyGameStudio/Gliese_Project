@@ -10,6 +10,7 @@ TagManager:
   - Draggable
   - Power Up
   - Through
+  - Enemy
   layers:
   - Default
   - TransparentFX
