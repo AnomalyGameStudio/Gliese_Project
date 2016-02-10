@@ -21,8 +21,14 @@ public class Bullet : MonoBehaviour
 		Destroy(gameObject, timeAlive);
 	}
 
-	void OnEnter()
+	void OnTriggerEnter(Collider c)
 	{
+
 		Destroy(gameObject);
+
+		if(c.tag ==	 "Enemy")
+		{
+			Debug.Log("Enemy Hit");
+		}
 	}
 }
