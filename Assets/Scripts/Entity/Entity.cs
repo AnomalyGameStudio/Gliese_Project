@@ -1,13 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Entity : MonoBehaviour 
+public class Entity : MonoBehaviour, IEntity
 {
-	public IDamageable<float> stats = new Stats();
+	public float maxHealth;
+
 	public static IUpgradable upgrades = new Upgrades();
 
-	void OnAwake()
+	private IDamageable<float> playerStats;
+
+	public IDamageable<float> stats 
 	{
-		stats.entity = transform;
+		get
+		{
+			if(playerStats == null)
+			{
+				playerStats = new Stats(transform, maxHealth);
+			}
+			
+			return playerStats;
+		}
 	}
 }
