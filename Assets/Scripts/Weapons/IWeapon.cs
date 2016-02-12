@@ -9,5 +9,16 @@ public interface IWeapon
 		set;
 	}
 
+	int slot
+	{
+		get;
+	}
+
 	void Shoot();
+
+	void setActive(bool isActive);
+
+	void Reload();
+
+	void AddAmmo(float amount);
 }
