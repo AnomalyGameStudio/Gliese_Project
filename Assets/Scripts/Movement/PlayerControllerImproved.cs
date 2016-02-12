@@ -19,6 +19,7 @@ public class PlayerControllerImproved : Entity
 
 	GameController gameController;										// Holds the instance of the GameController
 	IActorPhysics playerPhysics;										// Holds a reference to the PlayerPhysics script
+	IWeaponManager weaponManager;										// Holds a reference to the weapon Manager component
 	Animator animator;													// Holds a reference to the animator component
 	Vector3 velocity;													// Holds the velocity of the player
 
@@ -40,7 +41,10 @@ public class PlayerControllerImproved : Entity
 	{
 		// Gets the PlayerPhysics component
 		playerPhysics = GetComponent<PlayerPhysicsImproved>();
-		
+
+		// Gets the WeaponManager component
+		weaponManager = GetComponent<WeaponManager> ();
+
 		// Gets the animator component
 		animator = GetComponent<Animator>();
 		
@@ -49,7 +53,13 @@ public class PlayerControllerImproved : Entity
 		{
 			Debug.LogError("IActorPhysics component not found.");
 		}
-		
+
+		// Check if the Character Controller was found
+		if(weaponManager == null)
+		{
+			Debug.LogError("IWeaponManager component not found.");
+		}
+
 		// Check if the animator component was found
 		if(animator == null)
 		{
@@ -98,6 +108,9 @@ public class PlayerControllerImproved : Entity
 
 		// Set the Attribute Jumping of the animator based on the player position TODO BUG: Not calling the state for jump
 		animator.SetBool("Jumping", playerPhysics.collisions.jump);
+
+		// Routine responsible to handle the weapon change
+		weaponChange();
 
 		// The player input
 		Vector2 playerInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
@@ -231,6 +244,19 @@ public class PlayerControllerImproved : Entity
 		//child.localScale = scale;
 
 	}
+	
+	void weaponChange()
+	{
+		if(Input.GetKeyDown(KeyCode.Alpha1))
+		{
+			weaponManager.ChangeWeapon(1);
+		}
+
+		if(Input.GetKeyDown(KeyCode.Alpha2))
+		{
+			weaponManager.ChangeWeapon(2);
+		}
+	}
 
 	void OnTriggerEnter(Collider c)
 	{
@@ -252,6 +278,12 @@ public class PlayerControllerImproved : Entity
 		{
 			gameController.KillPlayer(transform);
 			gameController.GameOver();
+		}
+
+		if(c.tag == "Weapon")
+		{
+			weaponManager.AddWeapon(c.transform);
+			Destroy(c.gameObject);
 		}
 	}
 }

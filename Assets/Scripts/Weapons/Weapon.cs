@@ -6,9 +6,13 @@ public class Weapon : MonoBehaviour, IWeapon
 	//public LayerMask toHit;
 	public GameObject bullet;
 	public float fireRate;
+	public int weaponSlot;
+
 	float timeToFire = 0;
 
 	private Transform weaponFirePoint;
+	private bool active;
+
 
 	public Transform firePoint
 	{
@@ -20,6 +24,14 @@ public class Weapon : MonoBehaviour, IWeapon
 		set
 		{
 			weaponFirePoint = value;
+		}
+	}
+
+	public int slot
+	{
+		get
+		{
+			return weaponSlot;
 		}
 	}
 
@@ -43,7 +55,7 @@ public class Weapon : MonoBehaviour, IWeapon
 
 	public void Shoot()
 	{
-		if(Time.time < timeToFire)
+		if(Time.time < timeToFire || !active)
 		{
 			return;
 		}
@@ -51,5 +63,20 @@ public class Weapon : MonoBehaviour, IWeapon
 
 		Instantiate (bullet, firePoint.position, firePoint.rotation);
 	}
+
+	public void setActive(bool isActive)
+	{
+		this.active = isActive;
+		gameObject.SetActive(isActive);
+	}
+
+	public void Reload()
+	{
+
+	}
 	
+	public void AddAmmo(float amount)
+	{
+
+	}
 }
