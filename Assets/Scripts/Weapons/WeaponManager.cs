@@ -7,9 +7,10 @@ public class WeaponManager : MonoBehaviour , IWeaponManager
 	public Transform weaponBone;
 
 	static Dictionary<int, IWeapon> weapons = new Dictionary<int, IWeapon>();
+	static int curWeaponSlot;
 
 	Dictionary<int, IWeapon> allWeapons = new Dictionary<int, IWeapon>();
-
+	Animator animator;
 	IWeapon curWeapon;
 
 	public IWeapon currentWeapon
@@ -21,11 +22,14 @@ public class WeaponManager : MonoBehaviour , IWeaponManager
 		set
 		{
 			curWeapon = value;
+			curWeaponSlot = value.slot;
 		}
 	}
 
 	void Start()
 	{
+		animator = GetComponent<Animator>();
+
 		if(weaponBone == null)
 		{
 			// TODO Don't know if it is the best way
@@ -39,8 +43,20 @@ public class WeaponManager : MonoBehaviour , IWeaponManager
 			IWeapon weapon = child.GetComponent<IWeapon>();
 			if(weapon != null)
 			{
+				IWeapon equipedWeapon;
 				allWeapons.Add(weapon.slot, weapon);
+
+				if(weapons.TryGetValue(weapon.slot, out equipedWeapon))
+				{
+					weapons.Remove(weapon.slot);
+					weapons.Add(weapon.slot, weapon);
+				}
 			}
+		}
+
+		if(curWeaponSlot != 0)
+		{
+			ChangeWeapon(curWeaponSlot);
 		}
 	}
 
@@ -50,13 +66,18 @@ public class WeaponManager : MonoBehaviour , IWeaponManager
 
 		if(weapons.TryGetValue(weaponNumber, out selectedWeapon))
 		{
-			currentWeapon.setActive(false);
+			if(currentWeapon != null)
+			{
+				currentWeapon.setActive(false);
+			}
+
 			weapons[weaponNumber].setActive(true);
 			currentWeapon = weapons[weaponNumber];
+
+			animator.SetFloat("Weapon", weaponNumber);
 		}
-
-
 	}
+
 	// Doesn't work, I must first put all weapons on the prefab, map them and then use this to find the weapon for the slot and make it active
 	public void AddWeapon(Transform weapon)
 	{
@@ -81,15 +102,15 @@ public class WeaponManager : MonoBehaviour , IWeaponManager
 			}
 		}
 
-		if(curWeapon == null)
+		if(currentWeapon == null)
 		{
-			curWeapon = weaponReference;
-			curWeapon.setActive(true);
+			currentWeapon = weaponReference;
+			currentWeapon.setActive(true);
 		}
 		else
 		{
 			weaponReference.setActive(false);
-		}
 
+		}
 	}
 }
