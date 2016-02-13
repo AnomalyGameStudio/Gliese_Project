@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 [RequireComponent (typeof(PlayerPhysicsImproved))]
+[RequireComponent (typeof(IWeapon))]
 [RequireComponent (typeof(Rigidbody))]
 [RequireComponent (typeof(Animator))]
 public class PlayerControllerImproved : Entity 
