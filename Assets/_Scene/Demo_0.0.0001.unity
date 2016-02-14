@@ -664,6 +664,46 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11495192, guid: a995111aa90f9c9408e7c8ab52610b84, type: 2}
+      propertyPath: clipSize
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11495192, guid: a995111aa90f9c9408e7c8ab52610b84, type: 2}
+      propertyPath: maxAmmo
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 11495192, guid: a995111aa90f9c9408e7c8ab52610b84, type: 2}
+      propertyPath: currentClipAmmo
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11495192, guid: a995111aa90f9c9408e7c8ab52610b84, type: 2}
+      propertyPath: currentMaxAmmo
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 11495192, guid: a995111aa90f9c9408e7c8ab52610b84, type: 2}
+      propertyPath: reloadTime
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11458882, guid: a995111aa90f9c9408e7c8ab52610b84, type: 2}
+      propertyPath: clipSize
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11458882, guid: a995111aa90f9c9408e7c8ab52610b84, type: 2}
+      propertyPath: maxAmmo
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 11458882, guid: a995111aa90f9c9408e7c8ab52610b84, type: 2}
+      propertyPath: currentClipAmmo
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11458882, guid: a995111aa90f9c9408e7c8ab52610b84, type: 2}
+      propertyPath: currentMaxAmmo
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11458882, guid: a995111aa90f9c9408e7c8ab52610b84, type: 2}
+      propertyPath: reloadTime
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a995111aa90f9c9408e7c8ab52610b84, type: 2}
   m_IsPrefabParent: 0

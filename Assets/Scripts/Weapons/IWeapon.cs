@@ -20,5 +20,5 @@ public interface IWeapon
 
 	void Reload();
 
-	void AddAmmo(float amount);
+	void AddAmmo(int amount);
 }

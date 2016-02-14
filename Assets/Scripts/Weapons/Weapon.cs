@@ -7,6 +7,11 @@ public class Weapon : MonoBehaviour, IWeapon
 	public GameObject bullet;
 	public float fireRate;
 	public int weaponSlot;
+	public int clipSize;
+	public int maxAmmo;
+	public int currentClipAmmo;
+	public int currentMaxAmmo;
+	public float reloadTime;
 
 	float timeToFire = 0;
 
@@ -51,6 +56,12 @@ public class Weapon : MonoBehaviour, IWeapon
 		{
 			Shoot();
 		}
+
+		// TODO Create a Key to reload
+		if(Input.GetKeyDown(KeyCode.T))
+		{
+			Reload();
+		}
 	}
 
 	public void Shoot()
@@ -59,9 +70,18 @@ public class Weapon : MonoBehaviour, IWeapon
 		{
 			return;
 		}
-		timeToFire = Time.time + 1/fireRate;
 
-		Instantiate (bullet, firePoint.position, firePoint.rotation);
+		if(currentClipAmmo > 0)
+		{
+			timeToFire = Time.time + 1/fireRate;
+
+			Instantiate (bullet, firePoint.position, firePoint.rotation);
+			currentClipAmmo--;
+		}
+		else
+		{
+			Reload();
+		}
 	}
 
 	public void setActive(bool isActive)
@@ -69,14 +89,23 @@ public class Weapon : MonoBehaviour, IWeapon
 		this.active = isActive;
 		gameObject.SetActive(isActive);
 	}
-
+	
 	public void Reload()
 	{
-
+		int amountToReload = clipSize - currentClipAmmo;
+		currentClipAmmo += Mathf.Min(amountToReload, currentMaxAmmo);
+		AddAmmo(-amountToReload);
+		timeToFire = Time.time + reloadTime;
 	}
 	
-	public void AddAmmo(float amount)
+	public void AddAmmo(int amount)
 	{
+		currentMaxAmmo += amount;
+		currentMaxAmmo = Mathf.Clamp(currentMaxAmmo, 0, maxAmmo);
 
+		if(currentClipAmmo == 0 && currentMaxAmmo > 0)
+		{
+			Reload();
+		}
 	}
 }
