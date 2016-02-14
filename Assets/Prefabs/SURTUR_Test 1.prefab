@@ -1,69 +1,43 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &115276
+--- !u!1 &148232
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 417228}
+  - 4: {fileID: 481422}
+  - 33: {fileID: 3357852}
+  - 23: {fileID: 2306562}
+  - 54: {fileID: 5493996}
+  - 65: {fileID: 6576992}
+  - 114: {fileID: 11493642}
   m_Layer: 0
-  m_Name: FirePoint 1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &138296
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 489522}
-  - 33: {fileID: 3383278}
-  - 23: {fileID: 2360734}
-  - 114: {fileID: 11451942}
-  m_Layer: 0
-  m_Name: SURTUR_Test
+  m_Name: SURTUR_Test 1
   m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &417228
+--- !u!4 &481422
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 115276}
-  m_LocalRotation: {x: -.0142846489, y: .00896324962, z: .0269449484, w: .999494672}
-  m_LocalPosition: {x: 43.4399986, y: -23.1200008, z: 5.13000011}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_GameObject: {fileID: 148232}
+  m_LocalRotation: {x: -.707106829, y: 0, z: -0, w: .707106829}
+  m_LocalPosition: {x: 197.633194, y: 20.960247, z: -1.86125339e-16}
+  m_LocalScale: {x: .0253999997, y: .0253999997, z: .0253999997}
   m_Children: []
-  m_Father: {fileID: 489522}
-  m_RootOrder: 0
---- !u!4 &489522
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 138296}
-  m_LocalRotation: {x: .691612184, y: .0107516563, z: .0194243249, w: -.721927822}
-  m_LocalPosition: {x: 7.74813366, y: 1.86766303, z: -.641533375}
-  m_LocalScale: {x: .0253998656, y: .0253998414, z: .0254003294}
-  m_Children:
-  - {fileID: 417228}
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!23 &2360734
+--- !u!23 &2306562
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 138296}
+  m_GameObject: {fileID: 148232}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -82,27 +56,54 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!33 &3383278
+--- !u!33 &3357852
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 138296}
+  m_GameObject: {fileID: 148232}
   m_Mesh: {fileID: 4300000, guid: 23c28f46c65a41646a007b8927a97d2f, type: 3}
---- !u!114 &11451942
+--- !u!54 &5493996
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 148232}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &6576992
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 148232}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 65.6531143, y: 5.68197393, z: 26.2990246}
+  m_Center: {x: 9.56370926, y: -9.53674535e-05, z: .824727714}
+--- !u!114 &11493642
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 138296}
+  m_GameObject: {fileID: 148232}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5f8b6854143e5246979aa175a3bcd42, type: 3}
+  m_Script: {fileID: 11500000, guid: 95241d2a5acf97d4ab3a59e3030308b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 147906, guid: ee572d46130dede488ca2c23e7a5e212, type: 2}
-  fireRate: 0
   weaponSlot: 1
+  minAmmoDrop: 10
+  maxAmmoDrop: 30
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -112,5 +113,5 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 138296}
+  m_RootGameObject: {fileID: 148232}
   m_IsPrefabParent: 1

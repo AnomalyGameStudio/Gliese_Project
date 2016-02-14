@@ -14,11 +14,19 @@ public interface IWeapon
 		get;
 	}
 
+	int currentMaxAmmo
+	{
+		get;
+	}
+
 	void Shoot();
 
-	void setActive(bool isActive);
+	void SetActive(bool isActive);
 
 	void Reload();
+	//IEnumerator Reload();
 
 	void AddAmmo(int amount);
+
+	void UpdateUI();
 }
