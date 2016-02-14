@@ -1,70 +1,43 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &148926
+--- !u!1 &151270
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 499498}
+  - 4: {fileID: 457834}
+  - 33: {fileID: 3301534}
+  - 23: {fileID: 2327184}
+  - 54: {fileID: 5433456}
+  - 65: {fileID: 6507542}
+  - 114: {fileID: 11446338}
   m_Layer: 0
-  m_Name: FirePoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!1 &157090
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 472936}
-  - 33: {fileID: 3343320}
-  - 23: {fileID: 2387660}
-  - 114: {fileID: 11416716}
-  - 65: {fileID: 6504706}
-  m_Layer: 0
-  m_Name: HEIMDALLR
+  m_Name: HEIMDALLR 1
   m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &472936
+--- !u!4 &457834
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 157090}
-  m_LocalRotation: {x: .701690674, y: -.0146374069, z: .00631481782, w: -.7123034}
-  m_LocalPosition: {x: 10.5949383, y: .772628188, z: -.61100769}
-  m_LocalScale: {x: .0253998693, y: .025399847, z: .0254003312}
-  m_Children:
-  - {fileID: 499498}
+  m_GameObject: {fileID: 151270}
+  m_LocalRotation: {x: -.707106829, y: 0, z: -0, w: .707106829}
+  m_LocalPosition: {x: 255.320007, y: 21.6499996, z: 0}
+  m_LocalScale: {x: .0253999997, y: .0253999997, z: .0253999997}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!4 &499498
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 148926}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 48, y: -24.3999996, z: 8.19999981}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 472936}
-  m_RootOrder: 0
---- !u!23 &2387660
+--- !u!23 &2327184
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 157090}
+  m_GameObject: {fileID: 151270}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -83,39 +56,54 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!33 &3343320
+--- !u!33 &3301534
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 157090}
+  m_GameObject: {fileID: 151270}
   m_Mesh: {fileID: 4300000, guid: c5d7dea78e0dbfc4ebfc83cc11ef3c48, type: 3}
---- !u!65 &6504706
+--- !u!54 &5433456
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 151270}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &6507542
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 157090}
+  m_GameObject: {fileID: 151270}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 72.0906448, y: 16.6326923, z: 24.9816895}
-  m_Center: {x: 12.9580975, y: -2.51938868, z: 1.61596584}
---- !u!114 &11416716
+  m_Size: {x: 72.0906372, y: 16.6326923, z: 24.9816952}
+  m_Center: {x: 12.9580956, y: -2.51939058, z: 1.61596239}
+--- !u!114 &11446338
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 157090}
+  m_GameObject: {fileID: 151270}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5f8b6854143e5246979aa175a3bcd42, type: 3}
+  m_Script: {fileID: 11500000, guid: 95241d2a5acf97d4ab3a59e3030308b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 147906, guid: ee572d46130dede488ca2c23e7a5e212, type: 2}
-  fireRate: 10
   weaponSlot: 2
+  minAmmoDrop: 2
+  maxAmmoDrop: 6
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -125,5 +113,5 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 157090}
+  m_RootGameObject: {fileID: 151270}
   m_IsPrefabParent: 1

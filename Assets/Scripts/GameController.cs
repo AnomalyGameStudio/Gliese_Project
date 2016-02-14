@@ -16,6 +16,9 @@ public class GameController : MonoBehaviour
 	public bool gameOver = false;												// Holds if the game is over
 	public Text gameOverText;													// Holds the info for the gameOver
 
+	public Text CurrentClipAmmo;												// The amount of ammo in the magazine
+	public Text CurrentMaxAmmo;													// The amount of ammo of the weapon
+
 	void Awake()
 	{
 		// If there isn't a stance of GameController yet
@@ -71,5 +74,12 @@ public class GameController : MonoBehaviour
 	{
 		gameOver = true;
 		gameOverText.text = "A winner is you!";
+	}
+
+	public void UpdateAmmo(int clipAmmo, int maxAmmo)
+	{
+		Debug.Log("Updating");
+		CurrentClipAmmo.text = clipAmmo.ToString();
+		CurrentMaxAmmo.text = maxAmmo.ToString();
 	}
 }

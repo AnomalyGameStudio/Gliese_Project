@@ -1335,7 +1335,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 121674}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.29864979, y: .0795121193, z: -.25999999}
+  m_LocalPosition: {x: 191.25, y: 20.5200005, z: -.300000012}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 401794}
@@ -1556,8 +1556,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.59252691, y: 2.58885145, z: .419999987}
-  m_Center: {x: .368663847, y: 1.28056657, z: .0900000036}
+  m_Size: {x: 1.59252691, y: 2.58885145, z: 5}
+  m_Center: {x: .368663847, y: 1.28056657, z: .449999988}
 --- !u!95 &9573806
 Animator:
   serializedVersion: 3
@@ -1617,7 +1617,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 147906, guid: ee572d46130dede488ca2c23e7a5e212, type: 2}
   fireRate: 10
+  reloadTime: 1
   weaponSlot: 2
+  clipSize: 1
+  maxAmmo: 20
 --- !u!114 &11470932
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1696,7 +1699,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 147906, guid: ee572d46130dede488ca2c23e7a5e212, type: 2}
   fireRate: 5
+  reloadTime: 3
   weaponSlot: 1
+  clipSize: 10
+  maxAmmo: 100
 --- !u!137 &13727772
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
