@@ -1,10 +1,10 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
 public class ButtonHandler : MonoBehaviour 
 {
-	public DoorController door;												// Holds the Door to be opend
+	public DoorHandler door;												// Holds the Door to be opend
 
 	List<Collider> onTop;													// Holds all objects that are on top of the button
 
