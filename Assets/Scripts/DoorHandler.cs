@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class DoorController : RaycastController 
+public class DoorHandler : RaycastController 
 {
 	[Range (0,2)] public float easeAmount;									// The Amount used on the Ease Function [The optimal range is between 0 and 2]
 	public float speed;														// The speed that the platform moves
