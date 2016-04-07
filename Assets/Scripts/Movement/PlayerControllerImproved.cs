@@ -41,7 +41,7 @@ public class PlayerControllerImproved : Entity
 	void Awake()
 	{
 		// Gets the PlayerPhysics component
-		playerPhysics = GetComponent<PlayerPhysicsImproved>();
+		playerPhysics = GetComponent<IActorPhysics>();
 
 		// Gets the WeaponManager component
 		weaponManager = GetComponent<WeaponManager> ();
