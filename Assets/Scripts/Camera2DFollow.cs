@@ -23,9 +23,16 @@ namespace UnityStandardAssets._2D
         // TODO Review camera
         private void Start()
         {
-            m_LastTargetPosition = target.position;
-            m_OffsetZ = (transform.position - target.position).z;
-            transform.parent = null;
+			if(target == null)
+			{
+				m_OffsetZ = -10;
+			}
+			else
+			{
+				m_LastTargetPosition = target.position;
+				m_OffsetZ = (transform.position - target.position).z;
+				transform.parent = null;
+			}
         }
 
         private void LateUpdate()
@@ -71,6 +78,8 @@ namespace UnityStandardAssets._2D
 				if(searchResult != null)
 				{
 					target = searchResult.transform;
+					m_LastTargetPosition = target.position;
+					m_OffsetZ = (transform.position - target.position).z;
 				}
 
 				nextTimeToSearch = Time.time + 0.5f;

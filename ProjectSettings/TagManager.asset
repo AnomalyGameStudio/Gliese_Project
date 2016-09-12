@@ -12,6 +12,7 @@ TagManager:
   - Through
   - Enemy
   - Weapon
+  - InstaKill
   layers:
   - Default
   - TransparentFX

@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 [RequireComponent (typeof(PlayerPhysicsImproved))]
-[RequireComponent (typeof(IWeapon))]
+//[RequireComponent (typeof(IWeapon))]
 [RequireComponent (typeof(Rigidbody))]
 [RequireComponent (typeof(Animator))]
 public class PlayerControllerImproved : Entity 
@@ -58,7 +58,7 @@ public class PlayerControllerImproved : Entity
 		// Check if the Character Controller was found
 		if(weaponManager == null)
 		{
-			Debug.LogError("IWeaponManager component not found.");
+			//Debug.LogError("IWeaponManager component not found.");
 		}
 
 		// Check if the animator component was found
@@ -71,8 +71,8 @@ public class PlayerControllerImproved : Entity
 		xScale = transform.localScale.x;
 
 		// TODO Change this - Not working properly
-		child = transform.FindChild("Zuckov");
-		xScale = child.localScale.x;
+		//child = transform.FindChild("Zuckov");
+		//xScale = child.localScale.x;
 	}
 
 	void Start()
@@ -237,7 +237,7 @@ public class PlayerControllerImproved : Entity
 	{
 		Vector3 rotation = new Vector3(0f, 180f, 0f);
 
-		transform.Rotate(rotation);
+		//transform.Rotate(rotation);
 
 		//Vector3 scale = child.localScale;
 		//scale.x = dirX * xScale;
@@ -272,6 +272,7 @@ public class PlayerControllerImproved : Entity
 		{
 			// TODO Pass the Collider/GameObject and Destroy the game object after the pickup
 			upgrades.EnablePowerUp(c.name);
+			Debug.Log(c.name);
 		}
 
 		// Finishes the game
@@ -285,6 +286,11 @@ public class PlayerControllerImproved : Entity
 		{
 			weaponManager.AddWeapon(c.transform);
 			Destroy(c.gameObject);
+		}
+
+		if(c.tag == "InstaKill")
+		{
+			gameController.KillPlayer(transform);
 		}
 	}
 }
