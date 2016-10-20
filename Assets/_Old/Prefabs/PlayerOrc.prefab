@@ -130,9 +130,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bce6f6a044e7d44419f1dd578b96f831, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SlopeCurveModifier:
+    serializedVersion: 2
+    m_Curve:
+    - time: -90
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 90
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
   horizontalRaySpacing: 0
   verticalRaySpacing: 0
-  collider: {fileID: 0}
+  capsuleCollider: {fileID: 0}
+  boxCollider: {fileID: 0}
   collisionMask:
     serializedVersion: 2
     m_Bits: 512
@@ -153,11 +174,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5028c5ecc7d72134cb310a7d097dccc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ragdoll: {fileID: 164558, guid: 0bbc98c5fe2447c45a2e915a76273031, type: 2}
-  healthBar: {fileID: 0}
-  wallJumpClimb: {x: 10, y: 20}
+  maxHealth: 0
   wallJumpOff: {x: 8, y: 10}
   wallLeap: {x: 17, y: 18}
+  doubleJumpVelocity: {x: 0, y: 0}
+  moveSpeed: 12
   maxJumpHeight: 4
   minJumpHeight: 1
   timeToJumpApex: .400000006

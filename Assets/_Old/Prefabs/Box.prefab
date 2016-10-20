@@ -113,18 +113,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69ae94adaa4d1b84598d755c69e613b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalRaySpacing: 0
-  verticalRaySpacing: 0
-  capsuleCollider: {fileID: 0}
-  boxCollider: {fileID: 0}
-  collisionMask:
-    serializedVersion: 2
-    m_Bits: 1536
-  horizontalRayCount: 4
-  verticalRayCount: 4
-  dragMask:
-    serializedVersion: 2
-    m_Bits: 1024
   SlopeCurveModifier:
     serializedVersion: 2
     m_Curve:
@@ -145,6 +133,18 @@ MonoBehaviour:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+  horizontalRaySpacing: 0
+  verticalRaySpacing: 0
+  capsuleCollider: {fileID: 0}
+  boxCollider: {fileID: 0}
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 1536
+  horizontalRayCount: 4
+  verticalRayCount: 4
+  dragMask:
+    serializedVersion: 2
+    m_Bits: 1024
   playerInput: {x: 0, y: 0}
 --- !u!1001 &100100000
 Prefab:

@@ -13,7 +13,7 @@ public class LevelLoader : MonoBehaviour {
 	public string levelFileName;
 	public ColorToPrefab[] colorToPrefab;
 
-	void Start () 
+	void Awake () 
 	{
 		LoadMap();
 	}
@@ -66,6 +66,7 @@ public class LevelLoader : MonoBehaviour {
 			if(c.Equals(color))
 			{
 				GameObject go = Instantiate(ctp.prefab, new Vector3(x, y, 0), Quaternion.identity) as GameObject;
+				go.name = go.name.Substring(0, go.name.LastIndexOf("(Clone)"));
 				go.transform.SetParent(this.transform);
 				return;
 			}

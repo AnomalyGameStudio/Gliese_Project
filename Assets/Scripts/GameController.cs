@@ -38,6 +38,8 @@ public class GameController : MonoBehaviour
 		{
 			checkpoint = GameObject.FindGameObjectWithTag("Spawn").transform.position;
 		}
+
+		SpawnPlayer();
 	}
 
 	void Update()
