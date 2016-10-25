@@ -87,6 +87,48 @@ NavMeshSettings:
     cellSize: .166666672
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &179545278
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400058, guid: 8e9053205474b9240948f984178f4c1f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400058, guid: 8e9053205474b9240948f984178f4c1f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400058, guid: 8e9053205474b9240948f984178f4c1f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400058, guid: 8e9053205474b9240948f984178f4c1f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400058, guid: 8e9053205474b9240948f984178f4c1f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400058, guid: 8e9053205474b9240948f984178f4c1f, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400058, guid: 8e9053205474b9240948f984178f4c1f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -365
+      objectReference: {fileID: 0}
+    - target: {fileID: 400058, guid: 8e9053205474b9240948f984178f4c1f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -34
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 8e9053205474b9240948f984178f4c1f, type: 3}
+  m_IsPrefabParent: 0
 --- !u!1 &422124798
 GameObject:
   m_ObjectHideFlags: 0
@@ -114,7 +156,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!114 &422124800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,7 +257,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
 --- !u!1001 &831807500
 Prefab:
   m_ObjectHideFlags: 0
@@ -261,7 +303,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 43837cf658f07e74f87cc27be0557412, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 43837cf658f07e74f87cc27be0557412, type: 3}
@@ -395,6 +437,38 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 457972, guid: 0d939f2e6613e154cab17b324a3a2402, type: 2}
       propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2057388, guid: 0d939f2e6613e154cab17b324a3a2402, type: 2}
+      propertyPath: field of view
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 11495244, guid: 0d939f2e6613e154cab17b324a3a2402, type: 2}
+      propertyPath: damping
+      value: .100000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 11495244, guid: 0d939f2e6613e154cab17b324a3a2402, type: 2}
+      propertyPath: lookAheadFactor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11495244, guid: 0d939f2e6613e154cab17b324a3a2402, type: 2}
+      propertyPath: lookAheadReturnSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11495244, guid: 0d939f2e6613e154cab17b324a3a2402, type: 2}
+      propertyPath: lookAheadMoveThreshold
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11495244, guid: 0d939f2e6613e154cab17b324a3a2402, type: 2}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 11495244, guid: 0d939f2e6613e154cab17b324a3a2402, type: 2}
+      propertyPath: yOffset
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11495244, guid: 0d939f2e6613e154cab17b324a3a2402, type: 2}
+      propertyPath: yPosRestriction
       value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
