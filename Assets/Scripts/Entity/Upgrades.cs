@@ -27,7 +27,7 @@ public class Upgrades : MonoBehaviour, IUpgradable
 		// Check the string to know which power up was enabled
 		switch(powerUp)
 		{
-		case "DoubleJump": doubleJump = true;	break;						// Enables the Double Jump
+		case "Double Jump": doubleJump = true;	break;						// Enables the Double Jump
 		}
 	}
 }
