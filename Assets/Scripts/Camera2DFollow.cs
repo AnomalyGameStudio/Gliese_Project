@@ -12,6 +12,7 @@ namespace UnityStandardAssets._2D
         public float lookAheadMoveThreshold = 0.1f;
 		public float yPosRestriction = -1;
 		public float yOffset = 2f;
+		public float waitAfterRespawn = 0.1f;
 
         private float m_OffsetZ;
         private Vector3 m_LastTargetPosition;
@@ -82,7 +83,7 @@ namespace UnityStandardAssets._2D
 					m_OffsetZ = (transform.position - target.position).z;
 				}
 
-				nextTimeToSearch = Time.time + 0.5f;
+				nextTimeToSearch = Time.time + waitAfterRespawn;
 			}
 		}
     }
