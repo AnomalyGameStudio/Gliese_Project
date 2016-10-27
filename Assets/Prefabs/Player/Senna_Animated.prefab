@@ -782,12 +782,12 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
-  m_AngularDrag: .0500000007
+  m_AngularDrag: .5
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 126
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!64 &6435606
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -884,16 +884,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5028c5ecc7d72134cb310a7d097dccc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1
-  wallJumpOff: {x: 5, y: 5}
-  wallLeap: {x: 10, y: 15}
-  doubleJumpVelocity: {x: 5, y: 5}
-  moveSpeed: 12
-  maxJumpHeight: 4
+  maxHealth: 100
+  wallJumpOff: {x: 4, y: 4}
+  wallLeap: {x: 10, y: 16}
+  doubleJumpVelocity: {x: 0, y: 15}
+  moveSpeed: 8
+  maxJumpHeight: 3
   minJumpHeight: 1
-  timeToJumpApex: .400000006
-  wallSlideSpeedMax: 3
-  wallStickTime: .25
+  timeToJumpApex: .349999994
+  wallSlideSpeedMax: 2
+  wallStickTime: .400000006
 --- !u!136 &13680080
 CapsuleCollider:
   m_ObjectHideFlags: 1
