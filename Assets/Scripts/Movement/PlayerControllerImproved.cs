@@ -129,6 +129,10 @@ public class PlayerControllerImproved : Entity
 			// Set the wall sliding to true
 			wallSliding = true;
 
+			// Set Double jump to False so player can double jump after wall slide
+			playerPhysics.collisions.doubleJump = true;
+			playerPhysics.collisions.jump = false;
+
 			// Check if the current Y velocity is lesser than the wallSlideMaxSpeed
 			if(velocity.y < -wallSlideSpeedMax)
 			{
