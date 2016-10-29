@@ -62,7 +62,7 @@ public class LevelLoader : MonoBehaviour {
 		foreach(ColorToPrefab ctp in colorToPrefab)
 		{
 			Color32 color = ctp.color;
-			Debug.Log(color.ToString());
+			//Debug.Log(color.ToString());
 			if(c.Equals(color))
 			{
 				GameObject go = Instantiate(ctp.prefab, new Vector3(x, y, 0), Quaternion.identity) as GameObject;
