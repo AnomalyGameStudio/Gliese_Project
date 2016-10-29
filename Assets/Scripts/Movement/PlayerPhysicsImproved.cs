@@ -297,12 +297,16 @@ public class PlayerPhysicsImproved : RaycastController, IActorPhysics
 					velocity.x = velocity.y / Mathf.Tan(collisions.slopeAngle * Mathf.Deg2Rad) * Mathf.Sign(velocity.x);
 				}
 
-				//TODO Test the up collision for double jump
-				// collisions.jump = false; - OLD
-				collisions.jump = collisions.above && !collisions.doubleJump;
+                //TODO Test the up collision for double jump
+                // collisions.jump = false; - OLD
+                collisions.jump = !collisions.below; // && !collisions.doubleJump;
 
 				// Set collisions flags
-				collisions.doubleJump = true;
+                if(collisions.below)
+                {
+                    collisions.doubleJump = true;
+                }
+				
 				collisions.below = directionY == -1;
 				collisions.above = directionY == 1;
 			}

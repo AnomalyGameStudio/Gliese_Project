@@ -193,7 +193,6 @@ public class PlayerControllerImproved : Entity
 				{
 					velocity.x = -wallDirX * wallLeap.x;
 					velocity.y = wallLeap.y;
-
 				}
 				//else // If the player is moving to the oposite side will do a leap
 				//{
