@@ -299,7 +299,7 @@ public class PlayerPhysicsImproved : RaycastController, IActorPhysics
 
 				//TODO Test the up collision for double jump
 				// collisions.jump = false; - OLD
-				collisions.jump = collisions.above;
+				collisions.jump = collisions.above && !collisions.doubleJump;
 
 				// Set collisions flags
 				collisions.doubleJump = true;

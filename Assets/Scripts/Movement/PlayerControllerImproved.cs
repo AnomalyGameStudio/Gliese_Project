@@ -124,7 +124,7 @@ public class PlayerControllerImproved : Entity
 		velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, currentAcceleration);
 
 		// Check if player is colliding with something and is not on ground
-		if((playerPhysics.collisions.left || playerPhysics.collisions.right) && !playerPhysics.collisions.below && velocity.y < 0)
+		if((playerPhysics.collisions.left || playerPhysics.collisions.right) && !playerPhysics.collisions.below)
 		{
 			// Set the wall sliding to true
 			wallSliding = true;
@@ -133,12 +133,21 @@ public class PlayerControllerImproved : Entity
 			playerPhysics.collisions.doubleJump = true;
 			playerPhysics.collisions.jump = false;
 
-			// Check if the current Y velocity is lesser than the wallSlideMaxSpeed
-			if(velocity.y < -wallSlideSpeedMax)
+
+			// If player is on the wall and with the holding the button in the wall direction, he souldn't drag
+			if(playerInput.x == wallDirX && playerInput.x != 0)
 			{
-				velocity.y = -wallSlideSpeedMax;
+				velocity.y = - (GameController.instance.gravity * Time.deltaTime);
 			}
-			
+			else
+			{
+				// Check if the current Y velocity is lesser than the wallSlideMaxSpeed
+				if(velocity.y < -wallSlideSpeedMax)
+				{
+					velocity.y = -wallSlideSpeedMax;
+				}
+			}
+
 			// Check if reached the time to unstick the wall
 			if(timeToWallUnstick > 0)
 			{
@@ -179,17 +188,18 @@ public class PlayerControllerImproved : Entity
 			// Check if the player is sliding on the Wall
 			if(wallSliding)
 			{
-				// If the player is inputing nothing or moving to the same side as the wall it will do a Jump Off
+				// If the player is inputing nothing or moving to oposite direction of the wall it will do a Leap
 				if (playerInput.x == 0 || wallDirX == playerInput.x)
-				{
-					velocity.x = -wallDirX * wallJumpOff.x;
-					velocity.y = wallJumpOff.y;
-				}
-				else // If the player is moving to the oposite side will do a leap
 				{
 					velocity.x = -wallDirX * wallLeap.x;
 					velocity.y = wallLeap.y;
+
 				}
+				//else // If the player is moving to the oposite side will do a leap
+				//{
+				//	velocity.x = -wallDirX * wallJumpOff.x;
+				//	velocity.y = wallJumpOff.y;
+				//}
 			}
 			// If it is on the ground it will Jump
 			if(playerPhysics.collisions.below)
@@ -206,6 +216,7 @@ public class PlayerControllerImproved : Entity
 			{
 				// Set the Y velocity to the minimum Jump velocity
 				velocity.y = minJumpVelocity;
+                
 			}
 		}
 
@@ -223,11 +234,12 @@ public class PlayerControllerImproved : Entity
 
 		// Pass to the animator the current velocity of the player
 		animator.SetFloat("Speed", Mathf.Abs(velocity.x));
-
+        
 		// Add the gravity to the Y velocity
-		velocity.y += GameController.instance.gravity * Time.deltaTime;	
-		// Calls the Move of the player Physics
-		playerPhysics.Move(velocity * Time.deltaTime, playerInput);
+		velocity.y += GameController.instance.gravity * Time.deltaTime;
+        
+        // Calls the Move of the player Physics
+        playerPhysics.Move(velocity * Time.deltaTime, playerInput);
 
 		// If the player have a collision above or bellow sets the velocity Y to 0
 		if(playerPhysics.collisions.below || playerPhysics.collisions.above)
