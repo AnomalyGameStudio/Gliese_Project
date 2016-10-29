@@ -22,7 +22,7 @@ public class MainMenuEvent : MonoBehaviour
 	public void ButtonNewGame()
 	{
 		Debug.Log("New Game");
-		Application.LoadLevel("Demo_0.0.0001");
+		Application.LoadLevel("level_1-1");
 	}
 
 	//Handles the code from the Exit game Menu Button
